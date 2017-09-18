@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
-import BudgetPreviewComponent from './BudgetPreviewComponent';
 import PieChartComponent from './PieChartComponent';
 
 const newTheme = {
@@ -16,11 +15,10 @@ const newTheme = {
     accent1Color: '#607d8b'
   }
 };
+//
 const data = [{ x: 'Food', y: 35 }, { x: 'Bills', y: 40 }, { x: 'Gas', y: 55 }];
 
-storiesOf('BudgetPreviewComponent', module)
+storiesOf('PieChartComponent', module)
   .addDecorator(muiTheme([newTheme]))
-  .add('Without pie chart data', () => <BudgetPreviewComponent />)
-  .add('With Pie Chart data', () =>
-    <BudgetPreviewComponent ChartData={data} />
-  );
+  .add('Pie chart renders without data', () => <PieChartComponent />)
+  .add('Pie chart renders with data', () => <PieChartComponent data={data} />);

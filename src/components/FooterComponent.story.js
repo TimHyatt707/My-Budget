@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
-import BudgetPreviewComponent from './BudgetPreviewComponent';
-import PieChartComponent from './PieChartComponent';
+import FooterComponent from './FooterComponent';
 
 const newTheme = {
   themeName: 'Dark Theme',
@@ -16,11 +15,8 @@ const newTheme = {
     accent1Color: '#607d8b'
   }
 };
-const data = [{ x: 'Food', y: 35 }, { x: 'Bills', y: 40 }, { x: 'Gas', y: 55 }];
+const pageTitle = 'Home Page';
 
-storiesOf('BudgetPreviewComponent', module)
+storiesOf('Footer Component', module)
   .addDecorator(muiTheme([newTheme]))
-  .add('Without pie chart data', () => <BudgetPreviewComponent />)
-  .add('With Pie Chart data', () =>
-    <BudgetPreviewComponent ChartData={data} />
-  );
+  .add('Happy Path', () => <FooterComponent pageTitle={pageTitle} />);

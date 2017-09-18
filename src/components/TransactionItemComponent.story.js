@@ -1,8 +1,7 @@
 import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
-import BudgetPreviewComponent from './BudgetPreviewComponent';
-import PieChartComponent from './PieChartComponent';
+import TransactionItemComponent from './TransactionItemComponent';
 
 const newTheme = {
   themeName: 'Dark Theme',
@@ -16,11 +15,16 @@ const newTheme = {
     accent1Color: '#607d8b'
   }
 };
-const data = [{ x: 'Food', y: 35 }, { x: 'Bills', y: 40 }, { x: 'Gas', y: 55 }];
 
-storiesOf('BudgetPreviewComponent', module)
+const mockTransaction = {
+  name: 'Coffee',
+  category: 'Food',
+  amount: '$2.50',
+  timestamp: '06/26/1997'
+};
+
+storiesOf('TransactionItemComponent', module)
   .addDecorator(muiTheme([newTheme]))
-  .add('Without pie chart data', () => <BudgetPreviewComponent />)
-  .add('With Pie Chart data', () =>
-    <BudgetPreviewComponent ChartData={data} />
+  .add('Happy path', () =>
+    <TransactionItemComponent transaction={mockTransaction} />
   );
