@@ -13,6 +13,8 @@ function loadStories() {
   require('../src/components/ActionBarComponent.story.js');
   require('../src/components/BudgetDisplayComponent.story.js');
   require('../src/components/BudgetPageLayout.story.js');
+  require('../src/components/TransactionTableComponent.story.js');
+  require('../src/components/TransactionPageLayout.story.js');
   // require('../src/components/PolarChartComponent.story.js');
 }
 

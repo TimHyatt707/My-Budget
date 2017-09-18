@@ -42,5 +42,6 @@ storiesOf('BudgetPage', module)
       <BudgetDisplayComponent totalSpent={totalSpent} totalLimit={totalLimit} />
       <ActionBarComponent />
       <BudgetingTableComponent categories={categories} />
+      <FooterComponent pageTitle={pageTitle} />
     </BudgetPageLayout>
   );
