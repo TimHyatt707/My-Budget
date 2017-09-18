@@ -9,6 +9,11 @@ function loadStories() {
   require('../src/components/TransactionPreviewComponent.story.js');
   require('../src/components/FooterComponent.story.js');
   require('../src/components/IndexPageLayout.story.js');
+  require('../src/components/BudgetingTableComponent.story.js');
+  require('../src/components/ActionBarComponent.story.js');
+  require('../src/components/BudgetDisplayComponent.story.js');
+  require('../src/components/BudgetPageLayout.story.js');
+  // require('../src/components/PolarChartComponent.story.js');
 }
 
 configure(loadStories, module);

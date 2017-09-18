@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Paper from 'material-ui/Paper';
-import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import {
+  Table,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableBody
+} from 'material-ui/Table';
 import TransactionItemComponent from './TransactionItemComponent';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -48,15 +53,29 @@ export default class TransactionPreviewComponent extends Component {
             }}>
             {title}
           </div>
-          <List>
-            {listOfTransactions.map(transaction =>
-              <TransactionItemComponent
-                key={transaction.id}
-                transaction={transaction}>
-                <Divider />
-              </TransactionItemComponent>
-            )}
-          </List>
+          <Table>
+            <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
+              <TableRow>
+                <TableHeaderColumn>Amount</TableHeaderColumn>
+                {/* <TableHeaderColumn>Category</TableHeaderColumn> */}
+                <TableHeaderColumn>Name</TableHeaderColumn>
+                <TableHeaderColumn>Timestamp</TableHeaderColumn>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {listOfTransactions.map(transaction =>
+                <TransactionItemComponent
+                  style={{
+                    fontSize: 14,
+                    overflow: 'hidden'
+                  }}
+                  adjust
+                  key={transaction.id}
+                  transaction={transaction}
+                />
+              )}
+            </TableBody>
+          </Table>
         </Paper>
         <RaisedButton
           label="TRANSACTIONS"

@@ -43,17 +43,17 @@ export default class NavbarComponent extends Component {
             <MenuItem
               style={{ backgroundColor: '#B2EBF2' }}
               primaryText={this.props.pages[0]}
-              onClick={this._handleClick(this.props.pages[0])}
+              onClick={this._onHomePageHandler}
             />
             <MenuItem
               style={{ backgroundColor: '#B2EBF2' }}
               primaryText={this.props.pages[1]}
-              onClick={this._handleClick(this.props.pages[1])}
+              onClick={this._onBudgetingHandler}
             />
             <MenuItem
               style={{ backgroundColor: '#B2EBF2' }}
               primaryText={this.props.pages[2]}
-              onClick={this._handleClick(this.props.pages[2])}
+              onClick={this._onTransactionHandler}
             />
           </IconMenu>
         </ToolbarGroup>
@@ -61,5 +61,7 @@ export default class NavbarComponent extends Component {
     );
   }
 
-  _handleClick = page => console.log(page);
+  _onHomePageHandler = () => console.log('HomePage');
+  _onBudgetingHandler = () => console.log('Budgeting');
+  _onTransactionHandler = () => console.log('Transactions');
 }
