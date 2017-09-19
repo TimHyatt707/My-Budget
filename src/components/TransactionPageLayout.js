@@ -12,16 +12,16 @@ export default function TransactionPageLayout(props) {
           flexDirection: 'column',
           alignItems: 'center'
         }}>
-        <div style={{ marginTop: 40 }}>
+        <div style={{ marginTop: 40, marginBottom: 20 }}>
           {props.children[1]}
         </div>
         <div style={{ width: '80%', marginBottom: '20' }}>
           {props.children[2]}
         </div>
       </div>
-      <footer className="Footer">
+      {/* <footer className="Footer">
         {props.children[3]}
-      </footer>
+      </footer> */}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export default class TransactionTableItemComponent extends Component {
     if (selected) {
       color = '#FFEB3B';
     } else {
-      color = '#FAFAFA';
+      color = '#212121';
     }
     return (
       <TableRow style={{ backgroundColor: color }}>

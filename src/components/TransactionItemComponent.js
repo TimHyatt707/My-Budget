@@ -6,9 +6,9 @@ export default class TransactionItemComponent extends Component {
   render() {
     const { transaction } = this.props;
     return (
-      <TableRow selectable={false} style={{ backgroundColor: '#FAFAFA' }}>
+      <TableRow selectable={false}>
         <TableRowColumn>
-          {this.props.transaction.amount}
+          {this.props.transaction.amountSpent}
         </TableRowColumn>
         <TableRowColumn>
           {this.props.transaction.name}

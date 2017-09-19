@@ -5,6 +5,7 @@ import {
   ToolbarSeparator,
   ToolbarTitle
 } from 'material-ui/Toolbar';
+import { Link } from 'react-router-dom';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
@@ -26,7 +27,6 @@ export default class NavbarComponent extends Component {
           <TextField hintText="Search for transaction by name" />
           <RaisedButton
             label="GO"
-            backgroundColor="#B2EBF2"
             style={{
               width: '20px',
               marginTop: '10px'
@@ -40,28 +40,18 @@ export default class NavbarComponent extends Component {
             }
             anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
             targetOrigin={{ horizontal: 'left', vertical: 'top' }}>
-            <MenuItem
-              style={{ backgroundColor: '#B2EBF2' }}
-              primaryText={this.props.pages[0]}
-              onClick={this._onHomePageHandler}
-            />
-            <MenuItem
-              style={{ backgroundColor: '#B2EBF2' }}
-              primaryText={this.props.pages[1]}
-              onClick={this._onBudgetingHandler}
-            />
-            <MenuItem
-              style={{ backgroundColor: '#B2EBF2' }}
-              primaryText={this.props.pages[2]}
-              onClick={this._onTransactionHandler}
-            />
+            <Link to={'/'}>
+              <MenuItem primaryText={this.props.pages[0]} />
+            </Link>
+            <Link to={'/Budget'}>
+              <MenuItem primaryText={this.props.pages[1]} />
+            </Link>
+            <Link to={'/Transactions'}>
+              <MenuItem primaryText={this.props.pages[2]} />
+            </Link>
           </IconMenu>
         </ToolbarGroup>
       </Toolbar>
     );
   }
-
-  _onHomePageHandler = () => console.log('HomePage');
-  _onBudgetingHandler = () => console.log('Budgeting');
-  _onTransactionHandler = () => console.log('Transactions');
 }

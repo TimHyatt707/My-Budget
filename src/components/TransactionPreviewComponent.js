@@ -9,18 +9,18 @@ import {
 } from 'material-ui/Table';
 import TransactionItemComponent from './TransactionItemComponent';
 import RaisedButton from 'material-ui/RaisedButton';
+import { Link } from 'react-router-dom';
 
 export default class TransactionPreviewComponent extends Component {
   render() {
     const { transactions } = this.props;
     const style = {
-      height: 300,
-      width: 300,
+      height: 500,
+      width: 500,
       marginTop: 40,
       marginBottom: 20,
       textAlign: 'center',
-      display: 'inline-block',
-      backgroundColor: '#FAFAFA'
+      display: 'inline-block'
     };
     const title = 'Recent Transactions';
     let listOfTransactions = [];
@@ -47,17 +47,13 @@ export default class TransactionPreviewComponent extends Component {
           alignItems: 'center'
         }}>
         <Paper zDepth={4} style={style} className="TransactionsPreview">
-          <div
-            style={{
-              backgroundColor: '#B2EBF2'
-            }}>
+          <div>
             {title}
           </div>
           <Table>
             <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
               <TableRow>
                 <TableHeaderColumn>Amount</TableHeaderColumn>
-                {/* <TableHeaderColumn>Category</TableHeaderColumn> */}
                 <TableHeaderColumn>Name</TableHeaderColumn>
                 <TableHeaderColumn>Timestamp</TableHeaderColumn>
               </TableRow>
@@ -77,14 +73,15 @@ export default class TransactionPreviewComponent extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <RaisedButton
-          label="TRANSACTIONS"
-          backgroundColor="#B2EBF2"
-          style={{
-            height: 34,
-            width: 150
-          }}
-        />
+        <Link to={'/Transactions'}>
+          <RaisedButton
+            label="TRANSACTIONS"
+            style={{
+              height: 34,
+              width: 150
+            }}
+          />
+        </Link>
       </div>
     );
   }

@@ -1,23 +1,36 @@
 import React, { Component } from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import IndexPageContainer from './containers/IndexPageContainer.js';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import IndexPageContainer from './redux/containers/IndexPageContainer.js';
+import BudgetPageContainer from './redux/containers/BudgetPageContainer.js';
+import TransactionPageContainer from './redux/containers/TransactionPageContainer.js';
+import { Provider } from 'react-redux';
+import setupStore from './redux/setupStore';
 
-class App extends Component {
-  state = {};
+const store = setupStore();
 
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <MuiThemeProvider>
-          <Router>
-            {/* <Route exact path="/" component={IndexPageContainer} /> */}
-          </Router>
-        </MuiThemeProvider>
-      </div>
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+        <div className="App">
+          <Provider store={store}>
+            <Router>
+              <Switch>
+                <Route exact path="/" component={IndexPageContainer} />
+                <Route exact path="/Budget" component={BudgetPageContainer} />
+                <Route
+                  exact
+                  path="/Transactions"
+                  component={TransactionPageContainer}
+                />
+              </Switch>
+            </Router>
+          </Provider>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }
-
-export default App;

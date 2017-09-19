@@ -19,13 +19,10 @@ export default function BudgetPageLayout(props) {
           {props.children[2]}
         </div>
         {props.children[3]}
-        <div style={{ width: '80%', marginBottom: '20' }}>
+        <div style={{ width: '80%', marginBottom: 40 }}>
           {props.children[4]}
         </div>
       </div>
-      <footer className="Footer">
-        {props.children[5]}
-      </footer>
     </div>
   );
 }
