@@ -16,7 +16,8 @@ export default function BudgetPage({
   categories,
   onOpenCreateCategoryDialog,
   onShowCreateCategoryDialog,
-  onCloseCreateCategoryDialog
+  onCloseCreateCategoryDialog,
+  onSubmitCategory
 }) {
   return (
     <BudgetPageLayout>
@@ -27,6 +28,7 @@ export default function BudgetPage({
         onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
         onShowCreateCategoryDialog={onShowCreateCategoryDialog}
         onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}
+        onSubmitCategory={onSubmitCategory}
       />
       <BudgetingTableComponent categories={categories} />
       <FooterComponent pageTitle={pageTitle} />

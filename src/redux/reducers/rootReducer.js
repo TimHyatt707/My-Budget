@@ -21,7 +21,10 @@ export default function rootReducer(
     case 'CLOSE_CREATE_CATEGORY':
       return { ...currentState, onShowCreateCategoryDialog: null };
     case 'ADD_CATEGORY':
-      return { categories: [...currentState, action.category] };
+      return {
+        ...currentState,
+        categories: [...currentState.categories, action.category]
+      };
     default:
       return currentState;
   }

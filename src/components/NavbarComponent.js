@@ -14,12 +14,11 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class NavbarComponent extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    const { pageTitle, pages } = this.props;
-    let title = this.props.pageTitle;
-    !this.props.pageTitle
-      ? (title = 'Home Page')
-      : (title = this.props.pageTitle);
+    let title = 'My Budget';
     return (
       <Toolbar>
         <ToolbarTitle text={title} />

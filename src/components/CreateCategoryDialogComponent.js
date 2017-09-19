@@ -5,13 +5,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 export default class CreateCategoryDialogComponent extends Component {
+  constructor(props) {
+    super(props);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleClose = this._handleClose.bind(this);
+    this._handleOpen = this._handleOpen.bind(this);
+  }
   render() {
-    const {
-      onOpenCreateCategoryDialog,
-      onShowCreateCategoryDialog,
-      onCloseCreateCategoryDialog,
-      onSubmitCategory
-    } = this.props;
     const actions = [
       <FlatButton label="Cancel" primary={true} onClick={this._handleClose} />,
       <FlatButton label="Submit" primary={true} type="submit" />
@@ -49,9 +49,14 @@ export default class CreateCategoryDialogComponent extends Component {
       typeof parseInt($form.limit.value) !== 'number'
     ) {
       alert('Invalid Input');
+    } else if (!$form.category.value) {
+      alert('Please fill out all fields');
+    } else if ($form.amountSpent.value <= 0 || $form.limit.value <= 0) {
+      alert('Invalid Input');
     } else {
-      object.amountSpent = $form.amountSpent.value;
-      object.limit = $form.limit.value;
+      object.amountSpent = parseFloat($form.amountSpent.value);
+      object.limit = parseFloat($form.limit.value);
+      console.log(object);
       this.props.onSubmitCategory(object);
     }
 

@@ -13,11 +13,12 @@ export default function createCategory(object) {
       return response.json();
     })
     .then(record => {
+      console.log(record);
       return {
         id: record.id,
-        body: record.fields.category,
-        subject: record.fields.amountSpent,
-        read: record.fields.limit
+        category: record.fields.category,
+        amountSpent: record.fields.amountSpent,
+        limit: record.fields.limit
       };
     });
 }

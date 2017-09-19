@@ -21,10 +21,10 @@ export default class ActionBarCategoryComponent extends Component {
         }}>
         <RaisedButton label="CREATE" onClick={this._onCreateCategoryHandler}>
           <CreateCategoryDialogComponent
-            onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
-            onShowCreateCategoryDialog={onShowCreateCategoryDialog}
-            onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}
-            onSubmitCategory={onSubmitCategory}
+            onOpenCreateCategoryDialog={this.props.onOpenCreateCategoryDialog}
+            onShowCreateCategoryDialog={this.props.onShowCreateCategoryDialog}
+            onCloseCreateCategoryDialog={this.props.onCloseCreateCategoryDialog}
+            onSubmitCategory={this.props.onSubmitCategory}
           />
         </RaisedButton>
         <RaisedButton label="UPDATE" onClick={this._onUpdateCategoryHandler} />
