@@ -9,7 +9,9 @@ export default function rootReducer(
     chartData: null,
     totalSpent: 0,
     totalLimit: 0,
-    onShowCreateCategoryDialog: false
+    onShowCreateCategoryDialog: false,
+    onShowUpdateCategoryDialog: false,
+    onShowCreateTransactionDialog: false
   },
   action
 ) {
@@ -21,7 +23,7 @@ export default function rootReducer(
     case 'SHOW_CREATE_CATEGORY':
       return { ...currentState, onShowCreateCategoryDialog: true };
     case 'CLOSE_CREATE_CATEGORY':
-      return { ...currentState, onShowCreateCategoryDialog: null };
+      return { ...currentState, onShowCreateCategoryDialog: false };
     case 'ADD_CATEGORY':
       return {
         ...currentState,
@@ -38,7 +40,56 @@ export default function rootReducer(
       return {
         ...currentState,
         selectedCategoryIds: currentState.selectedCategoryIds.filter(
-          Id => Id === action.id
+          Id => Id !== action.id
+        )
+      };
+    case 'SHOW_UPDATE_CATEGORY':
+      return { ...currentState, onShowUpdateCategoryDialog: true };
+    case 'CLOSE_UPDATE_CATEGORY':
+      return { ...currentState, onShowUpdateCategoryDialog: false };
+    case 'UPDATE_CATEGORY':
+      return {
+        ...currentState,
+        categories: currentState.categories.map(
+          category =>
+            category.id === action.category.id ? action.category : category
+        )
+      };
+    case 'DELETE_CATEGORY':
+      return {
+        ...currentState,
+        categories: currentState.categories.filter(
+          category => category.id !== action.id.id
+        )
+      };
+    case 'OPEN_CREATE_TRANSACTION':
+      return {
+        ...currentState,
+        onShowCreateTransactionDialog: true
+      };
+    case 'CLOSE_CREATE_TRANSACTION':
+      return {
+        ...currentState,
+        onShowCreateTransactionDialog: false
+      };
+    case 'ADD_TRANSACTION':
+      return {
+        ...currentState,
+        transactions: [...currentState.transactions, action.transaction]
+      };
+    case 'SELECT_TRANSACTION':
+      return {
+        ...currentState,
+        selectedTransactionIds: [
+          ...currentState.selectedTransactionIds,
+          action.id
+        ]
+      };
+    case 'DESELECT_TRANSACTION':
+      return {
+        ...currentState,
+        selectedTransactionIds: currentState.selectedTransactionIds.filter(
+          Id => Id !== action.id
         )
       };
     default:

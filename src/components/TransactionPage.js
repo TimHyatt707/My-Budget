@@ -9,15 +9,30 @@ export default function TransactionPage({
   pageTitle,
   pages,
   transactions,
-  selectedTransactionIds
+  selectedTransactionIds,
+  categories,
+  onShowCreateTransactionDialog,
+  onOpenCreateTransactionDialog,
+  onCloseCreateTransactionDialog,
+  onSubmitTransaction,
+  onSelectTransaction,
+  onDeselectTransaction
 }) {
   return (
     <TransactionPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <ActionBarTransactionComponent />
+      <ActionBarTransactionComponent
+        categories={categories}
+        onShowCreateTransactionDialog={onShowCreateTransactionDialog}
+        onCloseCreateTransactionDialog={onCloseCreateTransactionDialog}
+        onOpenCreateTransactionDialog={onOpenCreateTransactionDialog}
+        onSubmitTransaction={onSubmitTransaction}
+      />
       <TransactionTableComponent
         transactions={transactions}
         selectedTransactionIds={selectedTransactionIds}
+        onSelectTransaction={onSelectTransaction}
+        onDeselectTransaction={onDeselectTransaction}
       />
       <FooterComponent pageTitle={pageTitle} />
     </TransactionPageLayout>

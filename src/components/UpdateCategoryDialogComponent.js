@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
-export default class CreateCategoryDialogComponent extends Component {
+export default class UpdateCategoryDialogComponent extends Component {
   constructor(props) {
     super(props);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -22,9 +22,9 @@ export default class CreateCategoryDialogComponent extends Component {
     ];
     return (
       <Dialog
-        title="Create a Category"
+        title="Update many categories at once or update a single category"
         modal={true}
-        open={this.props.onShowCreateCategoryDialog}>
+        open={this.props.onShowUpdateCategoryDialog}>
         <form onSubmit={this._handleSubmit}>
           <TextField id="category" hintText="Category" />
           <br />
@@ -38,10 +38,10 @@ export default class CreateCategoryDialogComponent extends Component {
     );
   }
   _handleClose() {
-    this.props.onCloseCreateCategoryDialog();
+    this.props.onCloseUpdateCategoryDialog();
   }
   _handleOpen() {
-    this.props.onOpenCreateCategoryDialog();
+    this.props.onOpenUpdateCategoryDialog();
   }
   _handleSubmit(event) {
     event.preventDefault();
@@ -60,8 +60,10 @@ export default class CreateCategoryDialogComponent extends Component {
     } else {
       object.amountSpent = parseFloat($form.amountSpent.value);
       object.limit = parseFloat($form.limit.value);
-      this.props.onCloseCreateCategoryDialog();
-      this.props.onSubmitCategory(object);
+      for (let i = 0; i < this.props.selectedCategoryIds.length; i++) {
+        this.props.onUpdateCategory(this.props.selectedCategoryIds[i], object);
+      }
     }
+    this.props.onCloseUpdateCategoryDialog();
   }
 }

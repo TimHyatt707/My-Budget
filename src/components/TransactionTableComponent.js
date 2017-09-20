@@ -3,7 +3,8 @@ import {
   Table,
   TableHeader,
   TableHeaderColumn,
-  TableBody
+  TableBody,
+  TableRow
 } from 'material-ui/Table';
 import TransactionTableItemComponent from './TransactionTableItemComponent';
 
@@ -25,16 +26,21 @@ export default class TransactionTableComponent extends Component {
     return (
       <Table>
         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-          <TableHeaderColumn>Amount Spent</TableHeaderColumn>
-          <TableHeaderColumn>Category</TableHeaderColumn>
-          <TableHeaderColumn>Name of Transaction</TableHeaderColumn>
-          <TableHeaderColumn>Timestamp</TableHeaderColumn>
+          <TableRow>
+            <TableHeaderColumn>Amount Spent</TableHeaderColumn>
+            <TableHeaderColumn>Category</TableHeaderColumn>
+            <TableHeaderColumn>Name of Transaction</TableHeaderColumn>
+            <TableHeaderColumn>Timestamp</TableHeaderColumn>
+          </TableRow>
         </TableHeader>
         <TableBody>
           {listOfTransactions.map(transaction =>
             <TransactionTableItemComponent
+              key={transaction.id}
               transaction={transaction}
               selectedTransactionIds={this.props.selectedTransactionIds}
+              onSelectTransaction={this.props.onSelectTransaction}
+              onDeselectTransaction={this.props.onDeselectTransaction}
             />
           )}
         </TableBody>

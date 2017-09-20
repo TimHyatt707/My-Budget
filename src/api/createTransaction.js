@@ -1,5 +1,5 @@
-export default function createCategory(object) {
-  return fetch(`https://api.airtable.com/v0/app4N49jXo9XVuKeq/Categories`, {
+export default function createTransaction(object) {
+  return fetch(`https://api.airtable.com/v0/appjAkSe9KeAO6vMv/transactions`, {
     method: 'POST',
     headers: {
       Authorization: 'Bearer keyZjFgCqHqPR1F8o',
@@ -17,7 +17,8 @@ export default function createCategory(object) {
         id: record.id,
         category: record.fields.category,
         amountSpent: record.fields.amountSpent,
-        limit: record.fields.limit
+        name: record.fields.name,
+        timestamp: record.fields.timestamp
       };
     });
 }

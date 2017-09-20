@@ -17,7 +17,7 @@ export default class BudgetingTableItemComponent extends Component {
       }
     }
     if (selected) {
-      color = '#FFEB3B';
+      color = '#F50057';
     } else {
       color = '#212121';
     }

@@ -17,10 +17,16 @@ export default function BudgetPage({
   onOpenCreateCategoryDialog,
   onShowCreateCategoryDialog,
   onCloseCreateCategoryDialog,
+  onOpenUpdateCategoryDialog,
+  onCloseUpdateCategoryDialog,
+  onShowUpdateCategoryDialog,
+  onDeleteCategory,
+  onSubmitUpdate,
   onSubmitCategory,
   onSelectCategory,
   onDeselectCategory,
-  selectedCategoryIds
+  selectedCategoryIds,
+  onUpdateCategory
 }) {
   return (
     <BudgetPageLayout>
@@ -32,7 +38,12 @@ export default function BudgetPage({
         onShowCreateCategoryDialog={onShowCreateCategoryDialog}
         onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}
         onSubmitCategory={onSubmitCategory}
-        // onOpenUpdateCategoryDialog={onOpenUpdateCategoryDialog}
+        onOpenUpdateCategoryDialog={onOpenUpdateCategoryDialog}
+        onCloseUpdateCategoryDialog={onCloseUpdateCategoryDialog}
+        onShowUpdateCategoryDialog={onShowUpdateCategoryDialog}
+        onUpdateCategory={onUpdateCategory}
+        selectedCategoryIds={selectedCategoryIds}
+        onDeleteCategory={onDeleteCategory}
       />
       <BudgetingTableComponent
         categories={categories}

@@ -18,7 +18,9 @@ export default function BudgetPageLayout(props) {
         <div style={{ marginBottom: 20 }}>
           {props.children[2]}
         </div>
-        {props.children[3]}
+        <div style={{ marginBottom: 40 }}>
+          {props.children[3]}
+        </div>
         <div style={{ width: '80%', marginBottom: 40 }}>
           {props.children[4]}
         </div>
