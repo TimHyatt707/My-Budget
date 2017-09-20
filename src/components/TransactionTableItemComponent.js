@@ -3,12 +3,10 @@ import { TableRowColumn, TableRow } from 'material-ui/Table';
 
 export default class TransactionTableItemComponent extends Component {
   render() {
-    const { transaction, selectedTransactionIds } = this.props;
     let color;
-    let Ids;
     let id = this.props.transaction.id;
     let selected = false;
-    if (selectedTransactionIds) {
+    if (this.props.selectedTransactionIds) {
       let Ids = this.props.selectedTransactionIds;
       for (let i = 0; i < Ids.length; i++) {
         if (Ids[i] === id) selected = true;

@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 
 export default class TransactionPreviewComponent extends Component {
   render() {
-    const { transactions } = this.props;
     const style = {
       height: 500,
       width: 500,

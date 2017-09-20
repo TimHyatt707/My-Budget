@@ -3,11 +3,6 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 export default class ActionBarTransactionComponent extends Component {
   render() {
-    const {
-      onCreateTransaction,
-      onUpdateTransaction,
-      onDeleteTransaction
-    } = this.props;
     return (
       <div
         style={{

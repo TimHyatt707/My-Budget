@@ -10,7 +10,6 @@ import BudgetingTableItemComponent from './BudgetingTableItemComponent';
 
 export default class BudgetingTableComponent extends Component {
   render() {
-    const { categories, selectedCategoryIds } = this.props;
     let listOfCategories;
     if (!this.props.categories) {
       listOfCategories = [
@@ -26,15 +25,20 @@ export default class BudgetingTableComponent extends Component {
     return (
       <Table>
         <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
-          <TableHeaderColumn>Category</TableHeaderColumn>
-          <TableHeaderColumn>Amount Spent</TableHeaderColumn>
-          <TableHeaderColumn>Limit</TableHeaderColumn>
+          <TableRow>
+            <TableHeaderColumn>Category</TableHeaderColumn>
+            <TableHeaderColumn>Amount Spent</TableHeaderColumn>
+            <TableHeaderColumn>Limit</TableHeaderColumn>
+          </TableRow>
         </TableHeader>
         <TableBody>
           {listOfCategories.map(category =>
             <BudgetingTableItemComponent
+              key={category.id}
               category={category}
-              selectedCategoryIds={selectedCategoryIds}
+              selectedCategoryIds={this.props.selectedCategoryIds}
+              onSelectCategory={this.props.onSelectCategory}
+              onDeselectCategory={this.props.onDeselectCategory}
             />
           )}
         </TableBody>

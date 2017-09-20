@@ -3,14 +3,12 @@ import {
   Table,
   TableHeader,
   TableHeaderColumn,
-  TableRow,
   TableBody
 } from 'material-ui/Table';
 import TransactionTableItemComponent from './TransactionTableItemComponent';
 
 export default class TransactionTableComponent extends Component {
   render() {
-    const { transactions, selectedTransactionIds } = this.props;
     let listOfTransactions;
     if (!this.props.transactions) {
       listOfTransactions = [
@@ -36,7 +34,7 @@ export default class TransactionTableComponent extends Component {
           {listOfTransactions.map(transaction =>
             <TransactionTableItemComponent
               transaction={transaction}
-              selectedTransactionIds={selectedTransactionIds}
+              selectedTransactionIds={this.props.selectedTransactionIds}
             />
           )}
         </TableBody>

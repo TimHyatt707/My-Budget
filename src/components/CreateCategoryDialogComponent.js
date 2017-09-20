@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 export default class CreateCategoryDialogComponent extends Component {
@@ -13,8 +12,13 @@ export default class CreateCategoryDialogComponent extends Component {
   }
   render() {
     const actions = [
-      <FlatButton label="Cancel" primary={true} onClick={this._handleClose} />,
-      <FlatButton label="Submit" primary={true} type="submit" />
+      <FlatButton
+        key="1"
+        label="Cancel"
+        primary={true}
+        onClick={this._handleClose}
+      />,
+      <FlatButton key="2" label="Submit" primary={true} type="submit" />
     ];
     return (
       <Dialog
@@ -45,8 +49,8 @@ export default class CreateCategoryDialogComponent extends Component {
     const $form = event.target;
     object.category = $form.category.value;
     if (
-      typeof parseInt($form.amountSpent.value) !== 'number' ||
-      typeof parseInt($form.limit.value) !== 'number'
+      typeof parseInt($form.amountSpent.value, 10) !== 'number' ||
+      typeof parseInt($form.limit.value, 10) !== 'number'
     ) {
       alert('Invalid Input');
     } else if (!$form.category.value) {

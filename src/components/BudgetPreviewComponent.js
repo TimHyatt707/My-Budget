@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 export default class BudgetPreviewComponent extends Component {
   render() {
-    const { ChartData } = this.props;
     const style = {
       height: 500,
       width: 500,

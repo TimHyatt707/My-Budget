@@ -1,13 +1,15 @@
 export default function rootReducer(
   currentState = {
     transactions: [],
+    selectedTransactionIds: [],
     categories: [],
+    selectedCategoryIds: [],
     pageTitle: '',
     pages: ['Home Page', 'Budget Page', 'Transaction Page'],
     chartData: null,
     totalSpent: 0,
     totalLimit: 0,
-    onShowCreateCategoryDialog: null
+    onShowCreateCategoryDialog: false
   },
   action
 ) {
@@ -24,6 +26,20 @@ export default function rootReducer(
       return {
         ...currentState,
         categories: [...currentState.categories, action.category]
+      };
+    case 'SELECT_CATEGORY':
+      return {
+        ...currentState,
+        selectedCategoryIds: [...currentState.selectedCategoryIds, action.id]
+      };
+    // case 'SHOW_UPDATE_CATEGORY':
+    //   return {...currentState, }
+    case 'DESELECT_CATEGORY':
+      return {
+        ...currentState,
+        selectedCategoryIds: currentState.selectedCategoryIds.filter(
+          Id => Id === action.id
+        )
       };
     default:
       return currentState;

@@ -8,6 +8,7 @@ import createCategoryProcess from './../thunks/createCategoryProcess';
 function mapStateToProps(state, ownProps) {
   return {
     categories: state.categories,
+    selectedCategoryIds: state.selectedCategoryIds,
     pageTitle: state.pageTitle,
     pages: state.pages,
     totalSpent: state.totalSpent,
@@ -23,7 +24,11 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: 'SHOW_CREATE_CATEGORY' }),
     onCloseCreateCategoryDialog: () =>
       dispatch({ type: 'CLOSE_CREATE_CATEGORY' }),
-    onSubmitCategory: category => dispatch(createCategoryProcess(category))
+    onSubmitCategory: category => dispatch(createCategoryProcess(category)),
+    onSelectCategory: id => dispatch({ type: 'SELECT_CATEGORY' }, id),
+    onDeselectCategory: id => dispatch({ type: 'DESELECT_CATEGORY' }, id)
+    // onOpenUpdateCategoryDialog: () =>
+    // dispatch({type: 'SHOW_UPDATE_CATEGORY'})
   };
 }
 

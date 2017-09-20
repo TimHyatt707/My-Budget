@@ -4,14 +4,6 @@ import CreateCategoryDialogComponent from './CreateCategoryDialogComponent';
 
 export default class ActionBarCategoryComponent extends Component {
   render() {
-    const {
-      onShowCreateCategoryDialog,
-      onOpenCreateCategoryDialog,
-      onCloseCreateCategoryDialog,
-      onSubmitCategory,
-      onOpenUpdateCategoryDialog,
-      onDeleteCategory
-    } = this.props;
     return (
       <div
         style={{

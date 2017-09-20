@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { TableRowColumn, TableRow } from 'material-ui/Table';
 
 export default class BudgetingTableItemComponent extends Component {
+  constructor(props) {
+    super(props);
+    this._handleClick = this._handleClick.bind(this);
+  }
   render() {
-    const { category, selectedCategoryIds } = this.props;
     let color;
-    let Ids;
     let id = this.props.category.id;
     let selected = false;
-    if (selectedCategoryIds) {
+    if (this.props.selectedCategoryIds) {
       let Ids = this.props.selectedCategoryIds;
       for (let i = 0; i < Ids.length; i++) {
         if (Ids[i] === id) selected = true;
@@ -20,7 +22,7 @@ export default class BudgetingTableItemComponent extends Component {
       color = '#212121';
     }
     return (
-      <TableRow style={{ backgroundColor: color }}>
+      <TableRow style={{ backgroundColor: color }} onClick={this._handleClick}>
         <TableRowColumn>
           {this.props.category.category}
         </TableRowColumn>
@@ -32,5 +34,20 @@ export default class BudgetingTableItemComponent extends Component {
         </TableRowColumn>
       </TableRow>
     );
+  }
+  _handleClick() {
+    let id = this.props.category.id;
+    let selected = false;
+    if (this.props.selectedCategoryIds) {
+      let Ids = this.props.selectedCategoryIds;
+      for (let i = 0; i < Ids.length; i++) {
+        if (Ids[i] === id) selected = true;
+      }
+    }
+    if (selected) {
+      this.props.onDeselectCategory(id);
+    } else {
+      this.props.onSelectCategory(id);
+    }
   }
 }

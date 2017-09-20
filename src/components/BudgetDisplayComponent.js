@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Avatar from 'material-ui/Avatar';
-import Chip from 'material-ui/Chip';
 import FontIcon from 'material-ui/FontIcon';
 import { red500, green800 } from 'material-ui/styles/colors';
 

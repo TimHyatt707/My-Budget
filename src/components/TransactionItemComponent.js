@@ -4,7 +4,6 @@ import { TableRowColumn, TableRow } from 'material-ui/Table';
 
 export default class TransactionItemComponent extends Component {
   render() {
-    const { transaction } = this.props;
     return (
       <TableRow selectable={false}>
         <TableRowColumn>
