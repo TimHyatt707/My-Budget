@@ -6,7 +6,7 @@ import DatePicker from 'material-ui/DatePicker';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
-export default class CreateTransactionDialogComponent extends Component {
+export default class UpdateTransactionDialogComponent extends Component {
   constructor(props) {
     super(props);
     this._handleSubmit = this._handleSubmit.bind(this);
@@ -34,9 +34,9 @@ export default class CreateTransactionDialogComponent extends Component {
     ];
     return (
       <Dialog
-        title="Add a transaction"
+        title="Update a single transaction or many transactions"
         modal={true}
-        open={this.props.onShowCreateTransactionDialog}>
+        open={this.props.onShowUpdateTransactionDialog}>
         <form onSubmit={this._handleSubmit}>
           <TextField id="amountSpent" hintText="Amount Spent" />
           <br />
@@ -66,10 +66,10 @@ export default class CreateTransactionDialogComponent extends Component {
     );
   }
   _handleClose() {
-    this.props.onCloseCreateTransactionDialog();
+    this.props.onCloseUpdateTransactionDialog();
   }
   _handleOpen() {
-    this.props.onOpenCreateTransactionDialog();
+    this.props.onOpenUpdateTransactionDialog();
   }
   _handleSubmit(event) {
     event.preventDefault();
@@ -89,8 +89,13 @@ export default class CreateTransactionDialogComponent extends Component {
       object.amountSpent = parseFloat($form.amountSpent.value);
       object.name = $form.name.value;
       object.timestamp = $form.timestamp.value;
-      this.props.onCloseCreateTransactionDialog();
-      this.props.onSubmitTransaction(object);
+      this.props.onCloseUpdateTransactionDialog();
+      for (let i = 0; i < this.props.selectedTransactionIds.length; i++) {
+        this.props.onUpdateTransaction(
+          this.props.selectedTransactionIds[i],
+          object
+        );
+      }
     }
   }
   _handleChange(event, index, value) {

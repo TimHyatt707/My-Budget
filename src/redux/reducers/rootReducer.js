@@ -11,7 +11,8 @@ export default function rootReducer(
     totalLimit: 0,
     onShowCreateCategoryDialog: false,
     onShowUpdateCategoryDialog: false,
-    onShowCreateTransactionDialog: false
+    onShowCreateTransactionDialog: false,
+    onShowUpdateTransactionDialog: false
   },
   action
 ) {
@@ -90,6 +91,33 @@ export default function rootReducer(
         ...currentState,
         selectedTransactionIds: currentState.selectedTransactionIds.filter(
           Id => Id !== action.id
+        )
+      };
+    case 'OPEN_UPDATE_TRANSACTION':
+      return {
+        ...currentState,
+        onShowUpdateTransactionDialog: true
+      };
+    case 'CLOSE_UPDATE_TRANSACTION':
+      return {
+        ...currentState,
+        onShowUpdateTransactionDialog: false
+      };
+    case 'UPDATE_TRANSACTION':
+      return {
+        ...currentState,
+        transactions: currentState.transactions.map(
+          transaction =>
+            transaction.id === action.transaction.id
+              ? action.transaction
+              : transaction
+        )
+      };
+    case 'DELETE_TRANSACTION':
+      return {
+        ...currentState,
+        transactions: currentState.transactions.filter(
+          transaction => transaction.id !== action.id.id
         )
       };
     default:

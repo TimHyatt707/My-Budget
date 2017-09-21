@@ -5,6 +5,8 @@ import TransactionPage from '../../components/TransactionPage';
 import getTransactionsProcess from './../thunks/getTransactionsProcess';
 import getCategoriesProcess from './../thunks/getCategoriesProcess';
 import createTransactionProcess from './../thunks/createTransactionProcess';
+import updateTransactionProcess from './../thunks/updateTransactionProcess';
+import deleteTransactionProcess from './../thunks/deleteTransactionProcess';
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -13,7 +15,8 @@ function mapStateToProps(state, ownProps) {
     pages: state.pages,
     selectedTransactionIds: state.selectedTransactionIds,
     categories: state.categories,
-    onShowCreateTransactionDialog: state.onShowCreateTransactionDialog
+    onShowCreateTransactionDialog: state.onShowCreateTransactionDialog,
+    onShowUpdateTransactionDialog: state.onShowUpdateTransactionDialog
   };
 }
 
@@ -28,7 +31,14 @@ function mapDispatchToProps(dispatch, ownProps) {
     onSubmitTransaction: transaction =>
       dispatch(createTransactionProcess(transaction)),
     onSelectTransaction: id => dispatch({ type: 'SELECT_TRANSACTION', id }),
-    onDeselectTransaction: id => dispatch({ type: 'DESELECT_TRANSACTION', id })
+    onDeselectTransaction: id => dispatch({ type: 'DESELECT_TRANSACTION', id }),
+    onOpenUpdateTransactionDialog: () =>
+      dispatch({ type: 'OPEN_UPDATE_TRANSACTION' }),
+    onCloseUpdateTransactionDialog: () =>
+      dispatch({ type: 'CLOSE_UPDATE_TRANSACTION' }),
+    onUpdateTransaction: (id, transaction) =>
+      dispatch(updateTransactionProcess(id, transaction)),
+    onDeleteTransaction: id => dispatch(deleteTransactionProcess(id))
   };
 }
 

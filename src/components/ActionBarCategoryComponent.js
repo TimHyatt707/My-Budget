@@ -6,6 +6,8 @@ import UpdateCategoryDialogComponent from './UpdateCategoryDialogComponent';
 export default class ActionBarCategoryComponent extends Component {
   constructor(props) {
     super(props);
+    this._onUpdateCategoryHandler = this._onUpdateCategoryHandler.bind(this);
+    this._onCreateCategoryHandler = this._onCreateCategoryHandler.bind(this);
     this._onDeleteCategoryHandler = this._onDeleteCategoryHandler.bind(this);
   }
   render() {
@@ -20,7 +22,10 @@ export default class ActionBarCategoryComponent extends Component {
           width: 400,
           justifyContent: 'space-between'
         }}>
-        <RaisedButton label="CREATE" onClick={this._onCreateCategoryHandler}>
+        <RaisedButton
+          id="CREATE"
+          label="CREATE"
+          onClick={this._onCreateCategoryHandler}>
           <CreateCategoryDialogComponent
             onOpenCreateCategoryDialog={this.props.onOpenCreateCategoryDialog}
             onShowCreateCategoryDialog={this.props.onShowCreateCategoryDialog}
@@ -29,6 +34,7 @@ export default class ActionBarCategoryComponent extends Component {
           />
         </RaisedButton>
         <RaisedButton
+          id="UPDATE"
           label="UPDATE"
           disabled={disabled}
           onClick={this._onUpdateCategoryHandler}>
@@ -41,6 +47,7 @@ export default class ActionBarCategoryComponent extends Component {
           />
         </RaisedButton>
         <RaisedButton
+          id="DELETE"
           label="DELETE"
           disabled={disabled}
           onClick={this._onDeleteCategoryHandler}
@@ -48,8 +55,12 @@ export default class ActionBarCategoryComponent extends Component {
       </div>
     );
   }
-  _onCreateCategoryHandler = () => this.props.onOpenCreateCategoryDialog();
-  _onUpdateCategoryHandler = () => this.props.onOpenUpdateCategoryDialog();
+  _onCreateCategoryHandler() {
+    this.props.onOpenCreateCategoryDialog();
+  }
+  _onUpdateCategoryHandler() {
+    this.props.onOpenUpdateCategoryDialog();
+  }
   _onDeleteCategoryHandler() {
     this.props.selectedCategoryIds.forEach(id =>
       this.props.onDeleteCategory(id)

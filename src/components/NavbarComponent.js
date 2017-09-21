@@ -11,6 +11,12 @@ import RaisedButton from 'material-ui/RaisedButton';
 export default class NavbarComponent extends Component {
   render() {
     let title = 'My Budget';
+    let pages;
+    if (!this.props.pages) {
+      pages = ['', '', ''];
+    } else {
+      pages = this.props.pages;
+    }
     return (
       <Toolbar>
         <ToolbarTitle text={title} />
@@ -32,13 +38,13 @@ export default class NavbarComponent extends Component {
             anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
             targetOrigin={{ horizontal: 'left', vertical: 'top' }}>
             <Link to={'/'}>
-              <MenuItem primaryText={this.props.pages[0]} />
+              <MenuItem primaryText={pages[0]} />
             </Link>
             <Link to={'/Budget'}>
-              <MenuItem primaryText={this.props.pages[1]} />
+              <MenuItem primaryText={pages[1]} />
             </Link>
             <Link to={'/Transactions'}>
-              <MenuItem primaryText={this.props.pages[2]} />
+              <MenuItem primaryText={pages[2]} />
             </Link>
           </IconMenu>
         </ToolbarGroup>

@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import CreateTransactionDialogComponent from './CreateTransactionDialogComponent';
+import UpdateTransactionDialogComponent from './UpdateTransactionDialogComponent';
 
 export default class ActionBarTransactionComponent extends Component {
   render() {
+    let disabled = false;
+    if (this.props.selectedTransactionIds.length === 0) {
+      disabled = true;
+    }
     return (
       <div
         style={{
@@ -11,7 +16,10 @@ export default class ActionBarTransactionComponent extends Component {
           width: 400,
           justifyContent: 'space-between'
         }}>
-        <RaisedButton label="CREATE" onClick={this._onCreateTransactionHandler}>
+        <RaisedButton
+          id="CREATE"
+          label="CREATE"
+          onClick={this._onCreateTransactionHandler}>
           <CreateTransactionDialogComponent
             onShowCreateTransactionDialog={
               this.props.onShowCreateTransactionDialog
@@ -27,10 +35,28 @@ export default class ActionBarTransactionComponent extends Component {
           />
         </RaisedButton>
         <RaisedButton
+          id="UPDATE"
           label="UPDATE"
-          onClick={this._onUpdateTransactionHandler}
-        />
+          disabled={disabled}
+          onClick={this._onUpdateTransactionHandler}>
+          <UpdateTransactionDialogComponent
+            onShowUpdateTransactionDialog={
+              this.props.onShowUpdateTransactionDialog
+            }
+            onCloseUpdateTransactionDialog={
+              this.props.onCloseUpdateTransactionDialog
+            }
+            onOpenUpdateTransactionDialog={
+              this.props.onOpenUpdateTransactionDialog
+            }
+            onUpdateTransaction={this.props.onUpdateTransaction}
+            categories={this.props.categories}
+            selectedTransactionIds={this.props.selectedTransactionIds}
+          />
+        </RaisedButton>
         <RaisedButton
+          id="DELETE"
+          disabled={disabled}
           label="DELETE"
           onClick={this._onDeleteTransactionHandler}
         />
@@ -39,6 +65,10 @@ export default class ActionBarTransactionComponent extends Component {
   }
   _onCreateTransactionHandler = () =>
     this.props.onOpenCreateTransactionDialog();
-  _onUpdateTransactionHandler = () => console.log('_onUpdate');
-  _onDeleteTransactionHandler = () => console.log('_onDelete');
+  _onUpdateTransactionHandler = () =>
+    this.props.onOpenUpdateTransactionDialog();
+  _onDeleteTransactionHandler = () =>
+    this.props.selectedTransactionIds.forEach(id =>
+      this.props.onDeleteTransaction(id)
+    );
 }

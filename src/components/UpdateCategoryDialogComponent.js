@@ -14,6 +14,7 @@ export default class UpdateCategoryDialogComponent extends Component {
     const actions = [
       <FlatButton
         key="1"
+        id="FlatButtonClose"
         label="Cancel"
         primary={true}
         onClick={this._handleClose}

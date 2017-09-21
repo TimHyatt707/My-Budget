@@ -16,7 +16,12 @@ export default function TransactionPage({
   onCloseCreateTransactionDialog,
   onSubmitTransaction,
   onSelectTransaction,
-  onDeselectTransaction
+  onDeselectTransaction,
+  onShowUpdateTransactionDialog,
+  onCloseUpdateTransactionDialog,
+  onOpenUpdateTransactionDialog,
+  onUpdateTransaction,
+  onDeleteTransaction
 }) {
   return (
     <TransactionPageLayout>
@@ -27,6 +32,12 @@ export default function TransactionPage({
         onCloseCreateTransactionDialog={onCloseCreateTransactionDialog}
         onOpenCreateTransactionDialog={onOpenCreateTransactionDialog}
         onSubmitTransaction={onSubmitTransaction}
+        onShowUpdateTransactionDialog={onShowUpdateTransactionDialog}
+        onCloseUpdateTransactionDialog={onCloseUpdateTransactionDialog}
+        onOpenUpdateTransactionDialog={onOpenUpdateTransactionDialog}
+        onUpdateTransaction={onUpdateTransaction}
+        selectedTransactionIds={selectedTransactionIds}
+        onDeleteTransaction={onDeleteTransaction}
       />
       <TransactionTableComponent
         transactions={transactions}

@@ -13,12 +13,19 @@ export default class CreateCategoryDialogComponent extends Component {
   render() {
     const actions = [
       <FlatButton
+        id="FlatButtonClose"
         key="1"
         label="Cancel"
         primary={true}
         onClick={this._handleClose}
       />,
-      <FlatButton key="2" label="Submit" primary={true} type="submit" />
+      <FlatButton
+        id="onSubmit"
+        key="2"
+        label="Submit"
+        primary={true}
+        type="submit"
+      />
     ];
     return (
       <Dialog
