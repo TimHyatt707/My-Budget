@@ -26,5 +26,5 @@ storiesOf('NavbarComponent', module)
     <NavbarComponent pageTitle={pageTitle} pages={pages} />
   )
   .add('If pageTitle is a falsey value', () =>
-    <NavbarComponent pageTitle={null} pages={pages} />
+    <NavbarComponent pageTitle={null} pages={pages} onShowSearch={false} />
   );

@@ -9,6 +9,11 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
 export default class NavbarComponent extends Component {
+  constructor(props) {
+    super(props);
+
+    this._onSubmitHandler = this._onSubmitHandler.bind(this);
+  }
   render() {
     let title = 'My Budget';
     let pages;
@@ -17,18 +22,26 @@ export default class NavbarComponent extends Component {
     } else {
       pages = this.props.pages;
     }
+
     return (
       <Toolbar>
         <ToolbarTitle text={title} />
         <ToolbarGroup>
-          <TextField hintText="Search for transaction by name" />
-          <RaisedButton
-            label="GO"
-            style={{
-              width: '20px',
-              marginTop: '10px'
-            }}
-          />
+          <form onSubmit={this._onSubmitHandler}>
+            <TextField
+              style={{ marginRight: 20 }}
+              id="SearchBar"
+              hintText="Search for transaction by name"
+            />
+            <RaisedButton
+              type="submit"
+              label="GO"
+              style={{
+                width: '20px',
+                marginTop: '10px'
+              }}
+            />
+          </form>
           <IconMenu
             iconButtonElement={
               <IconButton>
@@ -50,5 +63,20 @@ export default class NavbarComponent extends Component {
         </ToolbarGroup>
       </Toolbar>
     );
+  }
+  _onSubmitHandler(event) {
+    event.preventDefault();
+    const $form = event.target;
+    let query = $form.SearchBar.value;
+    let pattern = new RegExp(query);
+    let listOfTransactions = this.props.transactions;
+    if (!listOfTransactions) {
+      listOfTransactions = [];
+    }
+    listOfTransactions.find(transaction => {
+      if (transaction.name.search(pattern) !== -1) {
+        this.props.onSelectTransaction(transaction.id);
+      }
+    });
   }
 }

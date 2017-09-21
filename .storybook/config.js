@@ -2,7 +2,7 @@ import { configure } from '@storybook/react';
 import 'storybook-addon-material-ui';
 
 function loadStories() {
-  // require('../src/components/NavbarComponent.story.js');
+  require('../src/components/NavbarComponent.story.js');
   // require('../src/components/BudgetPreviewComponent.story.js');
   // require('../src/components/PieChartComponent.story.js');
   // require('../src/components/TransactionItemComponent.story.js');
@@ -15,7 +15,7 @@ function loadStories() {
   // require('../src/components/BudgetPageLayout.story.js');
   // require('../src/components/TransactionTableComponent.story.js');
   // require('../src/components/TransactionPageLayout.story.js');
-  require('../src/components/CreateCategoryDialogComponent.story.js');
+  // require('../src/components/CreateCategoryDialogComponent.story.js');
   // require('../src/components/PolarChartComponent.story.js');
 }
 
