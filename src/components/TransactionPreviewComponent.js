@@ -35,6 +35,9 @@ export default class TransactionPreviewComponent extends Component {
       listOfTransactions = this.props.transactions;
       if (listOfTransactions.length > 5) {
         listOfTransactions.splice(5);
+        listOfTransactions.sort((a, b) => {
+          return a.amount - b.amount;
+        });
       }
     }
 

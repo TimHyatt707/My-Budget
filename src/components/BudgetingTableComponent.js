@@ -21,6 +21,9 @@ export default class BudgetingTableComponent extends Component {
       ];
     } else {
       listOfCategories = this.props.categories;
+      listOfCategories.sort((a, b) => {
+        return a.limit - b.limit;
+      });
     }
     return (
       <Table>

@@ -22,6 +22,9 @@ export default class TransactionTableComponent extends Component {
       ];
     } else {
       listOfTransactions = this.props.transactions;
+      listOfTransactions.sort((a, b) => {
+        return a.amountSpent - b.amountSpent;
+      });
     }
     return (
       <Table>
