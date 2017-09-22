@@ -16,7 +16,8 @@ function mapStateToProps(state, ownProps) {
     totalSpent: state.totalSpent,
     totalLimit: state.totalSpent,
     onShowCreateCategoryDialog: state.onShowCreateCategoryDialog,
-    onShowUpdateCategoryDialog: state.onShowUpdateCategoryDialog
+    onShowUpdateCategoryDialog: state.onShowUpdateCategoryDialog,
+    currentSort: state.currentSort
   };
 }
 
@@ -57,6 +58,7 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: 'SHOW_DELETE_CATEGORY' }),
     onCloseDeleteCategoryDialog: () =>
       dispatch({ type: 'CLOSE_DELETE_CATEGORY' }),
+    onSortCategoryName: () => dispatch({ type: 'TOGGLE_SORT' }),
     onDeleteCategory: id =>
       dispatch(
         deleteCategoryProcess(id, {

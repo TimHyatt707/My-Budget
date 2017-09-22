@@ -25,7 +25,9 @@ export default function BudgetPage({
   onSelectCategory,
   onDeselectCategory,
   selectedCategoryIds,
-  onUpdateCategory
+  onUpdateCategory,
+  onSortCategoryName,
+  currentSort
 }) {
   return (
     <BudgetPageLayout>
@@ -43,9 +45,11 @@ export default function BudgetPage({
         onUpdateCategory={onUpdateCategory}
         selectedCategoryIds={selectedCategoryIds}
         onDeleteCategory={onDeleteCategory}
+        onSortCategoryName={onSortCategoryName}
       />
       <BudgetingTableComponent
         categories={categories}
+        currentSort={currentSort}
         onSelectCategory={onSelectCategory}
         onDeselectCategory={onDeselectCategory}
         selectedCategoryIds={selectedCategoryIds}

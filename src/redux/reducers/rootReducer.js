@@ -11,7 +11,8 @@ export default function rootReducer(
     onShowCreateCategoryDialog: false,
     onShowUpdateCategoryDialog: false,
     onShowCreateTransactionDialog: false,
-    onShowUpdateTransactionDialog: false
+    onShowUpdateTransactionDialog: false,
+    currentSort: false
   },
   action
 ) {
@@ -118,6 +119,11 @@ export default function rootReducer(
         transactions: currentState.transactions.filter(
           transaction => transaction.id !== action.id.id
         )
+      };
+    case 'TOGGLE_SORT':
+      return {
+        ...currentState,
+        currentSort: true
       };
     default:
       return currentState;

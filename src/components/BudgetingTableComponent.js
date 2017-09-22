@@ -11,6 +11,7 @@ import BudgetingTableItemComponent from './BudgetingTableItemComponent';
 export default class BudgetingTableComponent extends Component {
   render() {
     let listOfCategories;
+    let sorted = this.props.currentSort;
     if (!this.props.categories) {
       listOfCategories = [
         {
@@ -21,8 +22,16 @@ export default class BudgetingTableComponent extends Component {
       ];
     } else {
       listOfCategories = this.props.categories;
+    }
+    if (sorted) {
       listOfCategories.sort((a, b) => {
-        return a.limit - b.limit;
+        if (a.category < b.category) {
+          return -1;
+        }
+        if (a.category > b.category) {
+          return 1;
+        }
+        return 0;
       });
     }
     return (

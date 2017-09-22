@@ -9,6 +9,7 @@ export default class ActionBarCategoryComponent extends Component {
     this._onUpdateCategoryHandler = this._onUpdateCategoryHandler.bind(this);
     this._onCreateCategoryHandler = this._onCreateCategoryHandler.bind(this);
     this._onDeleteCategoryHandler = this._onDeleteCategoryHandler.bind(this);
+    this._onSortCategoryHandler = this._onSortCategoryHandler.bind(this);
   }
   render() {
     let disabled = false;
@@ -52,6 +53,11 @@ export default class ActionBarCategoryComponent extends Component {
           disabled={disabled}
           onClick={this._onDeleteCategoryHandler}
         />
+        <RaisedButton
+          id="SORT"
+          label="SORT"
+          onClick={this._onSortCategoryHandler}
+        />
       </div>
     );
   }
@@ -60,6 +66,9 @@ export default class ActionBarCategoryComponent extends Component {
   }
   _onUpdateCategoryHandler() {
     this.props.onOpenUpdateCategoryDialog();
+  }
+  _onSortCategoryHandler() {
+    this.props.onSortCategoryName();
   }
   _onDeleteCategoryHandler() {
     this.props.selectedCategoryIds.forEach(id =>
