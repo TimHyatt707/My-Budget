@@ -4,11 +4,13 @@ jest.mock('./../api/updateTransaction');
 
 let Id = 2;
 let changes = {};
+let databaseId = '123213';
+let token = '12213';
 
 describe('updateTransactionProcess should call the API, change data, and dispatch', () => {
   //>>>>>>>>>>>>>>>>>>>>>>>>>>
   it('calls API', () => {
-    const thunk = updateTransactionProcess();
+    const thunk = updateTransactionProcess(Id, changes, { databaseId, token });
     expect(typeof thunk).toBe('function');
     changes.amountSpent = 300;
 

@@ -4,11 +4,13 @@ jest.mock('./../api/updateCategory');
 
 let Id = 2;
 let changes = {};
+let databaseId = '123213';
+let token = '12213';
 
 describe('updateCategoryProcess should call the API, change data, and dispatch', () => {
   //>>>>>>>>>>>>>>>>>>>>>>>>>>
   it('calls API', () => {
-    const thunk = updateCategoryProcess();
+    const thunk = updateCategoryProcess(Id, changes, { databaseId, token });
     expect(typeof thunk).toBe('function');
     changes.limit = 300;
 

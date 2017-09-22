@@ -9,10 +9,11 @@ let object = {
   name: 'Pizza',
   timestamp: '2017-08-06'
 };
-
+let databaseId = '123213';
+let token = '12213';
 describe('createTransactionProcess should call the API, get correct data, and dispatch', () => {
   it('calls API,return data, dispatch', () => {
-    const thunk = createTransactionProcess();
+    const thunk = createTransactionProcess(object, { databaseId, token });
     expect(typeof thunk).toBe('function');
 
     const dispatch = jest.fn();

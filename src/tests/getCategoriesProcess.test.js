@@ -16,10 +16,12 @@ let data = [
     limit: 50
   }
 ];
+let databaseId = '123213';
+let token = '12213';
 
 describe('getCategoriesProcess should call the API, get correct data, and dispatch', () => {
   it('calls API,return data, dispatch', () => {
-    const thunk = getCategoriesProcess();
+    const thunk = getCategoriesProcess({ databaseId, token });
     expect(typeof thunk).toBe('function');
 
     const dispatch = jest.fn();

@@ -2,6 +2,8 @@ import createCategory from './../api/createCategory';
 import createCategoryProcess from './../redux/thunks/createCategoryProcess';
 jest.mock('./../api/createCategory');
 
+let databaseId = '123213';
+let token = '12213';
 let object = {
   id: 0,
   category: 'Food',
@@ -11,7 +13,7 @@ let object = {
 
 describe('createCategoryProcess should call the API, get correct data, and dispatch', () => {
   it('calls API,return data, dispatch', () => {
-    const thunk = createCategoryProcess();
+    const thunk = createCategoryProcess(object, { databaseId, token });
     expect(typeof thunk).toBe('function');
 
     const dispatch = jest.fn();

@@ -19,9 +19,12 @@ let data = [
   }
 ];
 
+let databaseId = '123213';
+let token = '12213';
+
 describe('getTransactionsProcess should call the API, get correct data, and dispatch', () => {
   it('calls API,return data, dispatch', () => {
-    const thunk = getTransactionsProcess();
+    const thunk = getTransactionsProcess({ databaseId, token });
     expect(typeof thunk).toBe('function');
 
     const dispatch = jest.fn();

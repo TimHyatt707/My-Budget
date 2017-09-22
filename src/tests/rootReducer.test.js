@@ -46,20 +46,7 @@ let normalState = rootReducer(initialState, {
 describe('test reducer', () => {
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>
   it('should return initial state', () => {
-    expect(initialState).toEqual({
-      transactions: [],
-      selectedTransactionIds: [],
-      categories: [],
-      selectedCategoryIds: [],
-      pageTitle: '',
-      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      totalSpent: 0,
-      totalLimit: 0,
-      onShowCreateCategoryDialog: false,
-      onShowUpdateCategoryDialog: false,
-      onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
-    });
+    expect(initialState).toEqual(rootReducer(undefined, {}));
   });
   it('should handle SET_CATEGORIES', () => {
     expect(
