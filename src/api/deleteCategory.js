@@ -1,11 +1,8 @@
-export default function deleteCategory(Id) {
-  return fetch(
-    `https://api.airtable.com/v0/app4N49jXo9XVuKeq/Categories/${Id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: 'Bearer keyZjFgCqHqPR1F8o'
-      }
+export default function deleteCategory(Id, { databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories/${Id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ).then(response => response.json());
+  }).then(response => response.json());
 }

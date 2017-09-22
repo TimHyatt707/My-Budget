@@ -1,8 +1,8 @@
-export default function getTransactions() {
-  return fetch('https://api.airtable.com/v0/appjAkSe9KeAO6vMv/transactions?', {
+export default function getTransactions({ databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions?`, {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer keyZjFgCqHqPR1F8o'
+      Authorization: `Bearer ${token}`
     }
   })
     .then(response => {

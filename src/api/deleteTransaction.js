@@ -1,11 +1,8 @@
-export default function deleteTransaction(Id) {
-  return fetch(
-    `https://api.airtable.com/v0/appjAkSe9KeAO6vMv/transactions/${Id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: 'Bearer keyZjFgCqHqPR1F8o'
-      }
+export default function deleteTransaction(Id, { databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions/${Id}`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${token}`
     }
-  ).then(response => response.json());
+  }).then(response => response.json());
 }

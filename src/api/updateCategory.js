@@ -1,17 +1,14 @@
-export default function updateCategory(id, changes) {
-  return fetch(
-    `https://api.airtable.com/v0/app4N49jXo9XVuKeq/Categories/${id}`,
-    {
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer keyZjFgCqHqPR1F8o',
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        fields: changes
-      })
-    }
-  )
+export default function updateCategory(id, changes, { databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories/${id}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      fields: changes
+    })
+  })
     .then(response => {
       return response.json();
     })

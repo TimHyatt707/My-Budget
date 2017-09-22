@@ -1,6 +1,6 @@
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
-
+import env from './../../env';
 import BudgetPage from '../../components/BudgetPage';
 import getCategoriesProcess from './../thunks/getCategoriesProcess';
 import createCategoryProcess from './../thunks/createCategoryProcess';
@@ -22,12 +22,24 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onMount: () => dispatch(getCategoriesProcess()),
+    onMount: () =>
+      dispatch(
+        getCategoriesProcess({
+          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
     onOpenCreateCategoryDialog: () =>
       dispatch({ type: 'SHOW_CREATE_CATEGORY' }),
     onCloseCreateCategoryDialog: () =>
       dispatch({ type: 'CLOSE_CREATE_CATEGORY' }),
-    onSubmitCategory: category => dispatch(createCategoryProcess(category)),
+    onSubmitCategory: category =>
+      dispatch(
+        createCategoryProcess(category, {
+          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
     onSelectCategory: id => dispatch({ type: 'SELECT_CATEGORY', id }),
     onDeselectCategory: id => dispatch({ type: 'DESELECT_CATEGORY', id }),
     onOpenUpdateCategoryDialog: () =>
@@ -35,12 +47,23 @@ function mapDispatchToProps(dispatch, ownProps) {
     onCloseUpdateCategoryDialog: () =>
       dispatch({ type: 'CLOSE_UPDATE_CATEGORY' }),
     onUpdateCategory: (id, changes) =>
-      dispatch(updateCategoryProcess(id, changes)),
+      dispatch(
+        updateCategoryProcess(id, changes, {
+          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
     onOpenDeleteCategoryDialog: () =>
       dispatch({ type: 'SHOW_DELETE_CATEGORY' }),
     onCloseDeleteCategoryDialog: () =>
       dispatch({ type: 'CLOSE_DELETE_CATEGORY' }),
-    onDeleteCategory: id => dispatch(deleteCategoryProcess(id))
+    onDeleteCategory: id =>
+      dispatch(
+        deleteCategoryProcess(id, {
+          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      )
 
     // onOpenUpdateCategoryDialog: () =>
     // dispatch({type: 'SHOW_UPDATE_CATEGORY'})

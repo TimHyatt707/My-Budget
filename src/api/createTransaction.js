@@ -1,8 +1,8 @@
-export default function createTransaction(object) {
-  return fetch(`https://api.airtable.com/v0/appjAkSe9KeAO6vMv/transactions`, {
+export default function createTransaction(object, { databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions`, {
     method: 'POST',
     headers: {
-      Authorization: 'Bearer keyZjFgCqHqPR1F8o',
+      Authorization: `Bearer ${token}`,
       'Content-type': 'application/json'
     },
     body: JSON.stringify({

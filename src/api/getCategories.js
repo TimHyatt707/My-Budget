@@ -1,8 +1,8 @@
-export default function getCategories() {
-  return fetch('https://api.airtable.com/v0/app4N49jXo9XVuKeq/Categories?', {
+export default function getCategories({ databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories?`, {
     method: 'GET',
     headers: {
-      Authorization: 'Bearer keyZjFgCqHqPR1F8o'
+      Authorization: `Bearer ${token}`
     }
   })
     .then(response => {

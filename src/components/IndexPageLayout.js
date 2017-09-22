@@ -1,5 +1,4 @@
 import React from 'react';
-import './IndexPageLayout.css';
 
 export default function IndexPageLayout(props) {
   return (

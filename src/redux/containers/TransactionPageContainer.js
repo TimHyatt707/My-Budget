@@ -1,6 +1,6 @@
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
-
+import env from './../../env';
 import TransactionPage from '../../components/TransactionPage';
 import getTransactionsProcess from './../thunks/getTransactionsProcess';
 import getCategoriesProcess from './../thunks/getCategoriesProcess';
@@ -22,14 +22,31 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onMount: () => dispatch(getTransactionsProcess()),
-    onMountCategories: () => dispatch(getCategoriesProcess()),
+    onMount: () =>
+      dispatch(
+        getTransactionsProcess({
+          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
+    onMountCategories: () =>
+      dispatch(
+        getCategoriesProcess({
+          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
     onOpenCreateTransactionDialog: () =>
       dispatch({ type: 'OPEN_CREATE_TRANSACTION' }),
     onCloseCreateTransactionDialog: () =>
       dispatch({ type: 'CLOSE_CREATE_TRANSACTION' }),
     onSubmitTransaction: transaction =>
-      dispatch(createTransactionProcess(transaction)),
+      dispatch(
+        createTransactionProcess(transaction, {
+          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
     onSelectTransaction: id => dispatch({ type: 'SELECT_TRANSACTION', id }),
     onDeselectTransaction: id => dispatch({ type: 'DESELECT_TRANSACTION', id }),
     onOpenUpdateTransactionDialog: () =>
@@ -37,8 +54,19 @@ function mapDispatchToProps(dispatch, ownProps) {
     onCloseUpdateTransactionDialog: () =>
       dispatch({ type: 'CLOSE_UPDATE_TRANSACTION' }),
     onUpdateTransaction: (id, transaction) =>
-      dispatch(updateTransactionProcess(id, transaction)),
-    onDeleteTransaction: id => dispatch(deleteTransactionProcess(id))
+      dispatch(
+        updateTransactionProcess(id, transaction, {
+          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
+    onDeleteTransaction: id =>
+      dispatch(
+        deleteTransactionProcess(id, {
+          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      )
   };
 }
 

@@ -1,17 +1,14 @@
-export default function updateTransaction(id, changes) {
-  return fetch(
-    `https://api.airtable.com/v0/appjAkSe9KeAO6vMv/transactions/${id}`,
-    {
-      method: 'PATCH',
-      headers: {
-        Authorization: 'Bearer keyZjFgCqHqPR1F8o',
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        fields: changes
-      })
-    }
-  )
+export default function updateTransaction(id, changes, { databaseId, token }) {
+  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions/${id}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({
+      fields: changes
+    })
+  })
     .then(response => {
       return response.json();
     })
