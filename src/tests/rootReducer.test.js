@@ -1,7 +1,5 @@
 import rootReducer from './../redux/reducers/rootReducer';
 
-import deepFreeze from 'deep-freeze';
-
 let categories = [
   {
     id: 1,
@@ -31,6 +29,13 @@ let transactions = [
     timestamp: '2017-08-12'
   }
 ];
+let transaction = {
+  id: 0,
+  category: 'Food',
+  amountSpent: 10,
+  name: 'Chicken',
+  timestamp: '2017-08-12'
+};
 let initialState = rootReducer(undefined, {});
 let newState = rootReducer(initialState, 'SHOW_CREATE_CATEGORY');
 let normalState = rootReducer(initialState, {
@@ -48,7 +53,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -67,7 +71,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -86,7 +89,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -105,7 +107,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: true,
@@ -122,7 +123,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -141,7 +141,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -159,7 +158,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [3],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -178,7 +176,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -201,7 +198,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -212,7 +208,6 @@ describe('test reducer', () => {
   });
   it('should handle UPDATE_CATEGORY', () => {
     let id = 3;
-    let newerState = rootReducer(initialState, { type: 'SELECT_CATEGORY', id });
     expect(
       rootReducer(normalState, { type: 'UPDATE_CATEGORY', category })
     ).toEqual({
@@ -222,7 +217,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -246,7 +240,6 @@ describe('test reducer', () => {
           selectedCategoryIds: [1],
           pageTitle: '',
           pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-          chartData: null,
           totalSpent: 0,
           totalLimit: 0,
           onShowCreateCategoryDialog: false,
@@ -263,7 +256,6 @@ describe('test reducer', () => {
       selectedCategoryIds: [1],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,
@@ -280,7 +272,97 @@ describe('test reducer', () => {
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
-      chartData: null,
+      totalSpent: 0,
+      totalLimit: 0,
+      onShowCreateCategoryDialog: false,
+      onShowUpdateCategoryDialog: false,
+      onShowCreateTransactionDialog: false,
+      onShowUpdateTransactionDialog: false
+    });
+  });
+  it('should handle OPEN_CREATE_TRANSACTION', () => {
+    expect(
+      rootReducer(initialState, { type: 'OPEN_CREATE_TRANSACTION' })
+    ).toEqual({
+      transactions: [],
+      selectedTransactionIds: [],
+      categories: [],
+      selectedCategoryIds: [],
+      pageTitle: '',
+      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
+      totalSpent: 0,
+      totalLimit: 0,
+      onShowCreateCategoryDialog: false,
+      onShowUpdateCategoryDialog: false,
+      onShowCreateTransactionDialog: true,
+      onShowUpdateTransactionDialog: false
+    });
+  });
+  it('should handle CLOSE_CREATE_TRANSACTION', () => {
+    expect(
+      rootReducer(initialState, { type: 'CLOSE_CREATE_TRANSACTION' })
+    ).toEqual({
+      transactions: [],
+      selectedTransactionIds: [],
+      categories: [],
+      selectedCategoryIds: [],
+      pageTitle: '',
+      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
+      totalSpent: 0,
+      totalLimit: 0,
+      onShowCreateCategoryDialog: false,
+      onShowUpdateCategoryDialog: false,
+      onShowCreateTransactionDialog: false,
+      onShowUpdateTransactionDialog: false
+    });
+  });
+  it('should handle OPEN_UPDATE_TRANSACTION', () => {
+    expect(
+      rootReducer(initialState, { type: 'CLOSE_UPDATE_TRANSACTION' })
+    ).toEqual({
+      transactions: [],
+      selectedTransactionIds: [],
+      categories: [],
+      selectedCategoryIds: [],
+      pageTitle: '',
+      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
+      totalSpent: 0,
+      totalLimit: 0,
+      onShowCreateCategoryDialog: false,
+      onShowUpdateCategoryDialog: false,
+      onShowCreateTransactionDialog: false,
+      onShowUpdateTransactionDialog: false
+    });
+  });
+  it('should handle ADD_TRANSACTION', () => {
+    expect(
+      rootReducer(initialState, { type: 'ADD_TRANSACTION', transaction })
+    ).toEqual({
+      transactions: [transaction],
+      selectedTransactionIds: [],
+      categories: [],
+      selectedCategoryIds: [],
+      pageTitle: '',
+      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
+      totalSpent: 0,
+      totalLimit: 0,
+      onShowCreateCategoryDialog: false,
+      onShowUpdateCategoryDialog: false,
+      onShowCreateTransactionDialog: false,
+      onShowUpdateTransactionDialog: false
+    });
+  });
+  it('should handle DELETE_TRANSACTION', () => {
+    let id = 3;
+    expect(
+      rootReducer(initialState, { type: 'DELETE_TRANSACTION', id })
+    ).toEqual({
+      transactions: [],
+      selectedTransactionIds: [],
+      categories: [],
+      selectedCategoryIds: [],
+      pageTitle: '',
+      pages: ['Home Page', 'Budget Page', 'Transaction Page'],
       totalSpent: 0,
       totalLimit: 0,
       onShowCreateCategoryDialog: false,

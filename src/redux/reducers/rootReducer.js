@@ -4,7 +4,7 @@ export default function rootReducer(
     selectedTransactionIds: [],
     categories: [],
     selectedCategoryIds: [],
-    pageTitle: 'My Budget',
+    pageTitle: '',
     pages: ['Home Page', 'Budget Page', 'Transaction Page'],
     totalSpent: 0,
     totalLimit: 0,

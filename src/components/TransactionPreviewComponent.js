@@ -17,6 +17,7 @@ export default class TransactionPreviewComponent extends Component {
       height: 500,
       width: 500,
       marginTop: 40,
+      marginRight: 20,
       marginBottom: 20,
       textAlign: 'center',
       display: 'inline-block'
