@@ -1,27 +1,33 @@
 import getCategories from './../api/getCategories';
-let data = [
-  {
-    id: 1,
-    category: 'Food',
-    amountSpent: 100,
-    limit: 200
-  },
-  {
-    id: 2,
-    category: 'Entertainment',
-    amountSpent: 12,
-    limit: 50
-  }
-];
+import categoryToRecord from './../api/utils/categoryToRecord';
+let data = {
+  categories: [
+    {
+      id: 1,
+      category: 'Food',
+      amountSpent: 100,
+      limit: 200
+    },
+    {
+      id: 2,
+      category: 'Entertainment',
+      amountSpent: 12,
+      limit: 50
+    }
+  ]
+};
 
 describe('getCategories', () => {
   it('Calls fetch and returns notes', () => {
-    fetch.mockResponse();
+    fetch.mockResponse(
+      JSON.stringify({ records: data.categories.map(categoryToRecord) })
+    );
     return getCategories({
-      AIRTABLE_DATABASE_ID: 'SOME_DATABASE_ID',
-      AIRTABLE_TOKEN: 'SOME_TOKEN'
+      AIRTABLE_DATABASE_ID:
+        'https://api.airtable.com/v0/app4N49jXo9XVuKeq/Categories?',
+      AIRTABLE_TOKEN: 'keyZjFgCqHqPR1F8o'
     }).then(categories => {
-      expect(categories).toEqual([...data]);
+      expect(categories).toEqual(data.categories);
     });
   });
 

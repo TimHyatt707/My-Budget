@@ -37,9 +37,9 @@ export default class TransactionTableComponent extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {listOfTransactions.map(transaction =>
+          {listOfTransactions.map((transaction, index) =>
             <TransactionTableItemComponent
-              key={transaction.id}
+              key={index}
               transaction={transaction}
               selectedTransactionIds={this.props.selectedTransactionIds}
               onSelectTransaction={this.props.onSelectTransaction}

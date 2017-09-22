@@ -2,10 +2,11 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import UpdateTransactionDialogComponent from './../components/UpdateTransactionDialogComponent';
-
+let onShowUpdateTransactionDialog = true;
 const onCloseUpdateTransactionDialog = jest.fn();
 const shallowWrapper = shallow(
   <UpdateTransactionDialogComponent
+    onShowUpdateTransactionDialog={onShowUpdateTransactionDialog}
     onCloseUpateTransactionDialog={onCloseUpdateTransactionDialog}
   />
 );

@@ -35,9 +35,9 @@ export default class BudgetingTableComponent extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {listOfCategories.map(category =>
+          {listOfCategories.map((category, index) =>
             <BudgetingTableItemComponent
-              key={category.id}
+              key={index}
               category={category}
               selectedCategoryIds={this.props.selectedCategoryIds}
               onSelectCategory={this.props.onSelectCategory}

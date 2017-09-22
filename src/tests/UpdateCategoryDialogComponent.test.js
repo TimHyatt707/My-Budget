@@ -4,10 +4,12 @@ import { shallow } from 'enzyme';
 import UpdateCategoryDialogComponent from './../components/UpdateCategoryDialogComponent';
 
 const onCloseUpdateCategoryDialog = jest.fn();
+let onShowUpdateCategoryDialog = true;
 
 const shallowWrapper = shallow(
   <UpdateCategoryDialogComponent
     onCloseUpdateCategoryDialog={onCloseUpdateCategoryDialog}
+    onShowUpdateCategoryDialog={onShowUpdateCategoryDialog}
   />
 );
 
