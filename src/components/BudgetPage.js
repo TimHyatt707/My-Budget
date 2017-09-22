@@ -10,7 +10,6 @@ import FooterComponent from './FooterComponent';
 export default function BudgetPage({
   pageTitle,
   pages,
-  chartData,
   totalSpent,
   totalLimit,
   categories,
@@ -31,8 +30,8 @@ export default function BudgetPage({
   return (
     <BudgetPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <PieChartComponent chartData={chartData} />
-      <BudgetDisplayComponent totalSpent={totalSpent} totalLimit={totalLimit} />
+      <PieChartComponent categories={categories} width={1000} />
+      <BudgetDisplayComponent categories={categories} />
       <ActionBarBudgetComponent
         onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
         onShowCreateCategoryDialog={onShowCreateCategoryDialog}

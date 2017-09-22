@@ -33,12 +33,16 @@ export default class TransactionPreviewComponent extends Component {
       };
     } else {
       listOfTransactions = this.props.transactions;
-      if (listOfTransactions.length > 5) {
-        listOfTransactions.splice(5);
+      if (listOfTransactions.length > 6) {
+        listOfTransactions.splice(6);
+        console.log(listOfTransactions);
         listOfTransactions.sort((a, b) => {
-          return a.amount - b.amount;
+          return a.amountSpent - b.amountSpent;
         });
       }
+      listOfTransactions.sort((a, b) => {
+        return a.amountSpent - b.amountSpent;
+      });
     }
 
     return (

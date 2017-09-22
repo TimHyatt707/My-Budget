@@ -14,13 +14,14 @@ export default class BudgetPreviewComponent extends Component {
       textAlign: 'center',
       display: 'inline-block'
     };
+
     const title = 'Budget at a Glance';
     return (
       <Paper zDepth={4} style={style} className="BudgetPreview">
         <div>
           {title}
         </div>
-        <PieChartComponent data={this.props.ChartData} />
+        <PieChartComponent data={this.props.categories} width={500} />
         <Link to={'/Budget'}>
           <RaisedButton label="BUDGET" />
         </Link>

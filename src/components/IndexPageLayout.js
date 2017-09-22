@@ -16,9 +16,6 @@ export default function IndexPageLayout(props) {
         {props.children[1]}
         {props.children[2]}
       </div>
-      <footer className="Footer">
-        {props.children[3]}
-      </footer>
     </div>
   );
 }

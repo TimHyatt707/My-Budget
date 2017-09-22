@@ -3,7 +3,6 @@ import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 
 export default class FooterComponent extends Component {
   render() {
-    const { pageTitle } = this.props;
     const style = {
       position: 'absolute',
       bottom: 0,
@@ -12,7 +11,7 @@ export default class FooterComponent extends Component {
 
     return (
       <Toolbar style={style}>
-        <ToolbarTitle text={pageTitle} />
+        <ToolbarTitle text={this.props.pageTitle} />
       </Toolbar>
     );
   }

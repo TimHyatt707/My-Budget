@@ -73,10 +73,10 @@ export default class NavbarComponent extends Component {
     if (!listOfTransactions) {
       listOfTransactions = [];
     }
-    listOfTransactions.find(transaction => {
-      if (transaction.name.search(pattern) !== -1) {
-        this.props.onSelectTransaction(transaction.id);
+    for (let i = 0; i < listOfTransactions.length; i++) {
+      if (listOfTransactions[i].name.search(pattern) !== -1) {
+        this.props.onSelectTransaction(listOfTransactions[i].id);
       }
-    });
+    }
   }
 }

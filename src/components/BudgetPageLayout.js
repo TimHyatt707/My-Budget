@@ -12,7 +12,7 @@ export default function BudgetPageLayout(props) {
           flexFlow: 'column',
           alignItems: 'center'
         }}>
-        <div style={{ height: 500, width: 500 }}>
+        <div style={{ height: 500, width: 1000 }}>
           {props.children[1]}
         </div>
         <div style={{ marginBottom: 20 }}>

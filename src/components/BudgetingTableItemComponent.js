@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TableRowColumn, TableRow } from 'material-ui/Table';
+var numeral = require('numeral');
 
 export default class BudgetingTableItemComponent extends Component {
   constructor(props) {
@@ -27,10 +28,10 @@ export default class BudgetingTableItemComponent extends Component {
           {this.props.category.category}
         </TableRowColumn>
         <TableRowColumn>
-          {this.props.category.amountSpent}
+          {numeral(this.props.category.amountSpent).format('$0,0.00')}
         </TableRowColumn>
         <TableRowColumn>
-          {this.props.category.limit}
+          {numeral(this.props.category.limit).format('$0,0.00')}
         </TableRowColumn>
       </TableRow>
     );

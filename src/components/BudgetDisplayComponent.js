@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
 import FontIcon from 'material-ui/FontIcon';
 import { red500, green800 } from 'material-ui/styles/colors';
+var numeral = require('numeral');
 
 export default class BudgetDisplayComponent extends Component {
   render() {
-    const { totalSpent, totalLimit } = this.props;
+    let totalSpent = 0;
+    let totalLimit = 0;
+    if (this.props.categories) {
+      this.props.categories.forEach(category => {
+        totalSpent += category.amountSpent;
+        totalLimit += category.limit;
+      });
+    }
     return (
       <div>
         <div>
-          <FontIcon className="material-icons" color={red500}>
-            trending_down
+          <FontIcon
+            className="material-icons"
+            color={red500}
+            style={{ marginRight: 15 }}>
+            Spent
           </FontIcon>
-          ${totalSpent} spent
+          {numeral(totalSpent).format('$0,0.00')}
         </div>
         <div>
-          <FontIcon className="material-icons" color={green800}>
-            account balance
+          <FontIcon
+            className="material-icons"
+            color={green800}
+            style={{ marginRight: 15 }}>
+            Limit
           </FontIcon>
-          ${totalLimit} Limit
+          {numeral(totalLimit).format('$0,0.00')}
         </div>
       </div>
     );

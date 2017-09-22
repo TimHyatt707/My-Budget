@@ -9,12 +9,13 @@ export default function IndexPage({
   pageTitle,
   pages,
   chartData,
-  transactions
+  transactions,
+  categories
 }) {
   return (
     <IndexPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <BudgetPreviewComponent chartData={chartData} />
+      <BudgetPreviewComponent categories={categories} />
       <TransactionPreviewComponent transactions={transactions} />
       <FooterComponent pageTitle={pageTitle} />
     </IndexPageLayout>
