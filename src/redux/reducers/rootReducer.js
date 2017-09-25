@@ -12,7 +12,8 @@ export default function rootReducer(
     onShowUpdateCategoryDialog: false,
     onShowCreateTransactionDialog: false,
     onShowUpdateTransactionDialog: false,
-    currentSort: false
+    currentSort: false,
+    budgetDisplayData: []
   },
   action
 ) {

@@ -16,7 +16,6 @@ export default function updateCategory(id, changes, { databaseId, token }) {
       return {
         id: id,
         category: record.fields.category,
-        amountSpent: record.fields.amountSpent,
         limit: record.fields.limit
       };
     });

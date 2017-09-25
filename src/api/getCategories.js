@@ -12,7 +12,6 @@ export default function getCategories({ databaseId, token }) {
       return data.records.map(record => {
         return {
           id: record.id,
-          amountSpent: record.fields.amountSpent,
           category: record.fields.category,
           limit: record.fields.limit
         };

@@ -2,10 +2,9 @@ import React from 'react';
 import BudgetPageLayout from './BudgetPageLayout';
 import NavbarComponent from './NavbarComponent';
 import PieChartComponent from './PieChartComponent';
-import BudgetDisplayComponent from './BudgetDisplayComponent';
+// import BudgetDisplayComponent from './BudgetDisplayComponent';
 import ActionBarBudgetComponent from './ActionBarCategoryComponent';
 import BudgetingTableComponent from './BudgetingTableComponent';
-import FooterComponent from './FooterComponent';
 
 export default function BudgetPage({
   pageTitle,
@@ -13,6 +12,7 @@ export default function BudgetPage({
   totalSpent,
   totalLimit,
   categories,
+  transactions,
   onOpenCreateCategoryDialog,
   onShowCreateCategoryDialog,
   onCloseCreateCategoryDialog,
@@ -27,13 +27,15 @@ export default function BudgetPage({
   selectedCategoryIds,
   onUpdateCategory,
   onSortCategoryName,
-  currentSort
+  currentSort,
+  budgetDisplayData,
+  sendBudgetDisplayData
 }) {
   return (
     <BudgetPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
       <PieChartComponent categories={categories} width={1000} />
-      <BudgetDisplayComponent categories={categories} />
+      {/* <BudgetDisplayComponent budgetDisplayData={budgetDisplayData} /> */}
       <ActionBarBudgetComponent
         onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
         onShowCreateCategoryDialog={onShowCreateCategoryDialog}
@@ -49,12 +51,12 @@ export default function BudgetPage({
       />
       <BudgetingTableComponent
         categories={categories}
+        transactions={transactions}
         currentSort={currentSort}
         onSelectCategory={onSelectCategory}
         onDeselectCategory={onDeselectCategory}
         selectedCategoryIds={selectedCategoryIds}
       />
-      <FooterComponent pageTitle={pageTitle} />
     </BudgetPageLayout>
   );
 }

@@ -17,6 +17,7 @@ export default class BudgetingTableItemComponent extends Component {
         if (Ids[i] === id) selected = true;
       }
     }
+    //If table item is selected, color changes
     if (selected) {
       color = '#F50057';
     } else {
@@ -28,7 +29,8 @@ export default class BudgetingTableItemComponent extends Component {
           {this.props.category.category}
         </TableRowColumn>
         <TableRowColumn>
-          {numeral(this.props.category.amountSpent).format('$0,0.00')}
+          {numeral(this.props.category.amountSpent).format('$0,0.00') ||
+            '$0.00'}
         </TableRowColumn>
         <TableRowColumn>
           {numeral(this.props.category.limit).format('$0,0.00')}
@@ -36,6 +38,7 @@ export default class BudgetingTableItemComponent extends Component {
       </TableRow>
     );
   }
+  //Handles selecting a category ID
   _handleClick() {
     let id = this.props.category.id;
     let selected = false;

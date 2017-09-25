@@ -16,7 +16,6 @@ export default function createCategory(object, { databaseId, token }) {
       return {
         id: record.id,
         category: record.fields.category,
-        amountSpent: record.fields.amountSpent,
         limit: record.fields.limit
       };
     });

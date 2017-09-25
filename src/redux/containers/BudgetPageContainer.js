@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import env from './../../env';
 import BudgetPage from '../../components/BudgetPage';
 import getCategoriesProcess from './../thunks/getCategoriesProcess';
+import getTransactionsProcess from './../thunks/getTransactionsProcess';
 import createCategoryProcess from './../thunks/createCategoryProcess';
 import updateCategoryProcess from './../thunks/updateCategoryProcess';
 import deleteCategoryProcess from './../thunks/deleteCategoryProcess';
@@ -10,6 +11,7 @@ import deleteCategoryProcess from './../thunks/deleteCategoryProcess';
 function mapStateToProps(state, ownProps) {
   return {
     categories: state.categories,
+    transactions: state.transactions,
     selectedCategoryIds: state.selectedCategoryIds,
     pageTitle: state.pageTitle,
     pages: state.pages,
@@ -27,6 +29,13 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch(
         getCategoriesProcess({
           databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
+          token: env.AIRTABLE_TOKEN
+        })
+      ),
+    onMountTransactions: () =>
+      dispatch(
+        getTransactionsProcess({
+          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
           token: env.AIRTABLE_TOKEN
         })
       ),
@@ -66,9 +75,6 @@ function mapDispatchToProps(dispatch, ownProps) {
           token: env.AIRTABLE_TOKEN
         })
       )
-
-    // onOpenUpdateCategoryDialog: () =>
-    // dispatch({type: 'SHOW_UPDATE_CATEGORY'})
   };
 }
 
@@ -77,6 +83,7 @@ const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 const onDidMount = lifecycle({
   componentDidMount() {
     this.props.onMount();
+    this.props.onMountTransactions();
   }
 });
 
