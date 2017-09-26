@@ -35,8 +35,6 @@ export default class CreateCategoryDialogComponent extends Component {
         <form onSubmit={this._handleSubmit}>
           <TextField id="category" hintText="Category" />
           <br />
-          <TextField id="amountSpent" hintText="Amount Spent" />
-          <br />
           <TextField id="limit" hintText="Limit" />
           <br />
           {actions}
@@ -55,17 +53,13 @@ export default class CreateCategoryDialogComponent extends Component {
     let object = {};
     const $form = event.target;
     object.category = $form.category.value;
-    if (
-      typeof parseInt($form.amountSpent.value, 10) !== 'number' ||
-      typeof parseInt($form.limit.value, 10) !== 'number'
-    ) {
+    if (typeof parseInt($form.limit.value, 10) !== 'number') {
       alert('Invalid Input');
     } else if (!$form.category.value) {
       alert('Please fill out all fields');
-    } else if ($form.amountSpent.value <= 0 || $form.limit.value <= 0) {
+    } else if ($form.limit.value <= 0) {
       alert('Invalid Input');
     } else {
-      object.amountSpent = parseFloat($form.amountSpent.value);
       object.limit = parseFloat($form.limit.value);
       this.props.onCloseCreateCategoryDialog();
       this.props.onSubmitCategory(object);

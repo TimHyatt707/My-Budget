@@ -9,7 +9,6 @@ export default class BudgetDisplayComponent extends Component {
     let totalLimit = 0;
     if (this.props.budgetDisplayData) {
       this.props.budgetDisplayData.forEach(category => {
-        console.log(category.amountSpent);
         totalSpent += category.amountSpent || 0;
         totalLimit += category.limit;
       });

@@ -23,13 +23,11 @@ export default class UpdateCategoryDialogComponent extends Component {
     ];
     return (
       <Dialog
-        title="Update many categories at once or update a single category"
+        title="Update a category"
         modal={true}
         open={this.props.onShowUpdateCategoryDialog}>
         <form onSubmit={this._handleSubmit}>
           <TextField id="category" hintText="Category" />
-          <br />
-          <TextField id="amountSpent" hintText="Amount Spent" />
           <br />
           <TextField id="limit" hintText="Limit" />
           <br />
@@ -49,17 +47,13 @@ export default class UpdateCategoryDialogComponent extends Component {
     let object = {};
     const $form = event.target;
     object.category = $form.category.value;
-    if (
-      typeof parseInt($form.amountSpent.value, 10) !== 'number' ||
-      typeof parseInt($form.limit.value, 10) !== 'number'
-    ) {
+    if (typeof parseInt($form.limit.value, 10) !== 'number') {
       alert('Invalid Input');
     } else if (!$form.category.value) {
       alert('Please fill out all fields');
-    } else if ($form.amountSpent.value <= 0 || $form.limit.value <= 0) {
+    } else if ($form.limit.value <= 0) {
       alert('Invalid Input');
     } else {
-      object.amountSpent = parseFloat($form.amountSpent.value);
       object.limit = parseFloat($form.limit.value);
       for (let i = 0; i < this.props.selectedCategoryIds.length; i++) {
         this.props.onUpdateCategory(this.props.selectedCategoryIds[i], object);

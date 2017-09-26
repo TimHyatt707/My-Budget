@@ -5,15 +5,8 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
 
 export default class NavbarComponent extends Component {
-  constructor(props) {
-    super(props);
-
-    this._onSubmitHandler = this._onSubmitHandler.bind(this);
-  }
   render() {
     let title = 'My Budget';
     let pages;
@@ -27,21 +20,6 @@ export default class NavbarComponent extends Component {
       <Toolbar>
         <ToolbarTitle text={title} />
         <ToolbarGroup>
-          <form onSubmit={this._onSubmitHandler}>
-            <TextField
-              style={{ marginRight: 20 }}
-              id="SearchBar"
-              hintText="Search for transaction by name"
-            />
-            <RaisedButton
-              type="submit"
-              label="GO"
-              style={{
-                width: '20px',
-                marginTop: '10px'
-              }}
-            />
-          </form>
           <IconMenu
             iconButtonElement={
               <IconButton>

@@ -25,14 +25,11 @@ export default function TransactionPage({
 }) {
   return (
     <TransactionPageLayout>
-      <NavbarComponent
-        pageTitle={pageTitle}
-        pages={pages}
-        transactions={transactions}
-        onSelectTransaction={onSelectTransaction}
-      />
+      <NavbarComponent pageTitle={pageTitle} pages={pages} />
       <ActionBarTransactionComponent
         categories={categories}
+        transactions={transactions}
+        onSelectTransaction={onSelectTransaction}
         onShowCreateTransactionDialog={onShowCreateTransactionDialog}
         onCloseCreateTransactionDialog={onCloseCreateTransactionDialog}
         onOpenCreateTransactionDialog={onOpenCreateTransactionDialog}

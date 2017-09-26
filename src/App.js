@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import muiTheme from 'material-ui/styles/baseThemes/muiTheme';
 import IndexPageContainer from './redux/containers/IndexPageContainer.js';
 import BudgetPageContainer from './redux/containers/BudgetPageContainer.js';
 import TransactionPageContainer from './redux/containers/TransactionPageContainer.js';
@@ -14,7 +14,7 @@ const store = setupStore();
 export default class App extends Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+      <MuiThemeProvider muiTheme={getMuiTheme(muiTheme)}>
         <div className="App">
           <Provider store={store}>
             <Router>
