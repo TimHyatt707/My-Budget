@@ -3,7 +3,6 @@ import { storiesOf, addDecorator } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
 import IndexPageLayout from './IndexPageLayout';
 import NavbarComponent from './NavbarComponent';
-import BudgetPreviewComponent from './BudgetPreviewComponent';
 import TransactionPreviewComponent from './TransactionPreviewComponent';
 import FooterComponent from './FooterComponent';
 
@@ -52,7 +51,6 @@ storiesOf('IndexPageLayout', module)
   .add('Happy Path', () =>
     <IndexPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <BudgetPreviewComponent ChartData={data} />
       <TransactionPreviewComponent transactions={mockTransactions} />
       <FooterComponent pageTitle={pageTitle} />
     </IndexPageLayout>

@@ -6,9 +6,15 @@ import UpdateTransactionDialogComponent from './UpdateTransactionDialogComponent
 
 export default class ActionBarTransactionComponent extends Component {
   render() {
+    let categories;
     let disabled = false;
     if (this.props.selectedTransactionIds.length === 0) {
       disabled = true;
+    }
+    if (!this.props.categories) {
+      categories = [];
+    } else {
+      categories = this.props.categories;
     }
     return (
       <div>
@@ -49,7 +55,7 @@ export default class ActionBarTransactionComponent extends Component {
               onOpenCreateTransactionDialog={
                 this.props.onOpenTransactionCategoryDialog
               }
-              categories={this.props.categories}
+              categories={categories}
               onSubmitTransaction={this.props.onSubmitTransaction}
             />
           </RaisedButton>
@@ -69,7 +75,7 @@ export default class ActionBarTransactionComponent extends Component {
                 this.props.onOpenUpdateTransactionDialog
               }
               onUpdateTransaction={this.props.onUpdateTransaction}
-              categories={this.props.categories}
+              categories={categories}
               selectedTransactionIds={this.props.selectedTransactionIds}
             />
           </RaisedButton>

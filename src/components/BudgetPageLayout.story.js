@@ -5,9 +5,7 @@ import BudgetPageLayout from './BudgetPageLayout';
 import NavbarComponent from './NavbarComponent';
 import PieChartComponent from './PieChartComponent';
 import BudgetDisplayComponent from './BudgetDisplayComponent';
-import ActionBarComponent from './ActionBarComponent';
 import BudgetingTableComponent from './BudgetingTableComponent';
-import FooterComponent from './FooterComponent';
 
 const newTheme = {
   themeName: 'Dark Theme',
@@ -24,13 +22,27 @@ const newTheme = {
 
 const pageTitle = 'Budget Page';
 const pages = ['Home Page', 'Budgeting', 'Transactions'];
-const data = [{ x: 'Food', y: 35 }, { x: 'Bills', y: 40 }, { x: 'Gas', y: 55 }];
-const totalSpent = 200;
-const totalLimit = 1000;
+
 const categories = [
-  { id: 0, category: 'Food', amountSpent: '$80', limit: '$200' },
-  { id: 1, category: 'Gas', amountSpent: '$100', limit: '$200' },
-  { id: 2, category: 'Personal Care', amountSpent: '$10', limit: '$40' }
+  { id: 0, category: 'Food', limit: '$200' },
+  { id: 1, category: 'Gas', limit: '$200' },
+  { id: 2, category: 'Personal Care', limit: '$40' }
+];
+const transactions = [
+  {
+    id: 0,
+    amountSpent: '$100',
+    category: 'Food',
+    name: 'groceries',
+    timestamp: '06/26/1997'
+  },
+  {
+    id: 1,
+    amountSpent: '$12',
+    category: 'Entertainment',
+    name: 'Movie',
+    timestamp: '07/06/1997'
+  }
 ];
 
 storiesOf('BudgetPage', module)
@@ -38,10 +50,10 @@ storiesOf('BudgetPage', module)
   .add('Happy Path', () =>
     <BudgetPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <PieChartComponent data={data} />
-      <BudgetDisplayComponent totalSpent={totalSpent} totalLimit={totalLimit} />
-      <ActionBarComponent />
-      <BudgetingTableComponent categories={categories} />
-      <FooterComponent pageTitle={pageTitle} />
+      <PieChartComponent categories={categories} width={1000} />
+      <BudgetingTableComponent
+        categories={categories}
+        transactions={transactions}
+      />
     </BudgetPageLayout>
   );

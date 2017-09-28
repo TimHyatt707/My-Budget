@@ -4,9 +4,9 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 export default class PieChartComponent extends Component {
   render() {
-    let defaultData = [{ x: 'No Categories', y: 50 }];
-    let chartData = defaultData;
+    let chartData;
     if (!this.props.categories) {
+      console.log(this.props);
       return <CircularProgress />;
     } else {
       chartData = this.props.categories.map(category => {

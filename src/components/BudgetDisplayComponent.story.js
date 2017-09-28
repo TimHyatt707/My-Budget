@@ -18,12 +18,24 @@ const newTheme = {
   }
 };
 
-const totalSpent = 200;
-const totalLimit = 1000;
+const budgetDisplayData = [
+  {
+    id: 0,
+    category: 'Food',
+    amountSpent: 100,
+    limit: 200
+  },
+  {
+    id: 1,
+    category: 'Entertainment',
+    amountSpent: 200,
+    limit: 300
+  }
+];
 
 storiesOf('BudgetDisplayComponent', module)
   .addDecorator(muiTheme([newTheme]))
   .add('without data', () => <BudgetDisplayComponent />)
   .add('with data', () =>
-    <BudgetDisplayComponent totalSpent={totalSpent} totalLimit={totalLimit} />
+    <BudgetDisplayComponent budgetDisplayData={budgetDisplayData} />
   );

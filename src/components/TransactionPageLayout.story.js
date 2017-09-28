@@ -2,8 +2,8 @@ import React from 'react';
 import { storiesOf, addDecorator } from '@storybook/react';
 import { muiTheme } from 'storybook-addon-material-ui';
 import TransactionPageLayout from './TransactionPageLayout';
+import ActionBarTransactionComponent from './ActionBarTransactionComponent';
 import NavbarComponent from './NavbarComponent';
-import ActionBarComponent from './ActionBarComponent';
 import TransactionTableComponent from './TransactionTableComponent';
 import FooterComponent from './FooterComponent';
 
@@ -38,6 +38,13 @@ const transactions = [
     timestamp: '07/06/1997'
   }
 ];
+const categories = [
+  {
+    id: 0,
+    category: 'Food',
+    limit: '300'
+  }
+];
 
 let selectedTransactionIds = [1];
 
@@ -46,8 +53,9 @@ storiesOf('TransactionPageLayout', module)
   .add('Happy Path', () =>
     <TransactionPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
-      <ActionBarComponent />
+      <ActionBarTransactionComponent />
       <TransactionTableComponent
+        categories={categories}
         transactions={transactions}
         selectedTransactionIds={selectedTransactionIds}
       />

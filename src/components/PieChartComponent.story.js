@@ -16,9 +16,24 @@ const newTheme = {
   }
 };
 //
-const data = [{ x: 'Food', y: 35 }, { x: 'Bills', y: 40 }, { x: 'Gas', y: 55 }];
+const categories = [
+  {
+    id: 0,
+    category: 'Food',
+    amountSpent: 100,
+    limit: 200
+  },
+  {
+    id: 1,
+    category: 'Entertainment',
+    amountSpent: 200,
+    limit: 300
+  }
+];
 
 storiesOf('PieChartComponent', module)
   .addDecorator(muiTheme([newTheme]))
   .add('Pie chart renders without data', () => <PieChartComponent />)
-  .add('Pie chart renders with data', () => <PieChartComponent data={data} />);
+  .add('Pie chart renders with data', () =>
+    <PieChartComponent categories={categories} width={1000} />
+  );
