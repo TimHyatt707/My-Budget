@@ -23,7 +23,7 @@ describe('CreateCategoryDialogComponent', () => {
     expect(shallowWrapper.find('FlatButton')).toHaveLength(2);
   });
   it('TextField', () => {
-    expect(shallowWrapper.find('TextField')).toHaveLength(3);
+    expect(shallowWrapper.find('TextField')).toHaveLength(2);
   });
   it('onCloseCreateCategoryDialog', () => {
     shallowWrapper.find('#FlatButtonClose').simulate('click');

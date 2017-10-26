@@ -17,10 +17,4 @@ describe('NavbarComponent', () => {
   it('MenuItem', () => {
     expect(shallowWrapper.find('MenuItem')).toHaveLength(3);
   });
-  it('TextField', () => {
-    expect(shallowWrapper.find('TextField')).toHaveLength(1);
-  });
-  it('RaisedButton', () => {
-    expect(shallowWrapper.find('RaisedButton')).toHaveLength(1);
-  });
 });

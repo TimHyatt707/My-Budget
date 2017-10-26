@@ -55,6 +55,7 @@ describe('test reducer', () => {
       transactions: [],
       selectedTransactionIds: [],
       categories: categories,
+
       selectedCategoryIds: [],
       pageTitle: '',
       pages: ['Home Page', 'Budget Page', 'Transaction Page'],
@@ -63,7 +64,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle SET_TRANSACTIONS', () => {
@@ -81,7 +84,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle SHOW_CREATE_CATEGORY', () => {
@@ -99,7 +104,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: true,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle CLOSE_CREATE_CATEGORY', () => {
@@ -115,7 +122,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle ADD_CATEGORY', () => {
@@ -133,7 +142,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle SELECT_CATEGORY', () => {
@@ -150,7 +161,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle DESELECT_CATEGORY', () => {
@@ -168,7 +181,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle ADD_CATEGORY', () => {
@@ -190,11 +205,12 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle UPDATE_CATEGORY', () => {
-    let id = 3;
     expect(
       rootReducer(normalState, { type: 'UPDATE_CATEGORY', category })
     ).toEqual({
@@ -209,7 +225,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle DELETE_CATEGORY', () => {
@@ -232,7 +250,9 @@ describe('test reducer', () => {
           onShowCreateCategoryDialog: false,
           onShowUpdateCategoryDialog: false,
           onShowCreateTransactionDialog: false,
-          onShowUpdateTransactionDialog: false
+          onShowUpdateTransactionDialog: false,
+          budgetDisplayData: [],
+          currentSort: false
         },
         { type: 'DELETE_CATEGORY', id }
       )
@@ -248,7 +268,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle type eror', () => {
@@ -264,7 +286,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle OPEN_CREATE_TRANSACTION', () => {
@@ -282,7 +306,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: true,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle CLOSE_CREATE_TRANSACTION', () => {
@@ -300,7 +326,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle OPEN_UPDATE_TRANSACTION', () => {
@@ -318,7 +346,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle ADD_TRANSACTION', () => {
@@ -336,7 +366,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
   it('should handle DELETE_TRANSACTION', () => {
@@ -355,7 +387,9 @@ describe('test reducer', () => {
       onShowCreateCategoryDialog: false,
       onShowUpdateCategoryDialog: false,
       onShowCreateTransactionDialog: false,
-      onShowUpdateTransactionDialog: false
+      onShowUpdateTransactionDialog: false,
+      budgetDisplayData: [],
+      currentSort: false
     });
   });
 });
