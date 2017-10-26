@@ -1,10 +1,9 @@
-import React from 'react';
-import BudgetPageLayout from './BudgetPageLayout';
-import NavbarComponent from './NavbarComponent';
-import PieChartComponent from './PieChartComponent';
-// import BudgetDisplayComponent from './BudgetDisplayComponent';
-import ActionBarBudgetComponent from './ActionBarCategoryComponent';
-import BudgetingTableComponent from './BudgetingTableComponent';
+import React from "react";
+import BudgetPageLayout from "./BudgetPageLayout";
+import NavbarComponent from "./NavbarComponent";
+import PieChartComponent from "./PieChartComponent";
+import ActionBarBudgetComponent from "./ActionBarCategoryComponent";
+import BudgetingTableComponent from "./BudgetingTableComponent";
 
 export default function BudgetPage({
   pageTitle,
