@@ -4,8 +4,7 @@ export default function rootReducer(
     selectedTransactionIds: [],
     categories: [],
     selectedCategoryIds: [],
-    pageTitle: '',
-    pages: ['Home Page', 'Budget Page', 'Transaction Page'],
+    pageTitle: "",
     totalSpent: 0,
     totalLimit: 0,
     onShowCreateCategoryDialog: false,
@@ -18,38 +17,38 @@ export default function rootReducer(
   action
 ) {
   switch (action.type) {
-    case 'SET_TRANSACTIONS':
+    case "SET_TRANSACTIONS":
       return { ...currentState, transactions: action.transactions };
-    case 'SET_CATEGORIES':
+    case "SET_CATEGORIES":
       return { ...currentState, categories: action.categories };
-    case 'SHOW_CREATE_CATEGORY':
+    case "SHOW_CREATE_CATEGORY":
       return { ...currentState, onShowCreateCategoryDialog: true };
-    case 'CLOSE_CREATE_CATEGORY':
+    case "CLOSE_CREATE_CATEGORY":
       return { ...currentState, onShowCreateCategoryDialog: false };
-    case 'ADD_CATEGORY':
+    case "ADD_CATEGORY":
       return {
         ...currentState,
         categories: [...currentState.categories, action.category]
       };
-    case 'SELECT_CATEGORY':
+    case "SELECT_CATEGORY":
       return {
         ...currentState,
         selectedCategoryIds: [...currentState.selectedCategoryIds, action.id]
       };
     // case 'SHOW_UPDATE_CATEGORY':
     //   return {...currentState, }
-    case 'DESELECT_CATEGORY':
+    case "DESELECT_CATEGORY":
       return {
         ...currentState,
         selectedCategoryIds: currentState.selectedCategoryIds.filter(
           Id => Id !== action.id
         )
       };
-    case 'SHOW_UPDATE_CATEGORY':
+    case "SHOW_UPDATE_CATEGORY":
       return { ...currentState, onShowUpdateCategoryDialog: true };
-    case 'CLOSE_UPDATE_CATEGORY':
+    case "CLOSE_UPDATE_CATEGORY":
       return { ...currentState, onShowUpdateCategoryDialog: false };
-    case 'UPDATE_CATEGORY':
+    case "UPDATE_CATEGORY":
       return {
         ...currentState,
         categories: currentState.categories.map(
@@ -57,29 +56,29 @@ export default function rootReducer(
             category.id === action.category.id ? action.category : category
         )
       };
-    case 'DELETE_CATEGORY':
+    case "DELETE_CATEGORY":
       return {
         ...currentState,
         categories: currentState.categories.filter(
           category => category.id !== action.id.id
         )
       };
-    case 'OPEN_CREATE_TRANSACTION':
+    case "OPEN_CREATE_TRANSACTION":
       return {
         ...currentState,
         onShowCreateTransactionDialog: true
       };
-    case 'CLOSE_CREATE_TRANSACTION':
+    case "CLOSE_CREATE_TRANSACTION":
       return {
         ...currentState,
         onShowCreateTransactionDialog: false
       };
-    case 'ADD_TRANSACTION':
+    case "ADD_TRANSACTION":
       return {
         ...currentState,
         transactions: [...currentState.transactions, action.transaction]
       };
-    case 'SELECT_TRANSACTION':
+    case "SELECT_TRANSACTION":
       return {
         ...currentState,
         selectedTransactionIds: [
@@ -87,24 +86,24 @@ export default function rootReducer(
           action.id
         ]
       };
-    case 'DESELECT_TRANSACTION':
+    case "DESELECT_TRANSACTION":
       return {
         ...currentState,
         selectedTransactionIds: currentState.selectedTransactionIds.filter(
           Id => Id !== action.id
         )
       };
-    case 'OPEN_UPDATE_TRANSACTION':
+    case "OPEN_UPDATE_TRANSACTION":
       return {
         ...currentState,
         onShowUpdateTransactionDialog: true
       };
-    case 'CLOSE_UPDATE_TRANSACTION':
+    case "CLOSE_UPDATE_TRANSACTION":
       return {
         ...currentState,
         onShowUpdateTransactionDialog: false
       };
-    case 'UPDATE_TRANSACTION':
+    case "UPDATE_TRANSACTION":
       return {
         ...currentState,
         transactions: currentState.transactions.map(
@@ -114,14 +113,14 @@ export default function rootReducer(
               : transaction
         )
       };
-    case 'DELETE_TRANSACTION':
+    case "DELETE_TRANSACTION":
       return {
         ...currentState,
         transactions: currentState.transactions.filter(
           transaction => transaction.id !== action.id.id
         )
       };
-    case 'TOGGLE_SORT':
+    case "TOGGLE_SORT":
       return {
         ...currentState,
         currentSort: true

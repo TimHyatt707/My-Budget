@@ -9,23 +9,18 @@ export default class SignupForm extends React.Component {
   }
   render() {
     return (
-      <form onSubmit={this._onSubmitHandler}>
+      <form
+        onSubmit={this._onSubmitHandler}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}
+      >
         <h2>{this.state.error}</h2>
-        <TextField
-          id="email"
-          hintText="Email"
-          errorText="This field is required"
-        />
-        <TextField
-          id="username"
-          hintText="Username"
-          errorText="This field is required"
-        />
-        <TextField
-          id="password"
-          hintText="Password"
-          errorText="This field is required"
-        />
+        <TextField id="email" hintText="Email" />
+        <TextField id="username" hintText="Username" />
+        <TextField id="password" type="password" hintText="Password" />
         <RaisedButton type="submit">SUBMIT</RaisedButton>
       </form>
     );

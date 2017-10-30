@@ -1,21 +1,21 @@
-import React, { Component } from 'react';
-import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import { Link } from 'react-router-dom';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import React, { Component } from "react";
+import { Toolbar, ToolbarGroup, ToolbarTitle } from "material-ui/Toolbar";
+import { Link } from "react-router-dom";
+import IconMenu from "material-ui/IconMenu";
+import MenuItem from "material-ui/MenuItem";
+import IconButton from "material-ui/IconButton";
+import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 export default class NavbarComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signup: null,
+      login: null
+    };
+  }
   render() {
-    let title = 'My Budget';
-    let pages;
-    if (!this.props.pages) {
-      pages = ['', '', ''];
-    } else {
-      pages = this.props.pages;
-    }
-
+    let title = "My Budget";
     return (
       <Toolbar>
         <ToolbarTitle text={title} />
@@ -26,16 +26,23 @@ export default class NavbarComponent extends Component {
                 <MoreVertIcon />
               </IconButton>
             }
-            anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
-            targetOrigin={{ horizontal: 'left', vertical: 'top' }}>
-            <Link to={'/'}>
-              <MenuItem primaryText={pages[0]} />
+            anchorOrigin={{ horizontal: "left", vertical: "top" }}
+            targetOrigin={{ horizontal: "left", vertical: "top" }}
+          >
+            <Link to={"/"}>
+              <MenuItem primaryText={"Home"} />
             </Link>
-            <Link to={'/Budget'}>
-              <MenuItem primaryText={pages[1]} />
+            <Link to={"/Budget"}>
+              <MenuItem primaryText={"Budget"} />
             </Link>
-            <Link to={'/Transactions'}>
-              <MenuItem primaryText={pages[2]} />
+            <Link to={"/Transactions"}>
+              <MenuItem primaryText={"Transactions"} />
+            </Link>
+            <Link to={"/Signup"}>
+              <MenuItem primaryText={this.state.signup} />
+            </Link>
+            <Link to={"/Login"}>
+              <MenuItem primaryText={this.state.login} />
             </Link>
           </IconMenu>
         </ToolbarGroup>

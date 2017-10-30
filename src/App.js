@@ -27,11 +27,7 @@ export default class App extends Component {
                   path="/Transactions"
                   component={TransactionPageContainer}
                 />
-                <Route
-                  exact
-                  path="/user/signup"
-                  component={SignupPageContainer}
-                />
+                <Route exact path="/signup" component={SignupPageContainer} />
               </Switch>
             </Router>
           </Provider>
