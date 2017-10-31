@@ -1,10 +1,10 @@
 export default function updateTransaction(
   id,
   changes,
-  { API_BASE_URL, PORT },
+  { API_BASE_URL },
   token
 ) {
-  return fetch(`${API_BASE_URL}${PORT}/transactions/${id}`, {
+  return fetch(`${API_BASE_URL}/transactions/${id}`, {
     method: "PATCH",
     headers: {
       Authorization: `${token}`,

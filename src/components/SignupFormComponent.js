@@ -14,7 +14,8 @@ export default class SignupForm extends React.Component {
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "center"
+          alignItems: "center",
+          backgroundColor: "grey"
         }}
       >
         <h2>{this.state.error}</h2>
@@ -33,7 +34,9 @@ export default class SignupForm extends React.Component {
     if (!email || !username || !password) {
       this.setState({ error: "Please fill out all forms" });
     } else {
+      const user = { email, username, password };
       this.setState({ error: null });
+      this.props.onCreateUser(user);
     }
   };
 }

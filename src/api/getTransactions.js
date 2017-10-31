@@ -1,5 +1,5 @@
-export default function getTransactions(id, { API_BASE_URL, PORT }, token) {
-  return fetch(`${API_BASE_URL}${PORT}/users/${id}/transactions?`, {
+export default function getTransactions(id, { API_BASE_URL }, token) {
+  return fetch(`${API_BASE_URL}/users/${id}/transactions?`, {
     method: "GET",
     headers: {
       Authorization: `${token}`

@@ -1,4 +1,3 @@
 export default {
-  API_BASE_URL: process.env.BASE_URL,
-  PORT: process.env.PORT
+  API_BASE_URL: process.env.REACT_APP_BASE_URL
 };

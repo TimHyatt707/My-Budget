@@ -26,15 +26,13 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () =>
       dispatch(
         getTransactionsProcess({
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onMountCategories: () =>
       dispatch(
         getCategoriesProcess({
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onOpenCreateTransactionDialog: () =>
@@ -44,8 +42,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onSubmitTransaction: transaction =>
       dispatch(
         createTransactionProcess(transaction, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onSelectTransaction: id => dispatch({ type: "SELECT_TRANSACTION", id }),
@@ -57,15 +54,13 @@ function mapDispatchToProps(dispatch, ownProps) {
     onUpdateTransaction: (id, transaction) =>
       dispatch(
         updateTransactionProcess(id, transaction, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onDeleteTransaction: id =>
       dispatch(
         deleteTransactionProcess(id, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       )
   };

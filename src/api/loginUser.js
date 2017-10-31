@@ -1,6 +1,7 @@
-export default function loginUser(credentials, { API_BASE_URL, PORT }) {
-  return fetch(`${API_BASE_URL}${PORT}/login`, {
+export default function loginUser(credentials, { API_BASE_URL }) {
+  return fetch(`${API_BASE_URL}/login`, {
     method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: credentials
   })
     .then(response => {

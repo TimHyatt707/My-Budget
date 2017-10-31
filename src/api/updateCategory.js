@@ -1,10 +1,5 @@
-export default function updateCategory(
-  id,
-  changes,
-  { API_BASE_URL, PORT },
-  token
-) {
-  return fetch(`${API_BASE_URL}${PORT}/categories/${id}`, {
+export default function updateCategory(id, changes, { API_BASE_URL }, token) {
+  return fetch(`${API_BASE_URL}/categories/${id}`, {
     method: "PATCH",
     headers: {
       Authorization: `${token}`

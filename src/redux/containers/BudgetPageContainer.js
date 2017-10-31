@@ -29,15 +29,13 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () =>
       dispatch(
         getCategoriesProcess({
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onMountTransactions: () =>
       dispatch(
         getTransactionsProcess({
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onOpenCreateCategoryDialog: () =>
@@ -47,8 +45,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onSubmitCategory: category =>
       dispatch(
         createCategoryProcess(category, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY", id }),
@@ -60,8 +57,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onUpdateCategory: (id, changes) =>
       dispatch(
         updateCategoryProcess(id, changes, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onOpenDeleteCategoryDialog: () =>
@@ -72,8 +68,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onDeleteCategory: id =>
       dispatch(
         deleteCategoryProcess(id, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       )
   };

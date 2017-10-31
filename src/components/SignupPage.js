@@ -3,11 +3,11 @@ import SignupPageLayout from "./SignupPageLayout";
 import Navbar from "./NavbarComponent";
 import SignupForm from "./SignupFormComponent";
 
-export default function SignupPage() {
+export default function SignupPage({ onCreateUser }) {
   return (
     <SignupPageLayout>
       <Navbar />
-      <SignupForm />
+      <SignupForm onCreateUser={onCreateUser} />
     </SignupPageLayout>
   );
 }

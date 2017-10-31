@@ -23,15 +23,13 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMountTransactions: () =>
       dispatch(
         getTransactionsProcess(ownProps.authenticatedUserId, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       ),
     onMountCategories: () =>
       dispatch(
         getCategoriesProcess(ownProps.authenticatedUserId, {
-          API_BASE_URL: env.API_BASE_URL,
-          PORT: env.PORT
+          API_BASE_URL: env.API_BASE_URL
         })
       )
   };

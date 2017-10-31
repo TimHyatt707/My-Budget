@@ -1,10 +1,5 @@
-export default function createTransaction(
-  id,
-  object,
-  { API_BASE_URL, PORT },
-  token
-) {
-  return fetch(`${API_BASE_URL}${PORT}/users/${id}/transactions`, {
+export default function createTransaction(id, object, { API_BASE_URL }, token) {
+  return fetch(`${API_BASE_URL}/users/${id}/transactions`, {
     method: "POST",
     headers: {
       Authorization: `${token}`,

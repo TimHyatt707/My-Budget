@@ -1,10 +1,5 @@
-export default function createCategory(
-  id,
-  object,
-  { API_BASE_URL, PORT },
-  token
-) {
-  return fetch(`${API_BASE_URL}${PORT}/users/${id}/categories`, {
+export default function createCategory(id, object, { API_BASE_URL }, token) {
+  return fetch(`${API_BASE_URL}/users/${id}/categories`, {
     method: "POST",
     headers: {
       Authorization: `${token}`,

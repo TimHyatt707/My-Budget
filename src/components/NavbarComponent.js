@@ -7,13 +7,6 @@ import IconButton from "material-ui/IconButton";
 import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 
 export default class NavbarComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      signup: null,
-      login: null
-    };
-  }
   render() {
     let title = "My Budget";
     return (
@@ -39,10 +32,10 @@ export default class NavbarComponent extends Component {
               <MenuItem primaryText={"Transactions"} />
             </Link>
             <Link to={"/Signup"}>
-              <MenuItem primaryText={this.state.signup} />
+              <MenuItem primaryText={"Signup"} />
             </Link>
             <Link to={"/Login"}>
-              <MenuItem primaryText={this.state.login} />
+              <MenuItem primaryText={"Login"} />
             </Link>
           </IconMenu>
         </ToolbarGroup>
