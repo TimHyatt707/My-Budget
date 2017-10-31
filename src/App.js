@@ -7,6 +7,7 @@ import IndexPageContainer from "./redux/containers/IndexPageContainer.js";
 import BudgetPageContainer from "./redux/containers/BudgetPageContainer.js";
 import TransactionPageContainer from "./redux/containers/TransactionPageContainer.js";
 import SignupPageContainer from "./redux/containers/SignupPageContainer.js";
+import LoginPageContainer from "./redux/containers/LoginPageContainer.js";
 import { Provider } from "react-redux";
 import setupStore from "./redux/setupStore";
 
@@ -27,7 +28,8 @@ export default class App extends Component {
                   path="/Transactions"
                   component={TransactionPageContainer}
                 />
-                <Route exact path="/signup" component={SignupPageContainer} />
+                <Route exact path="/Signup" component={SignupPageContainer} />
+                <Route exact path="/Login" component={LoginPageContainer} />
               </Switch>
             </Router>
           </Provider>

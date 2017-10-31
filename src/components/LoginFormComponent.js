@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 
-export default class SignupForm extends React.Component {
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
@@ -18,10 +18,9 @@ export default class SignupForm extends React.Component {
           backgroundColor: "grey"
         }}
       >
-        <h1>Signup</h1>
+        <h1>Login</h1>
         <h2>{this.state.error}</h2>
         <TextField id="email" hintText="Email" />
-        <TextField id="username" hintText="Username" />
         <TextField id="password" type="password" hintText="Password" />
         <RaisedButton type="submit">SUBMIT</RaisedButton>
       </form>
@@ -29,15 +28,14 @@ export default class SignupForm extends React.Component {
   }
   _onSubmitHandler = e => {
     e.preventDefault();
-    const email = e.target.email.value;
-    const username = e.target.username.value;
-    const password = e.target.password.value;
-    if (!email || !username || !password) {
-      this.setState({ error: "Please fill out all forms" });
+    const email = e.target.email.value || "";
+    const password = e.target.password.value || "";
+    if (!email || !password) {
+      this.setState({ error: "Please fill out both fields" });
     } else {
-      const user = { email, username, password };
+      const credentials = { email, password };
       this.setState({ error: null });
-      this.props.onCreateUser(user);
+      this.props.onLoginUser(credentials);
     }
   };
 }
