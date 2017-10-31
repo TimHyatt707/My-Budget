@@ -1,13 +1,16 @@
-export default function createTransaction(object, { databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions`, {
-    method: 'POST',
+export default function createTransaction(
+  id,
+  object,
+  { API_BASE_URL, PORT },
+  token
+) {
+  return fetch(`${API_BASE_URL}${PORT}/users/${id}/transactions`, {
+    method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-type': 'application/json'
+      Authorization: `${token}`,
+      "Content-type": "application/json"
     },
-    body: JSON.stringify({
-      fields: object
-    })
+    body: object
   })
     .then(response => {
       return response.json();
@@ -15,10 +18,10 @@ export default function createTransaction(object, { databaseId, token }) {
     .then(record => {
       return {
         id: record.id,
-        category: record.fields.category,
-        amountSpent: record.fields.amountSpent,
-        name: record.fields.name,
-        timestamp: record.fields.timestamp
+        category: record.category_id,
+        amountSpent: record.amount,
+        name: record.name,
+        timestamp: record.created_at
       };
     });
 }

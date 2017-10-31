@@ -1,24 +1,27 @@
-export default function updateTransaction(id, changes, { databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions/${id}`, {
-    method: 'PATCH',
+export default function updateTransaction(
+  id,
+  changes,
+  { API_BASE_URL, PORT },
+  token
+) {
+  return fetch(`${API_BASE_URL}${PORT}/transactions/${id}`, {
+    method: "PATCH",
     headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-type': 'application/json'
+      Authorization: `${token}`,
+      "Content-type": "application/json"
     },
-    body: JSON.stringify({
-      fields: changes
-    })
+    body: changes
   })
     .then(response => {
       return response.json();
     })
     .then(record => {
       return {
-        id: id,
-        category: record.fields.category,
-        amountSpent: record.fields.amountSpent,
-        name: record.fields.name,
-        timestamp: record.fields.timestamp
+        id: record.id,
+        category: record.category_id,
+        amountSpent: record.amount,
+        name: record.name,
+        timestamp: record.created_at
       };
     });
 }

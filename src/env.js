@@ -1,5 +1,4 @@
 export default {
-  AIRTABLE_DATABASE_CATEGORY_ID: 'app4N49jXo9XVuKeq',
-  AIRTABLE_DATABASE_TRANSACTION_ID: 'appjAkSe9KeAO6vMv',
-  AIRTABLE_TOKEN: 'keyZjFgCqHqPR1F8o'
+  API_BASE_URL: process.env.BASE_URL,
+  PORT: process.env.PORT
 };

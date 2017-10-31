@@ -1,8 +1,8 @@
-export default function getTransactions({ databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/transactions?`, {
-    method: 'GET',
+export default function getTransactions(id, { API_BASE_URL, PORT }, token) {
+  return fetch(`${API_BASE_URL}${PORT}/users/${id}/transactions?`, {
+    method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   })
     .then(response => {
@@ -12,10 +12,10 @@ export default function getTransactions({ databaseId, token }) {
       return data.records.map(record => {
         return {
           id: record.id,
-          amountSpent: record.fields.amountSpent,
-          category: record.fields.category,
-          name: record.fields.name,
-          timestamp: record.fields.timestamp
+          amountSpent: record.amount,
+          category: record.category_id,
+          name: record.name,
+          timestamp: record.created_at
         };
       });
     });

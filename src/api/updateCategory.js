@@ -1,22 +1,24 @@
-export default function updateCategory(id, changes, { databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories/${id}`, {
-    method: 'PATCH',
+export default function updateCategory(
+  id,
+  changes,
+  { API_BASE_URL, PORT },
+  token
+) {
+  return fetch(`${API_BASE_URL}${PORT}/categories/${id}`, {
+    method: "PATCH",
     headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-type': 'application/json'
+      Authorization: `${token}`
     },
-    body: JSON.stringify({
-      fields: changes
-    })
+    body: changes
   })
     .then(response => {
       return response.json();
     })
     .then(record => {
       return {
-        id: id,
-        category: record.fields.category,
-        limit: record.fields.limit
+        id: record.id,
+        category: record.name,
+        limit: record.limit
       };
     });
 }

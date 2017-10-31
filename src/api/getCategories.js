@@ -1,8 +1,8 @@
-export default function getCategories({ databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories?`, {
-    method: 'GET',
+export default function getCategories(id, { API_BASE_URL, PORT }, token) {
+  return fetch(`${API_BASE_URL}${PORT}/users/${id}/categories?`, {
+    method: "GET",
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `${token}`
     }
   })
     .then(response => {
@@ -12,8 +12,8 @@ export default function getCategories({ databaseId, token }) {
       return data.records.map(record => {
         return {
           id: record.id,
-          category: record.fields.category,
-          limit: record.fields.limit
+          category: record.name,
+          limit: record.limit
         };
       });
     });

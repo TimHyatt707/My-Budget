@@ -1,13 +1,16 @@
-export default function createCategory(object, { databaseId, token }) {
-  return fetch(`https://api.airtable.com/v0/${databaseId}/Categories`, {
-    method: 'POST',
+export default function createCategory(
+  id,
+  object,
+  { API_BASE_URL, PORT },
+  token
+) {
+  return fetch(`${API_BASE_URL}${PORT}/users/${id}/categories`, {
+    method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`,
-      'Content-type': 'application/json'
+      Authorization: `${token}`,
+      "Content-type": "application/json"
     },
-    body: JSON.stringify({
-      fields: object
-    })
+    body: object
   })
     .then(response => {
       return response.json();
