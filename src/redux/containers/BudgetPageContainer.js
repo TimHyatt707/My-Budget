@@ -1,12 +1,12 @@
-import { compose, lifecycle } from 'recompose';
-import { connect } from 'react-redux';
-import env from './../../env';
-import BudgetPage from '../../components/BudgetPage';
-import getCategoriesProcess from './../thunks/getCategoriesProcess';
-import getTransactionsProcess from './../thunks/getTransactionsProcess';
-import createCategoryProcess from './../thunks/createCategoryProcess';
-import updateCategoryProcess from './../thunks/updateCategoryProcess';
-import deleteCategoryProcess from './../thunks/deleteCategoryProcess';
+import { compose, lifecycle } from "recompose";
+import { connect } from "react-redux";
+import env from "./../../env";
+import BudgetPage from "../../components/BudgetPage";
+import getCategoriesProcess from "./../thunks/getCategoriesProcess";
+import getTransactionsProcess from "./../thunks/getTransactionsProcess";
+import createCategoryProcess from "./../thunks/createCategoryProcess";
+import updateCategoryProcess from "./../thunks/updateCategoryProcess";
+import deleteCategoryProcess from "./../thunks/deleteCategoryProcess";
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -19,7 +19,8 @@ function mapStateToProps(state, ownProps) {
     totalLimit: state.totalSpent,
     onShowCreateCategoryDialog: state.onShowCreateCategoryDialog,
     onShowUpdateCategoryDialog: state.onShowUpdateCategoryDialog,
-    currentSort: state.currentSort
+    currentSort: state.currentSort,
+    token: state.token
   };
 }
 
@@ -28,51 +29,51 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () =>
       dispatch(
         getCategoriesProcess({
-          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
-          token: env.AIRTABLE_TOKEN
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       ),
     onMountTransactions: () =>
       dispatch(
         getTransactionsProcess({
-          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
-          token: env.AIRTABLE_TOKEN
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       ),
     onOpenCreateCategoryDialog: () =>
-      dispatch({ type: 'SHOW_CREATE_CATEGORY' }),
+      dispatch({ type: "SHOW_CREATE_CATEGORY" }),
     onCloseCreateCategoryDialog: () =>
-      dispatch({ type: 'CLOSE_CREATE_CATEGORY' }),
+      dispatch({ type: "CLOSE_CREATE_CATEGORY" }),
     onSubmitCategory: category =>
       dispatch(
         createCategoryProcess(category, {
-          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
-          token: env.AIRTABLE_TOKEN
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       ),
-    onSelectCategory: id => dispatch({ type: 'SELECT_CATEGORY', id }),
-    onDeselectCategory: id => dispatch({ type: 'DESELECT_CATEGORY', id }),
+    onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY", id }),
+    onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY", id }),
     onOpenUpdateCategoryDialog: () =>
-      dispatch({ type: 'SHOW_UPDATE_CATEGORY' }),
+      dispatch({ type: "SHOW_UPDATE_CATEGORY" }),
     onCloseUpdateCategoryDialog: () =>
-      dispatch({ type: 'CLOSE_UPDATE_CATEGORY' }),
+      dispatch({ type: "CLOSE_UPDATE_CATEGORY" }),
     onUpdateCategory: (id, changes) =>
       dispatch(
         updateCategoryProcess(id, changes, {
-          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
-          token: env.AIRTABLE_TOKEN
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       ),
     onOpenDeleteCategoryDialog: () =>
-      dispatch({ type: 'SHOW_DELETE_CATEGORY' }),
+      dispatch({ type: "SHOW_DELETE_CATEGORY" }),
     onCloseDeleteCategoryDialog: () =>
-      dispatch({ type: 'CLOSE_DELETE_CATEGORY' }),
-    onSortCategoryName: () => dispatch({ type: 'TOGGLE_SORT' }),
+      dispatch({ type: "CLOSE_DELETE_CATEGORY" }),
+    onSortCategoryName: () => dispatch({ type: "TOGGLE_SORT" }),
     onDeleteCategory: id =>
       dispatch(
         deleteCategoryProcess(id, {
-          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
-          token: env.AIRTABLE_TOKEN
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       )
   };

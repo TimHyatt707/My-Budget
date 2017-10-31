@@ -1,13 +1,16 @@
-import updateCategory from './../../api/updateCategory';
+import updateCategory from "./../../api/updateCategory";
 
 export default function updateCategoryProcess(
   id,
   changes,
-  { databaseId, token }
+  { API_BASE_URL, PORT }
 ) {
   return (dispatch, getState) => {
-    return updateCategory(id, changes, { databaseId, token }).then(category => {
-      dispatch({ type: 'UPDATE_CATEGORY', category });
+    return updateCategory(id, changes, {
+      API_BASE_URL,
+      PORT
+    }).then(category => {
+      dispatch({ type: "UPDATE_CATEGORY", category });
       return category;
     });
   };

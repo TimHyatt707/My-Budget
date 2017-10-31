@@ -1,9 +1,9 @@
-import deleteTransaction from './../../api/deleteTransaction.js';
+import deleteTransaction from "./../../api/deleteTransaction.js";
 
-export default function deleteTransactionProcess(id, { databaseId, token }) {
+export default function deleteTransactionProcess(id, { API_BASE_URL, PORT }) {
   return (dispatch, getState) => {
-    return deleteTransaction(id, { databaseId, token }).then(id => {
-      dispatch({ type: 'DELETE_TRANSACTION', id });
+    return deleteTransaction(id, { API_BASE_URL, PORT }).then(id => {
+      dispatch({ type: "DELETE_TRANSACTION", id });
       return id;
     });
   };

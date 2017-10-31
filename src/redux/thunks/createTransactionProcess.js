@@ -1,15 +1,15 @@
-import createTransaction from './../../api/createTransaction.js';
+import createTransaction from "./../../api/createTransaction.js";
 
 export default function createTransactionProcess(
   transaction,
-  { databaseId, token }
+  { API_BASE_URL, PORT }
 ) {
   return (dispatch, getState) => {
     return createTransaction(transaction, {
-      databaseId,
-      token
+      API_BASE_URL,
+      PORT
     }).then(transaction => {
-      dispatch({ type: 'ADD_TRANSACTION', transaction });
+      dispatch({ type: "ADD_TRANSACTION", transaction });
       return transaction;
     });
   };

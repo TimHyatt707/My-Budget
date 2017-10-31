@@ -1,9 +1,12 @@
-import getCategories from './../../api/getCategories.js';
+import getCategories from "./../../api/getCategories.js";
 
-export default function getCategoriesProcess({ databaseId, token }) {
+export default function getCategoriesProcess(id, { API_BASE_URL, PORT }) {
   return (dispatch, getState) => {
-    return getCategories({ databaseId, token }).then(categories => {
-      dispatch({ type: 'SET_CATEGORIES', categories });
+    if (!id) {
+      return null;
+    }
+    return getCategories(id, { API_BASE_URL, PORT }).then(categories => {
+      dispatch({ type: "SET_CATEGORIES", categories });
       return categories;
     });
   };

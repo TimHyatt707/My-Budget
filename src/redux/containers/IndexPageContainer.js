@@ -1,33 +1,37 @@
-import { compose, lifecycle } from 'recompose';
-import { connect } from 'react-redux';
-import env from './../../env';
-import IndexPage from '../../components/IndexPage';
-import getTransactionsProcess from './../thunks/getTransactionsProcess';
-import getCategoriesProcess from './../thunks/getCategoriesProcess';
+import { compose, lifecycle } from "recompose";
+import { connect } from "react-redux";
+import env from "./../../env";
+import IndexPage from "../../components/IndexPage";
+import getTransactionsProcess from "./../thunks/getTransactionsProcess";
+import getCategoriesProcess from "./../thunks/getCategoriesProcess";
+import getAuthenticationProcess from "./../thunks/getAuthenticationProcess";
 
 function mapStateToProps(state, ownProps) {
   return {
     transactions: state.transactions,
     pageTitle: state.pageTitle,
     pages: state.pages,
-    categories: state.categories
+    categories: state.categories,
+    token: state.token,
+    authenticatedUserId: state.authenticatedUserId
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onMount: () =>
+    onMount: () => dispatch(getAuthenticationProcess()),
+    onMountTransactions: () =>
       dispatch(
-        getTransactionsProcess({
-          databaseId: env.AIRTABLE_DATABASE_TRANSACTION_ID,
-          token: env.AIRTABLE_TOKEN
+        getTransactionsProcess(ownProps.authenticatedUserId, {
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       ),
     onMountCategories: () =>
       dispatch(
-        getCategoriesProcess({
-          databaseId: env.AIRTABLE_DATABASE_CATEGORY_ID,
-          token: env.AIRTABLE_TOKEN
+        getCategoriesProcess(ownProps.authenticatedUserId, {
+          API_BASE_URL: env.API_BASE_URL,
+          PORT: env.PORT
         })
       )
   };
@@ -38,6 +42,7 @@ const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 const onDidMount = lifecycle({
   componentDidMount() {
     this.props.onMount();
+    this.props.onMountTransactions();
     this.props.onMountCategories();
   }
 });

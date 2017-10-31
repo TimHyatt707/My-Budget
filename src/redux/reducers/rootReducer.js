@@ -12,7 +12,9 @@ export default function rootReducer(
     onShowCreateTransactionDialog: false,
     onShowUpdateTransactionDialog: false,
     currentSort: false,
-    budgetDisplayData: []
+    budgetDisplayData: [],
+    token: null,
+    authenticatedUserId: 0
   },
   action
 ) {
@@ -35,8 +37,6 @@ export default function rootReducer(
         ...currentState,
         selectedCategoryIds: [...currentState.selectedCategoryIds, action.id]
       };
-    // case 'SHOW_UPDATE_CATEGORY':
-    //   return {...currentState, }
     case "DESELECT_CATEGORY":
       return {
         ...currentState,
@@ -124,6 +124,16 @@ export default function rootReducer(
       return {
         ...currentState,
         currentSort: true
+      };
+    case "SET_TOKEN":
+      return {
+        ...currentState,
+        token: action.token
+      };
+    case "SET_USER":
+      return {
+        ...currentState,
+        authenticatedUserId: action.userId
       };
     default:
       return currentState;
