@@ -13,9 +13,10 @@ export default class ActionBarCategoryComponent extends Component {
   }
   render() {
     let disabled = false;
+    let disabledCreate = false;
     let disabledUpdate = false;
     if (!this.props.token) {
-      disabled = true;
+      disabledCreate = true;
       disabledUpdate = true;
     }
     if (this.props.selectedCategoryIds.length === 0) {
@@ -37,6 +38,7 @@ export default class ActionBarCategoryComponent extends Component {
         <RaisedButton
           id="CREATE"
           label="CREATE"
+          disabled={disabledCreate}
           onClick={this._onCreateCategoryHandler}
         >
           <CreateCategoryDialogComponent
@@ -73,6 +75,7 @@ export default class ActionBarCategoryComponent extends Component {
         <RaisedButton
           id="SORT"
           label="SORT"
+          disabled={disabledCreate}
           onClick={this._onSortCategoryHandler}
         />
       </div>

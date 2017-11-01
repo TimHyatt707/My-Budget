@@ -32,17 +32,20 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "OPEN_CREATE_TRANSACTION" }),
     onCloseCreateTransactionDialog: () =>
       dispatch({ type: "CLOSE_CREATE_TRANSACTION" }),
-    onSubmitTransaction: transaction =>
-      dispatch(createTransactionProcess(transaction)),
+    onSubmitTransaction: (id, transaction, token) =>
+      dispatch(createTransactionProcess(id, transaction, token)),
     onSelectTransaction: id => dispatch({ type: "SELECT_TRANSACTION", id }),
     onDeselectTransaction: id => dispatch({ type: "DESELECT_TRANSACTION", id }),
     onOpenUpdateTransactionDialog: () =>
       dispatch({ type: "OPEN_UPDATE_TRANSACTION" }),
     onCloseUpdateTransactionDialog: () =>
       dispatch({ type: "CLOSE_UPDATE_TRANSACTION" }),
-    onUpdateTransaction: (id, transaction) =>
-      dispatch(updateTransactionProcess(id, transaction)),
-    onDeleteTransaction: id => dispatch(deleteTransactionProcess(id))
+    onUpdateTransaction: (id, transaction, authenticatedUserId, token) =>
+      dispatch(
+        updateTransactionProcess(id, transaction, authenticatedUserId, token)
+      ),
+    onDeleteTransaction: (id, authenticatedUserId, token) =>
+      dispatch(deleteTransactionProcess(id, authenticatedUserId, token))
   };
 }
 

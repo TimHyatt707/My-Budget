@@ -15,7 +15,7 @@ export default function getTransactions(id, token) {
         return {
           id: record.id,
           amountSpent: record.amount,
-          category: record.category_id,
+          category: record.category,
           name: record.name,
           timestamp: record.created_at
         };

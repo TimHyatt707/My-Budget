@@ -1,9 +1,9 @@
-import React from 'react';
-import TransactionPageLayout from './TransactionPageLayout';
-import NavbarComponent from './NavbarComponent';
-import ActionBarTransactionComponent from './ActionBarTransactionComponent';
-import TransactionTableComponent from './TransactionTableComponent';
-import FooterComponent from './FooterComponent';
+import React from "react";
+import TransactionPageLayout from "./TransactionPageLayout";
+import NavbarComponent from "./NavbarComponent";
+import ActionBarTransactionComponent from "./ActionBarTransactionComponent";
+import TransactionTableComponent from "./TransactionTableComponent";
+import FooterComponent from "./FooterComponent";
 
 export default function TransactionPage({
   pageTitle,
@@ -21,13 +21,17 @@ export default function TransactionPage({
   onCloseUpdateTransactionDialog,
   onOpenUpdateTransactionDialog,
   onUpdateTransaction,
-  onDeleteTransaction
+  onDeleteTransaction,
+  token,
+  authenticatedUserId
 }) {
   return (
     <TransactionPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
       <ActionBarTransactionComponent
         categories={categories}
+        token={token}
+        authenticatedUserId={authenticatedUserId}
         transactions={transactions}
         onSelectTransaction={onSelectTransaction}
         onShowCreateTransactionDialog={onShowCreateTransactionDialog}

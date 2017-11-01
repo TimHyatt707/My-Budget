@@ -3,12 +3,12 @@ import updateTransaction from "./../../api/updateTransaction";
 export default function updateTransactionProcess(
   id,
   changes,
-  { API_BASE_URL }
+  authenticatedUserId,
+  token
 ) {
   return (dispatch, getState) => {
-    return updateTransaction(id, changes, {
-      API_BASE_URL
-    }).then(transaction => {
+    changes.user_id = authenticatedUserId;
+    return updateTransaction(id, changes, token).then(transaction => {
       dispatch({ type: "UPDATE_TRANSACTION", transaction });
       return transaction;
     });

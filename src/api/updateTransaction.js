@@ -1,16 +1,13 @@
-export default function updateTransaction(
-  id,
-  changes,
-  { API_BASE_URL },
-  token
-) {
-  return fetch(`${API_BASE_URL}/transactions/${id}`, {
+import env from "../env";
+
+export default function updateTransaction(id, changes, token) {
+  return fetch(`${env.API_BASE_URL}/transactions/${id}`, {
     method: "PATCH",
     headers: {
       Authorization: `${token}`,
       "Content-type": "application/json"
     },
-    body: changes
+    body: JSON.stringify(changes)
   })
     .then(response => {
       return response.json();
@@ -18,7 +15,7 @@ export default function updateTransaction(
     .then(record => {
       return {
         id: record.id,
-        category: record.category_id,
+        category: record.category,
         amountSpent: record.amount,
         name: record.name,
         timestamp: record.created_at

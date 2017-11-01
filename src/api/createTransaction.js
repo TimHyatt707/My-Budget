@@ -7,7 +7,7 @@ export default function createTransaction(id, object, token) {
       Authorization: `${token}`,
       "Content-type": "application/json"
     },
-    body: object
+    body: JSON.stringify(object)
   })
     .then(response => {
       return response.json();
@@ -15,7 +15,7 @@ export default function createTransaction(id, object, token) {
     .then(record => {
       return {
         id: record.id,
-        category: record.category_id,
+        category: record.category,
         amountSpent: record.amount,
         name: record.name,
         timestamp: record.created_at

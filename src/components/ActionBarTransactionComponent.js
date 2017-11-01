@@ -1,15 +1,25 @@
-import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import CreateTransactionDialogComponent from './CreateTransactionDialogComponent';
-import UpdateTransactionDialogComponent from './UpdateTransactionDialogComponent';
+import React, { Component } from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import TextField from "material-ui/TextField";
+import CreateTransactionDialogComponent from "./CreateTransactionDialogComponent";
+import UpdateTransactionDialogComponent from "./UpdateTransactionDialogComponent";
 
 export default class ActionBarTransactionComponent extends Component {
   render() {
     let categories;
     let disabled = false;
+    let disabledCreate = false;
+    let disabledUpdate = false;
+    if (!this.props.token) {
+      disabled = true;
+      disabledCreate = true;
+    }
     if (this.props.selectedTransactionIds.length === 0) {
       disabled = true;
+      disabledUpdate = true;
+    }
+    if (this.props.selectedTransactionIds.length > 1) {
+      disabledUpdate = true;
     }
     if (!this.props.categories) {
       categories = [];
@@ -23,28 +33,31 @@ export default class ActionBarTransactionComponent extends Component {
             style={{ marginRight: 20, marginBottom: 20 }}
             id="SearchBar"
             hintText="Search for transaction by name"
-            hintStyle={{ color: 'grey' }}
-            inputStyle={{ color: 'black' }}
+            hintStyle={{ color: "grey" }}
+            inputStyle={{ color: "black" }}
           />
           <RaisedButton
             type="submit"
             label="GO"
             style={{
-              width: '20px',
-              marginTop: '10px'
+              width: "20px",
+              marginTop: "10px"
             }}
           />
         </form>
         <div
           style={{
-            display: 'flex',
+            display: "flex",
             width: 400,
-            justifyContent: 'space-between'
-          }}>
+            justifyContent: "space-between"
+          }}
+        >
           <RaisedButton
             id="CREATE"
             label="CREATE"
-            onClick={this._onCreateTransactionHandler}>
+            disabled={disabledCreate}
+            onClick={this._onCreateTransactionHandler}
+          >
             <CreateTransactionDialogComponent
               onShowCreateTransactionDialog={
                 this.props.onShowCreateTransactionDialog
@@ -57,13 +70,16 @@ export default class ActionBarTransactionComponent extends Component {
               }
               categories={categories}
               onSubmitTransaction={this.props.onSubmitTransaction}
+              token={this.props.token}
+              authenticatedUserId={this.props.authenticatedUserId}
             />
           </RaisedButton>
           <RaisedButton
             id="UPDATE"
             label="UPDATE"
-            disabled={disabled}
-            onClick={this._onUpdateTransactionHandler}>
+            disabled={disabledUpdate}
+            onClick={this._onUpdateTransactionHandler}
+          >
             <UpdateTransactionDialogComponent
               onShowUpdateTransactionDialog={
                 this.props.onShowUpdateTransactionDialog
@@ -77,6 +93,8 @@ export default class ActionBarTransactionComponent extends Component {
               onUpdateTransaction={this.props.onUpdateTransaction}
               categories={categories}
               selectedTransactionIds={this.props.selectedTransactionIds}
+              token={this.props.token}
+              authenticatedUserId={this.props.authenticatedUserId}
             />
           </RaisedButton>
           <RaisedButton
@@ -95,7 +113,11 @@ export default class ActionBarTransactionComponent extends Component {
     this.props.onOpenUpdateTransactionDialog();
   _onDeleteTransactionHandler = () =>
     this.props.selectedTransactionIds.forEach(id =>
-      this.props.onDeleteTransaction(id)
+      this.props.onDeleteTransaction(
+        id,
+        this.props.authenticatedUserId,
+        this.props.token
+      )
     );
   _onSubmitHandler = event => {
     event.preventDefault();
@@ -104,7 +126,7 @@ export default class ActionBarTransactionComponent extends Component {
     let pattern = new RegExp(query);
     let listOfTransactions = this.props.transactions;
     if (!listOfTransactions) {
-      alert('No transactions to display');
+      alert("No transactions to display");
     } else {
       for (let i = 0; i < listOfTransactions.length; i++) {
         let string = listOfTransactions[i].name.toLowerCase();

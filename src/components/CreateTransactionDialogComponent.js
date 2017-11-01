@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
-import DatePicker from 'material-ui/DatePicker';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
+import React, { Component } from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
+import DatePicker from "material-ui/DatePicker";
+import SelectField from "material-ui/SelectField";
+import MenuItem from "material-ui/MenuItem";
 
 export default class CreateTransactionDialogComponent extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class CreateTransactionDialogComponent extends Component {
     this._handleChange = this._handleChange.bind(this);
   }
   state = {
-    value: 'Select a Category'
+    value: "Select a Category"
   };
   render() {
     let listOfCategories = this.props.categories;
@@ -36,7 +36,8 @@ export default class CreateTransactionDialogComponent extends Component {
       <Dialog
         title="Add a transaction"
         modal={true}
-        open={this.props.onShowCreateTransactionDialog}>
+        open={this.props.onShowCreateTransactionDialog}
+      >
         <form onSubmit={this._handleSubmit}>
           <TextField id="amountSpent" hintText="Amount Spent" />
           <br />
@@ -44,7 +45,8 @@ export default class CreateTransactionDialogComponent extends Component {
             id="category"
             floatingLabelText="Category"
             value={this.state.value}
-            onChange={this._handleChange}>
+            onChange={this._handleChange}
+          >
             {listOfCategories.map(category => {
               return (
                 <MenuItem
@@ -77,20 +79,24 @@ export default class CreateTransactionDialogComponent extends Component {
     const $form = event.target;
     object.category = this.state.value;
     if (
-      typeof parseInt($form.amountSpent.value, 10) !== 'number' ||
+      typeof parseInt($form.amountSpent.value, 10) !== "number" ||
       $form.amountSpent.value <= 0
     ) {
-      alert('Invalid Input');
+      alert("Invalid Input");
     } else if (!$form.timestamp.value) {
-      alert('Please fill out all forms');
-    } else if (this.state.value === 'Select a Category') {
-      alert('Please select a category');
+      alert("Please fill out all forms");
+    } else if (this.state.value === "Select a Category") {
+      alert("Please select a category");
     } else {
-      object.amountSpent = parseFloat($form.amountSpent.value);
+      object.amount = parseFloat($form.amountSpent.value);
       object.name = $form.name.value;
-      object.timestamp = $form.timestamp.value;
+      object.created_at = $form.timestamp.value;
       this.props.onCloseCreateTransactionDialog();
-      this.props.onSubmitTransaction(object);
+      this.props.onSubmitTransaction(
+        this.props.authenticatedUserId,
+        object,
+        this.props.token
+      );
     }
   }
   _handleChange(event, index, value) {

@@ -9,7 +9,6 @@ export default function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(response => {
-      console.log(response);
       return response.json();
     })
     .then(record => {

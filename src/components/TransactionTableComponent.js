@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Table,
   TableHeader,
   TableHeaderColumn,
   TableBody,
   TableRow
-} from 'material-ui/Table';
-import TransactionTableItemComponent from './TransactionTableItemComponent';
+} from "material-ui/Table";
+import TransactionTableItemComponent from "./TransactionTableItemComponent";
 
 export default class TransactionTableComponent extends Component {
   render() {
@@ -14,10 +14,10 @@ export default class TransactionTableComponent extends Component {
     if (!this.props.transactions) {
       listOfTransactions = [
         {
-          amountSpent: 'There are no transactions to display',
-          category: '',
-          name: '',
-          timestamp: ''
+          amountSpent: "There are no transactions to display",
+          category: "",
+          name: "",
+          timestamp: ""
         }
       ];
     } else {
@@ -37,7 +37,7 @@ export default class TransactionTableComponent extends Component {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {listOfTransactions.map((transaction, index) =>
+          {listOfTransactions.map((transaction, index) => (
             <TransactionTableItemComponent
               key={index}
               transaction={transaction}
@@ -45,7 +45,7 @@ export default class TransactionTableComponent extends Component {
               onSelectTransaction={this.props.onSelectTransaction}
               onDeselectTransaction={this.props.onDeselectTransaction}
             />
-          )}
+          ))}
         </TableBody>
       </Table>
     );
