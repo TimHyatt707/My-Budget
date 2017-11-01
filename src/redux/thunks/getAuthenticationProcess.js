@@ -4,7 +4,7 @@ export default function getAuthenticationProcess() {
   return (dispatch, getState) => {
     const authentication = getAuth();
     const token = authentication.token;
-    const userId = authentication.userId;
+    const userId = authentication.authenticatedUserId;
     if (!token || !userId) {
       return null;
     } else {

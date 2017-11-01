@@ -8,8 +8,10 @@ export default function createUser(user) {
     },
     body: JSON.stringify(user)
   })
+    .then(response => {
+      return response.json();
+    })
     .then(record => {
-      console.log(record);
       return {
         id: record.id,
         username: record.username,

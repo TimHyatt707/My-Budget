@@ -1,12 +1,12 @@
 import { compose, lifecycle } from "recompose";
 import { connect } from "react-redux";
-import env from "./../../env";
 import TransactionPage from "../../components/TransactionPage";
 import getTransactionsProcess from "./../thunks/getTransactionsProcess";
 import getCategoriesProcess from "./../thunks/getCategoriesProcess";
 import createTransactionProcess from "./../thunks/createTransactionProcess";
 import updateTransactionProcess from "./../thunks/updateTransactionProcess";
 import deleteTransactionProcess from "./../thunks/deleteTransactionProcess";
+import getAuthenticationProcess from "./../thunks/getAuthenticationProcess";
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -17,34 +17,23 @@ function mapStateToProps(state, ownProps) {
     categories: state.categories,
     onShowCreateTransactionDialog: state.onShowCreateTransactionDialog,
     onShowUpdateTransactionDialog: state.onShowUpdateTransactionDialog,
-    token: state.token
+    token: state.token,
+    authenticatedUserId: state.authenticatedUserId
   };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
   return {
-    onMount: () =>
-      dispatch(
-        getTransactionsProcess({
-          API_BASE_URL: env.API_BASE_URL
-        })
-      ),
-    onMountCategories: () =>
-      dispatch(
-        getCategoriesProcess({
-          API_BASE_URL: env.API_BASE_URL
-        })
-      ),
+    onMount: () => dispatch(getAuthenticationProcess()),
+    onMountTransactions: (id, token) =>
+      dispatch(getTransactionsProcess(id, token)),
+    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token)),
     onOpenCreateTransactionDialog: () =>
       dispatch({ type: "OPEN_CREATE_TRANSACTION" }),
     onCloseCreateTransactionDialog: () =>
       dispatch({ type: "CLOSE_CREATE_TRANSACTION" }),
     onSubmitTransaction: transaction =>
-      dispatch(
-        createTransactionProcess(transaction, {
-          API_BASE_URL: env.API_BASE_URL
-        })
-      ),
+      dispatch(createTransactionProcess(transaction)),
     onSelectTransaction: id => dispatch({ type: "SELECT_TRANSACTION", id }),
     onDeselectTransaction: id => dispatch({ type: "DESELECT_TRANSACTION", id }),
     onOpenUpdateTransactionDialog: () =>
@@ -52,26 +41,24 @@ function mapDispatchToProps(dispatch, ownProps) {
     onCloseUpdateTransactionDialog: () =>
       dispatch({ type: "CLOSE_UPDATE_TRANSACTION" }),
     onUpdateTransaction: (id, transaction) =>
-      dispatch(
-        updateTransactionProcess(id, transaction, {
-          API_BASE_URL: env.API_BASE_URL
-        })
-      ),
-    onDeleteTransaction: id =>
-      dispatch(
-        deleteTransactionProcess(id, {
-          API_BASE_URL: env.API_BASE_URL
-        })
-      )
+      dispatch(updateTransactionProcess(id, transaction)),
+    onDeleteTransaction: id => dispatch(deleteTransactionProcess(id))
   };
 }
 
 const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 
 const onDidMount = lifecycle({
-  componentDidMount() {
-    this.props.onMount();
-    this.props.onMountCategories();
+  async componentDidMount() {
+    await this.props.onMount();
+    await this.props.onMountTransactions(
+      this.props.authenticatedUserId,
+      this.props.token
+    );
+    await this.props.onMountCategories(
+      this.props.authenticatedUserId,
+      this.props.token
+    );
   }
 });
 

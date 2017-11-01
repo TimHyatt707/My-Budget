@@ -1,6 +1,5 @@
 import { compose, lifecycle } from "recompose";
 import { connect } from "react-redux";
-import env from "./../../env";
 import IndexPage from "../../components/IndexPage";
 import getTransactionsProcess from "./../thunks/getTransactionsProcess";
 import getCategoriesProcess from "./../thunks/getCategoriesProcess";
@@ -20,28 +19,25 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch, ownProps) {
   return {
     onMount: () => dispatch(getAuthenticationProcess()),
-    onMountTransactions: () =>
-      dispatch(
-        getTransactionsProcess(ownProps.authenticatedUserId, {
-          API_BASE_URL: env.API_BASE_URL
-        })
-      ),
-    onMountCategories: () =>
-      dispatch(
-        getCategoriesProcess(ownProps.authenticatedUserId, {
-          API_BASE_URL: env.API_BASE_URL
-        })
-      )
+    onMountTransactions: (id, token) =>
+      dispatch(getTransactionsProcess(id, token)),
+    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token))
   };
 }
 
 const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 
 const onDidMount = lifecycle({
-  componentDidMount() {
-    this.props.onMount();
-    this.props.onMountTransactions();
-    this.props.onMountCategories();
+  async componentDidMount() {
+    await this.props.onMount();
+    await this.props.onMountTransactions(
+      this.props.authenticatedUserId,
+      this.props.token
+    );
+    await this.props.onMountCategories(
+      this.props.authenticatedUserId,
+      this.props.token
+    );
   }
 });
 

@@ -1,10 +1,15 @@
-export default function loginUser(credentials, { API_BASE_URL }) {
-  return fetch(`${API_BASE_URL}/login`, {
+import env from "../env";
+
+export default function loginUser(credentials) {
+  return fetch(`${env.API_BASE_URL}/login`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: credentials
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(credentials)
   })
     .then(response => {
+      console.log(response);
       return response.json();
     })
     .then(record => {
