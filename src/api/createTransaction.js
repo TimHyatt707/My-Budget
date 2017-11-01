@@ -1,5 +1,7 @@
-export default function createTransaction(id, object, { API_BASE_URL }, token) {
-  return fetch(`${API_BASE_URL}/users/${id}/transactions`, {
+import env from "../env";
+
+export default function createTransaction(id, object, token) {
+  return fetch(`${env.API_BASE_URL}/users/${id}/transactions`, {
     method: "POST",
     headers: {
       Authorization: `${token}`,

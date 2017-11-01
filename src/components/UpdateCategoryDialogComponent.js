@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import React, { Component } from "react";
+import Dialog from "material-ui/Dialog";
+import FlatButton from "material-ui/FlatButton";
+import TextField from "material-ui/TextField";
 
 export default class UpdateCategoryDialogComponent extends Component {
   constructor(props) {
@@ -25,7 +25,8 @@ export default class UpdateCategoryDialogComponent extends Component {
       <Dialog
         title="Update a category"
         modal={true}
-        open={this.props.onShowUpdateCategoryDialog}>
+        open={this.props.onShowUpdateCategoryDialog}
+      >
         <form onSubmit={this._handleSubmit}>
           <TextField id="category" hintText="Category" />
           <br />
@@ -46,17 +47,21 @@ export default class UpdateCategoryDialogComponent extends Component {
     event.preventDefault();
     let object = {};
     const $form = event.target;
-    object.category = $form.category.value;
-    if (typeof parseInt($form.limit.value, 10) !== 'number') {
-      alert('Invalid Input');
+    object.name = $form.category.value;
+    if (typeof parseInt($form.limit.value, 10) !== "number") {
+      alert("Invalid Input");
     } else if (!$form.category.value) {
-      alert('Please fill out all fields');
+      alert("Please fill out all fields");
     } else if ($form.limit.value <= 0) {
-      alert('Invalid Input');
+      alert("Invalid Input");
     } else {
       object.limit = parseFloat($form.limit.value);
       for (let i = 0; i < this.props.selectedCategoryIds.length; i++) {
-        this.props.onUpdateCategory(this.props.selectedCategoryIds[i], object);
+        this.props.onUpdateCategory(
+          this.props.selectedCategoryIds[i],
+          object,
+          this.props.token
+        );
       }
     }
     this.props.onCloseUpdateCategoryDialog();

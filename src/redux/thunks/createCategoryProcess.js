@@ -1,8 +1,8 @@
 import createCategory from "./../../api/createCategory.js";
 
-export default function createCategoryProcess(object, { API_BASE_URL }) {
+export default function createCategoryProcess(id, object, token) {
   return (dispatch, getState) => {
-    return createCategory(object, { API_BASE_URL }).then(category => {
+    return createCategory(id, object, token).then(category => {
       dispatch({ type: "ADD_CATEGORY", category });
       return category;
     });

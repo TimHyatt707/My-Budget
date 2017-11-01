@@ -1,11 +1,13 @@
-export default function createCategory(id, object, { API_BASE_URL }, token) {
-  return fetch(`${API_BASE_URL}/users/${id}/categories`, {
+import env from "../env";
+
+export default function createCategory(id, object, token) {
+  return fetch(`${env.API_BASE_URL}/users/${id}/categories`, {
     method: "POST",
     headers: {
-      Authorization: `${token}`,
-      "Content-type": "application/json"
+      "Content-type": "application/json",
+      Authorization: `${token}`
     },
-    body: object
+    body: JSON.stringify(object)
   })
     .then(response => {
       return response.json();
@@ -13,8 +15,8 @@ export default function createCategory(id, object, { API_BASE_URL }, token) {
     .then(record => {
       return {
         id: record.id,
-        category: record.fields.category,
-        limit: record.fields.limit
+        category: record.name,
+        limit: record.limit
       };
     });
 }

@@ -1,10 +1,8 @@
 import updateCategory from "./../../api/updateCategory";
 
-export default function updateCategoryProcess(id, changes, { API_BASE_URL }) {
+export default function updateCategoryProcess(id, changes, token) {
   return (dispatch, getState) => {
-    return updateCategory(id, changes, {
-      API_BASE_URL
-    }).then(category => {
+    return updateCategory(id, changes, token).then(category => {
       dispatch({ type: "UPDATE_CATEGORY", category });
       return category;
     });

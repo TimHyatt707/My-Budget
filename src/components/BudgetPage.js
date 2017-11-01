@@ -28,14 +28,17 @@ export default function BudgetPage({
   onSortCategoryName,
   currentSort,
   budgetDisplayData,
-  sendBudgetDisplayData
+  sendBudgetDisplayData,
+  authenticatedUserId,
+  token
 }) {
   return (
     <BudgetPageLayout>
       <NavbarComponent pageTitle={pageTitle} pages={pages} />
       <PieChartComponent categories={categories} width={1000} />
-      {/* <BudgetDisplayComponent budgetDisplayData={budgetDisplayData} /> */}
       <ActionBarBudgetComponent
+        authenticatedUserId={authenticatedUserId}
+        token={token}
         onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
         onShowCreateCategoryDialog={onShowCreateCategoryDialog}
         onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}

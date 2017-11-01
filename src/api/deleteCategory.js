@@ -1,7 +1,10 @@
-export default function deleteCategory(id, { API_BASE_URL }, token) {
-  return fetch(`${API_BASE_URL}/categories/${id}`, {
+import env from "../env";
+
+export default function deleteCategory(id, token) {
+  return fetch(`${env.API_BASE_URL}/categories/${id}`, {
     method: "DELETE",
     headers: {
+      "Content-type": "application/json",
       Authorization: `${token}`
     }
   }).then(response => response.json());

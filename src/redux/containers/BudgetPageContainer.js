@@ -35,21 +35,22 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "SHOW_CREATE_CATEGORY" }),
     onCloseCreateCategoryDialog: () =>
       dispatch({ type: "CLOSE_CREATE_CATEGORY" }),
-    onSubmitCategory: category => dispatch(createCategoryProcess(category)),
+    onSubmitCategory: (id, category, token) =>
+      dispatch(createCategoryProcess(id, category, token)),
     onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY", id }),
     onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY", id }),
     onOpenUpdateCategoryDialog: () =>
       dispatch({ type: "SHOW_UPDATE_CATEGORY" }),
     onCloseUpdateCategoryDialog: () =>
       dispatch({ type: "CLOSE_UPDATE_CATEGORY" }),
-    onUpdateCategory: (id, changes) =>
-      dispatch(updateCategoryProcess(id, changes)),
+    onUpdateCategory: (id, changes, token) =>
+      dispatch(updateCategoryProcess(id, changes, token)),
     onOpenDeleteCategoryDialog: () =>
       dispatch({ type: "SHOW_DELETE_CATEGORY" }),
     onCloseDeleteCategoryDialog: () =>
       dispatch({ type: "CLOSE_DELETE_CATEGORY" }),
     onSortCategoryName: () => dispatch({ type: "TOGGLE_SORT" }),
-    onDeleteCategory: id => dispatch(deleteCategoryProcess(id))
+    onDeleteCategory: (id, token) => dispatch(deleteCategoryProcess(id, token))
   };
 }
 

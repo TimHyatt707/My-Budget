@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import CreateCategoryDialogComponent from './CreateCategoryDialogComponent';
-import UpdateCategoryDialogComponent from './UpdateCategoryDialogComponent';
+import React, { Component } from "react";
+import RaisedButton from "material-ui/RaisedButton";
+import CreateCategoryDialogComponent from "./CreateCategoryDialogComponent";
+import UpdateCategoryDialogComponent from "./UpdateCategoryDialogComponent";
 
 export default class ActionBarCategoryComponent extends Component {
   constructor(props) {
@@ -13,21 +13,35 @@ export default class ActionBarCategoryComponent extends Component {
   }
   render() {
     let disabled = false;
+    let disabledUpdate = false;
+    if (!this.props.token) {
+      disabled = true;
+      disabledUpdate = true;
+    }
     if (this.props.selectedCategoryIds.length === 0) {
       disabled = true;
+      disabledUpdate = true;
     }
+    if (this.props.selectedCategoryIds.length > 1) {
+      disabledUpdate = true;
+    }
+
     return (
       <div
         style={{
-          display: 'flex',
+          display: "flex",
           width: 400,
-          justifyContent: 'space-between'
-        }}>
+          justifyContent: "space-between"
+        }}
+      >
         <RaisedButton
           id="CREATE"
           label="CREATE"
-          onClick={this._onCreateCategoryHandler}>
+          onClick={this._onCreateCategoryHandler}
+        >
           <CreateCategoryDialogComponent
+            authenticatedUserId={this.props.authenticatedUserId}
+            token={this.props.token}
             onOpenCreateCategoryDialog={this.props.onOpenCreateCategoryDialog}
             onShowCreateCategoryDialog={this.props.onShowCreateCategoryDialog}
             onCloseCreateCategoryDialog={this.props.onCloseCreateCategoryDialog}
@@ -37,9 +51,12 @@ export default class ActionBarCategoryComponent extends Component {
         <RaisedButton
           id="UPDATE"
           label="UPDATE"
-          disabled={disabled}
-          onClick={this._onUpdateCategoryHandler}>
+          disabled={disabledUpdate}
+          onClick={this._onUpdateCategoryHandler}
+        >
           <UpdateCategoryDialogComponent
+            authenticatedUserId={this.props.authenticatedUserId}
+            token={this.props.token}
             onOpenUpdateCategoryDialog={this.props.onOpenUpdateCategoryDialog}
             onCloseUpdateCategoryDialog={this.props.onCloseUpdateCategoryDialog}
             onShowUpdateCategoryDialog={this.props.onShowUpdateCategoryDialog}
@@ -72,7 +89,7 @@ export default class ActionBarCategoryComponent extends Component {
   }
   _onDeleteCategoryHandler() {
     this.props.selectedCategoryIds.forEach(id =>
-      this.props.onDeleteCategory(id)
+      this.props.onDeleteCategory(id, this.props.token)
     );
   }
 }

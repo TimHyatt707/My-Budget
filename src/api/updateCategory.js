@@ -1,10 +1,13 @@
-export default function updateCategory(id, changes, { API_BASE_URL }, token) {
-  return fetch(`${API_BASE_URL}/categories/${id}`, {
+import env from "../env";
+
+export default function updateCategory(id, changes, token) {
+  return fetch(`${env.API_BASE_URL}/categories/${id}`, {
     method: "PATCH",
     headers: {
+      "Content-type": "application/json",
       Authorization: `${token}`
     },
-    body: changes
+    body: JSON.stringify(changes)
   })
     .then(response => {
       return response.json();
