@@ -27,7 +27,7 @@ export default function TransactionPage({
 }) {
   return (
     <TransactionPageLayout>
-      <NavbarComponent pageTitle={pageTitle} pages={pages} />
+      <NavbarComponent pageTitle={pageTitle} pages={pages} token={token} />
       <ActionBarTransactionComponent
         categories={categories}
         token={token}

@@ -4,7 +4,9 @@ import LoginPage from "./../../components/LoginPage";
 import loginUserProcess from "./../thunks/loginUserProcess";
 
 function mapStateToProps(state, props) {
-  return {};
+  return {
+    token: state.login
+  };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

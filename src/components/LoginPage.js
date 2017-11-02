@@ -3,11 +3,11 @@ import LoginPageLayout from "./LoginPageLayout";
 import Navbar from "./NavbarComponent";
 import LoginForm from "./LoginFormComponent";
 
-export default function LoginPage({ onLoginUser }) {
+export default function LoginPage({ onLoginUser, token }) {
   return (
     <LoginPageLayout>
-      <Navbar />
-      <LoginForm onLoginUser={onLoginUser} />
+      <Navbar token={token} />
+      <LoginForm onLoginUser={onLoginUser} token={token} />
     </LoginPageLayout>
   );
 }

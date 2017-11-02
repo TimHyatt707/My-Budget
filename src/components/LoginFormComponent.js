@@ -26,16 +26,20 @@ export default class LoginForm extends React.Component {
       </form>
     );
   }
-  _onSubmitHandler = e => {
-    e.preventDefault();
-    const email = e.target.email.value || "";
-    const password = e.target.password.value || "";
-    if (!email || !password) {
-      this.setState({ error: "Please fill out both fields" });
-    } else {
-      const credentials = { email, password };
-      this.setState({ error: null });
-      this.props.onLoginUser(credentials);
+  _onSubmitHandler = async e => {
+    try {
+      e.preventDefault();
+      const email = e.target.email.value || "";
+      const password = e.target.password.value || "";
+      if (!email || !password) {
+        this.setState({ error: "Please fill out both fields" });
+      } else {
+        const credentials = { email, password };
+        this.setState({ error: null });
+        await this.props.onLoginUser(credentials);
+      }
+    } catch (error) {
+      return null;
     }
   };
 }

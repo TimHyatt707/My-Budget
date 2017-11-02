@@ -4,7 +4,9 @@ import SignupPage from "./../../components/SignupPage";
 import createUserProcess from "./../thunks/createUserProcess";
 
 function mapStateToProps(state, props) {
-  return {};
+  return {
+    token: state.token
+  };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

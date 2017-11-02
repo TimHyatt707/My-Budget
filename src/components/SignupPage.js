@@ -3,10 +3,10 @@ import SignupPageLayout from "./SignupPageLayout";
 import Navbar from "./NavbarComponent";
 import SignupForm from "./SignupFormComponent";
 
-export default function SignupPage({ onCreateUser }) {
+export default function SignupPage({ onCreateUser, token }) {
   return (
     <SignupPageLayout>
-      <Navbar />
+      <Navbar token={token} />
       <SignupForm onCreateUser={onCreateUser} />
     </SignupPageLayout>
   );

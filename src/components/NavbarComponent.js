@@ -9,6 +9,31 @@ import MoreVertIcon from "material-ui/svg-icons/navigation/more-vert";
 export default class NavbarComponent extends Component {
   render() {
     let title = "My Budget";
+    let signup = null;
+    let login = null;
+    let logout = null;
+    if (!this.props.token) {
+      signup = true;
+      login = true;
+    }
+    if (this.props.token) {
+      login = null;
+      logout = true;
+    }
+    if (login) {
+      login = (
+        <Link to={"/Login"}>
+          <MenuItem primaryText={"Login"} />
+        </Link>
+      );
+    }
+    if (signup) {
+      signup = (
+        <Link to={"/Signup"}>
+          <MenuItem primaryText={"Signup"} />
+        </Link>
+      );
+    }
     return (
       <Toolbar>
         <ToolbarTitle text={title} />
@@ -31,12 +56,8 @@ export default class NavbarComponent extends Component {
             <Link to={"/Transactions"}>
               <MenuItem primaryText={"Transactions"} />
             </Link>
-            <Link to={"/Signup"}>
-              <MenuItem primaryText={"Signup"} />
-            </Link>
-            <Link to={"/Login"}>
-              <MenuItem primaryText={"Login"} />
-            </Link>
+            {signup}
+            {login}
           </IconMenu>
         </ToolbarGroup>
       </Toolbar>

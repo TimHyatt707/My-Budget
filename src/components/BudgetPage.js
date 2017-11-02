@@ -34,7 +34,7 @@ export default function BudgetPage({
 }) {
   return (
     <BudgetPageLayout>
-      <NavbarComponent pageTitle={pageTitle} pages={pages} />
+      <NavbarComponent pageTitle={pageTitle} pages={pages} token={token} />
       <PieChartComponent categories={categories} width={1000} />
       <ActionBarBudgetComponent
         authenticatedUserId={authenticatedUserId}
