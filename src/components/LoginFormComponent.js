@@ -5,7 +5,10 @@ import RaisedButton from "material-ui/RaisedButton";
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: null };
+    this.state = {
+      error: null,
+      redirectToHome: false
+    };
   }
   render() {
     return (
@@ -35,8 +38,9 @@ export default class LoginForm extends React.Component {
         this.setState({ error: "Please fill out both fields" });
       } else {
         const credentials = { email, password };
-        this.setState({ error: null });
         await this.props.onLoginUser(credentials);
+        this.props.history.push("/");
+        alert("Logged in");
       }
     } catch (error) {
       return null;

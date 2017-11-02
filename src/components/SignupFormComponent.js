@@ -38,6 +38,8 @@ export default class SignupForm extends React.Component {
       const user = { email, username, password };
       this.setState({ error: null });
       this.props.onCreateUser(user);
+      this.props.history.push("/login");
+      alert("Account succesfully created");
     }
   };
 }
