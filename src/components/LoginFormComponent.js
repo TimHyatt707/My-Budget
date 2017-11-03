@@ -6,8 +6,7 @@ export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      error: null,
-      redirectToHome: false
+      error: null
     };
   }
   render() {
@@ -30,20 +29,22 @@ export default class LoginForm extends React.Component {
     );
   }
   _onSubmitHandler = async e => {
-    try {
-      e.preventDefault();
-      const email = e.target.email.value || "";
-      const password = e.target.password.value || "";
-      if (!email || !password) {
-        this.setState({ error: "Please fill out both fields" });
-      } else {
-        const credentials = { email, password };
-        await this.props.onLoginUser(credentials);
+    e.preventDefault();
+    const email = e.target.email.value || "";
+    const password = e.target.password.value || "";
+    if (!email || !password) {
+      this.setState({ error: "Please fill out both fields" });
+    } else {
+      const credentials = { email, password };
+      const loggedInUser = await this.props.onLoginUser(credentials);
+      if (loggedInUser.token && loggedInUser.userId) {
+        alert("Logged in succesfully");
         this.props.history.push("/");
-        alert("Logged in");
+      } else if (loggedInUser === "Invalid username/password")
+        this.setState({ error: "Invalid username/password" });
+      else {
+        this.setState({ error: "Login failed" });
       }
-    } catch (error) {
-      return null;
     }
   };
 }

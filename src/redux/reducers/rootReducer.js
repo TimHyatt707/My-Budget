@@ -141,6 +141,13 @@ export default function rootReducer(
         ...currentState,
         loggedIn: true
       };
+    case "LOGOUT_USER":
+      return {
+        ...currentState,
+        loggedIn: false,
+        token: null,
+        authenticatedUserId: 0
+      };
     default:
       return currentState;
   }

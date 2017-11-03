@@ -9,7 +9,11 @@ export default function createUser(user) {
     body: JSON.stringify(user)
   })
     .then(response => {
-      return response.json();
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 400) {
+        throw new Error("Invalid email");
+      } else throw new Error("Internal Server Error");
     })
     .then(record => {
       return {
@@ -18,5 +22,7 @@ export default function createUser(user) {
         email: record.email
       };
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      throw new Error(error.message);
+    });
 }

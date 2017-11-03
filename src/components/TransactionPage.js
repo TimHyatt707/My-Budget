@@ -23,11 +23,17 @@ export default function TransactionPage({
   onUpdateTransaction,
   onDeleteTransaction,
   token,
-  authenticatedUserId
+  authenticatedUserId,
+  onLogoutUser
 }) {
   return (
     <TransactionPageLayout>
-      <NavbarComponent pageTitle={pageTitle} pages={pages} token={token} />
+      <NavbarComponent
+        pageTitle={pageTitle}
+        pages={pages}
+        token={token}
+        onLogoutUser={onLogoutUser}
+      />
       <ActionBarTransactionComponent
         categories={categories}
         token={token}

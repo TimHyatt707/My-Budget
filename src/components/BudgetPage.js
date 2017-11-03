@@ -30,11 +30,17 @@ export default function BudgetPage({
   budgetDisplayData,
   sendBudgetDisplayData,
   authenticatedUserId,
-  token
+  token,
+  onLogoutUser
 }) {
   return (
     <BudgetPageLayout>
-      <NavbarComponent pageTitle={pageTitle} pages={pages} token={token} />
+      <NavbarComponent
+        pageTitle={pageTitle}
+        pages={pages}
+        token={token}
+        onLogoutUser={onLogoutUser}
+      />
       <PieChartComponent categories={categories} width={1000} />
       <ActionBarBudgetComponent
         authenticatedUserId={authenticatedUserId}

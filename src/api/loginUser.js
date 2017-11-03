@@ -9,7 +9,11 @@ export default function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(response => {
-      return response.json();
+      if (response.status === 200) {
+        return response.json();
+      } else if (response.status === 400) {
+        throw new Error("Invalid username/password");
+      } else throw new Error("Login Failed");
     })
     .then(record => {
       return {

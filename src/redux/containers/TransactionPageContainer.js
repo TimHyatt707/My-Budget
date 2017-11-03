@@ -45,7 +45,8 @@ function mapDispatchToProps(dispatch, ownProps) {
         updateTransactionProcess(id, transaction, authenticatedUserId, token)
       ),
     onDeleteTransaction: (id, authenticatedUserId, token) =>
-      dispatch(deleteTransactionProcess(id, authenticatedUserId, token))
+      dispatch(deleteTransactionProcess(id, authenticatedUserId, token)),
+    onLogoutUser: () => dispatch({ type: "LOGOUT_USER" })
   };
 }
 

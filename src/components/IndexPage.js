@@ -11,11 +11,19 @@ export default function IndexPage({
   chartData,
   transactions,
   categories,
-  token
+  token,
+  onLogoutUser,
+  history
 }) {
   return (
     <IndexPageLayout>
-      <NavbarComponent pageTitle={pageTitle} pages={pages} token={token} />
+      <NavbarComponent
+        pageTitle={pageTitle}
+        pages={pages}
+        token={token}
+        onLogoutUser={onLogoutUser}
+        history={history}
+      />
       <PieChartComponent categories={categories} width={500} />
       <TransactionPreviewComponent transactions={transactions} />
       <FooterComponent pageTitle={pageTitle} />

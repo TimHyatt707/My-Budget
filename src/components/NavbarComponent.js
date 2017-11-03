@@ -13,26 +13,21 @@ export default class NavbarComponent extends Component {
     let login = null;
     let logout = null;
     if (!this.props.token) {
-      signup = true;
-      login = true;
-    }
-    if (this.props.token) {
-      login = null;
-      logout = true;
-    }
-    if (login) {
+      signup = (
+        <Link to={"/Signup"}>
+          <MenuItem primaryText={"Signup"} />
+        </Link>
+      );
       login = (
         <Link to={"/Login"}>
           <MenuItem primaryText={"Login"} />
         </Link>
       );
     }
-    if (signup) {
-      signup = (
-        <Link to={"/Signup"}>
-          <MenuItem primaryText={"Signup"} />
-        </Link>
-      );
+    if (this.props.token) {
+      login = null;
+      signup = null;
+      logout = <MenuItem primaryText={"Logout"} onClick={this._handleLogout} />;
     }
     return (
       <Toolbar>
@@ -58,14 +53,23 @@ export default class NavbarComponent extends Component {
             </Link>
             {signup}
             {login}
+            {logout}
           </IconMenu>
         </ToolbarGroup>
       </Toolbar>
     );
   }
-  _onSubmitHandler(event) {
-    event.preventDefault();
-    const $form = event.target;
+  _handleLogout = e => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
+    this.props.onLogoutUser();
+    this.props.history.push("/");
+  };
+
+  _onSubmitHandler = e => {
+    e.preventDefault();
+    const $form = e.target;
     let query = $form.SearchBar.value;
     let pattern = new RegExp(query);
     let listOfTransactions = this.props.transactions;
@@ -77,5 +81,5 @@ export default class NavbarComponent extends Component {
         this.props.onSelectTransaction(listOfTransactions[i].id);
       }
     }
-  }
+  };
 }

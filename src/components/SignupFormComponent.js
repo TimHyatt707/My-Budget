@@ -27,7 +27,7 @@ export default class SignupForm extends React.Component {
       </form>
     );
   }
-  _onSubmitHandler = e => {
+  _onSubmitHandler = async e => {
     e.preventDefault();
     const email = e.target.email.value;
     const username = e.target.username.value;
@@ -36,10 +36,16 @@ export default class SignupForm extends React.Component {
       this.setState({ error: "Please fill out all forms" });
     } else {
       const user = { email, username, password };
-      this.setState({ error: null });
-      this.props.onCreateUser(user);
-      this.props.history.push("/login");
-      alert("Account succesfully created");
+      const createdUser = await this.props.onCreateUser(user);
+      console.log(createdUser);
+      if (createdUser.id && createdUser.email && createdUser.username) {
+        alert("Account succesfully created");
+        this.props.history.push("/login");
+      } else if (createdUser === "Invalid email") {
+        this.setState({ error: "Email already exists" });
+      } else {
+        this.setState({ error: "Signup Failed" });
+      }
     }
   };
 }

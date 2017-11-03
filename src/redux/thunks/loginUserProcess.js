@@ -7,9 +7,14 @@ export default function loginUserProcess(credentials) {
         localStorage.setItem("token", authentication.token);
         localStorage.setItem("userId", authentication.userId);
         dispatch({ type: "LOGIN_USER" });
+        return authentication;
       })
       .catch(error => {
-        return error;
+        if (error.message === "Invalid username/password") {
+          return "Invalid username/password";
+        } else {
+          return "Login Failed";
+        }
       });
   };
 }

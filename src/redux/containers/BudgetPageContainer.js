@@ -50,7 +50,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     onCloseDeleteCategoryDialog: () =>
       dispatch({ type: "CLOSE_DELETE_CATEGORY" }),
     onSortCategoryName: () => dispatch({ type: "TOGGLE_SORT" }),
-    onDeleteCategory: (id, token) => dispatch(deleteCategoryProcess(id, token))
+    onDeleteCategory: (id, token) => dispatch(deleteCategoryProcess(id, token)),
+    onLogoutUser: () => dispatch({ type: "LOGOUT_USER" })
   };
 }
 

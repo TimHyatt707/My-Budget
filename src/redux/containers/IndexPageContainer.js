@@ -21,7 +21,8 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () => dispatch(getAuthenticationProcess()),
     onMountTransactions: (id, token) =>
       dispatch(getTransactionsProcess(id, token)),
-    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token))
+    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token)),
+    onLogoutUser: () => dispatch({ type: "LOGOUT_USER" })
   };
 }
 
