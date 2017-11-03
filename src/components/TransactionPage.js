@@ -24,7 +24,8 @@ export default function TransactionPage({
   onDeleteTransaction,
   token,
   authenticatedUserId,
-  onLogoutUser
+  onLogoutUser,
+  history
 }) {
   return (
     <TransactionPageLayout>
@@ -33,6 +34,7 @@ export default function TransactionPage({
         pages={pages}
         token={token}
         onLogoutUser={onLogoutUser}
+        history={history}
       />
       <ActionBarTransactionComponent
         categories={categories}

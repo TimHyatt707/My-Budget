@@ -65,6 +65,7 @@ export default class NavbarComponent extends Component {
     localStorage.removeItem("userId");
     this.props.onLogoutUser();
     this.props.history.push("/");
+    window.location.reload();
   };
 
   _onSubmitHandler = e => {

@@ -32,7 +32,6 @@ export default class CreateTransactionDialogComponent extends Component {
       />,
       <FlatButton key="2" label="Submit" primary={true} type="submit" />
     ];
-    console.log(listOfCategories);
     return (
       <Dialog
         title="Add a transaction"
