@@ -8,5 +8,5 @@ export default function deleteTransaction(id, userId, token) {
       Authenticated: `${userId}`,
       Authorization: `${token}`
     }
-  }).then(response => response.json());
+  });
 }

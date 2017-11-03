@@ -7,5 +7,5 @@ export default function deleteCategory(id, token) {
       "Content-type": "application/json",
       Authorization: `${token}`
     }
-  }).then(response => response.json());
+  });
 }

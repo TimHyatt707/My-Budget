@@ -61,7 +61,7 @@ export default function rootReducer(
       return {
         ...currentState,
         categories: currentState.categories.filter(
-          category => category.id !== action.id.id
+          category => category.id !== action.id
         )
       };
     case "OPEN_CREATE_TRANSACTION":
@@ -118,7 +118,7 @@ export default function rootReducer(
       return {
         ...currentState,
         transactions: currentState.transactions.filter(
-          transaction => transaction.id !== action.id.id
+          transaction => transaction.id !== action.id
         )
       };
     case "TOGGLE_SORT":

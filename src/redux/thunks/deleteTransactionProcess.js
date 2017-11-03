@@ -2,7 +2,7 @@ import deleteTransaction from "./../../api/deleteTransaction.js";
 
 export default function deleteTransactionProcess(id, userId, token) {
   return (dispatch, getState) => {
-    return deleteTransaction(id, userId, token).then(id => {
+    return deleteTransaction(id, userId, token).then(() => {
       dispatch({ type: "DELETE_TRANSACTION", id });
       return id;
     });

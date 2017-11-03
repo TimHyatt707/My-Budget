@@ -11,9 +11,6 @@ export default function getTransactions(id, token) {
       return response.json();
     })
     .then(records => {
-      if (typeof records === "object" || records === undefined) {
-        records = [];
-      }
       return records.map(record => {
         return {
           id: record.id,
