@@ -4,7 +4,7 @@ export default function getTransactions(id, token) {
   return fetch(`${env.API_BASE_URL}/users/${id}/transactions?`, {
     method: "GET",
     headers: {
-      authorization: `${token}`
+      Authorization: `${token}`
     }
   })
     .then(response => {
@@ -22,6 +22,6 @@ export default function getTransactions(id, token) {
       });
     })
     .catch(error => {
-      return error;
+      return error.message;
     });
 }

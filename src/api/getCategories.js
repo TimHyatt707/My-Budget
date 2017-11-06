@@ -19,5 +19,8 @@ export default function getCategories(id, token) {
           limit: record.limit
         };
       });
+    })
+    .catch(error => {
+      return error.message;
     });
 }

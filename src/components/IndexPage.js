@@ -15,18 +15,21 @@ export default function IndexPage({
   onLogoutUser,
   history
 }) {
-  return (
-    <IndexPageLayout>
-      <NavbarComponent
-        pageTitle={pageTitle}
-        pages={pages}
-        token={token}
-        onLogoutUser={onLogoutUser}
-        history={history}
-      />
-      <PieChartComponent categories={categories} width={500} />
-      <TransactionPreviewComponent transactions={transactions} />
-      <FooterComponent pageTitle={pageTitle} />
-    </IndexPageLayout>
-  );
+  if (transactions === "Failed to fetch" || categories === "Failed to fetch")
+    return <h1>Internal Server Error</h1>;
+  else
+    return (
+      <IndexPageLayout>
+        <NavbarComponent
+          pageTitle={pageTitle}
+          pages={pages}
+          token={token}
+          onLogoutUser={onLogoutUser}
+          history={history}
+        />
+        <PieChartComponent categories={categories} width={500} />
+        <TransactionPreviewComponent transactions={transactions} />
+        <FooterComponent pageTitle={pageTitle} />
+      </IndexPageLayout>
+    );
 }

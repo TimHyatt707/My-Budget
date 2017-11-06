@@ -23,6 +23,6 @@ export default function createUser(user) {
       };
     })
     .catch(error => {
-      throw new Error(error.message);
+      return error.message;
     });
 }

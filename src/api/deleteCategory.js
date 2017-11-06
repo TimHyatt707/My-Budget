@@ -7,5 +7,7 @@ export default function deleteCategory(id, token) {
       "Content-type": "application/json",
       Authorization: `${token}`
     }
+  }).catch(error => {
+    return error.message;
   });
 }

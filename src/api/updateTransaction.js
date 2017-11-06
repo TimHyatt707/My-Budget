@@ -20,5 +20,8 @@ export default function updateTransaction(id, changes, token) {
         name: record.name,
         timestamp: record.created_at
       };
+    })
+    .catch(error => {
+      return error.message;
     });
 }

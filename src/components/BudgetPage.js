@@ -34,39 +34,42 @@ export default function BudgetPage({
   onLogoutUser,
   history
 }) {
-  return (
-    <BudgetPageLayout>
-      <NavbarComponent
-        pageTitle={pageTitle}
-        pages={pages}
-        token={token}
-        onLogoutUser={onLogoutUser}
-        history={history}
-      />
-      <PieChartComponent categories={categories} width={1000} />
-      <ActionBarBudgetComponent
-        authenticatedUserId={authenticatedUserId}
-        token={token}
-        onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
-        onShowCreateCategoryDialog={onShowCreateCategoryDialog}
-        onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}
-        onSubmitCategory={onSubmitCategory}
-        onOpenUpdateCategoryDialog={onOpenUpdateCategoryDialog}
-        onCloseUpdateCategoryDialog={onCloseUpdateCategoryDialog}
-        onShowUpdateCategoryDialog={onShowUpdateCategoryDialog}
-        onUpdateCategory={onUpdateCategory}
-        selectedCategoryIds={selectedCategoryIds}
-        onDeleteCategory={onDeleteCategory}
-        onSortCategoryName={onSortCategoryName}
-      />
-      <BudgetingTableComponent
-        categories={categories}
-        transactions={transactions}
-        currentSort={currentSort}
-        onSelectCategory={onSelectCategory}
-        onDeselectCategory={onDeselectCategory}
-        selectedCategoryIds={selectedCategoryIds}
-      />
-    </BudgetPageLayout>
-  );
+  if (transactions === "Failed to fetch" || categories === "Failed to fetch")
+    return <h1>Internal Server Error</h1>;
+  else
+    return (
+      <BudgetPageLayout>
+        <NavbarComponent
+          pageTitle={pageTitle}
+          pages={pages}
+          token={token}
+          onLogoutUser={onLogoutUser}
+          history={history}
+        />
+        <PieChartComponent categories={categories} width={1000} />
+        <ActionBarBudgetComponent
+          authenticatedUserId={authenticatedUserId}
+          token={token}
+          onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
+          onShowCreateCategoryDialog={onShowCreateCategoryDialog}
+          onCloseCreateCategoryDialog={onCloseCreateCategoryDialog}
+          onSubmitCategory={onSubmitCategory}
+          onOpenUpdateCategoryDialog={onOpenUpdateCategoryDialog}
+          onCloseUpdateCategoryDialog={onCloseUpdateCategoryDialog}
+          onShowUpdateCategoryDialog={onShowUpdateCategoryDialog}
+          onUpdateCategory={onUpdateCategory}
+          selectedCategoryIds={selectedCategoryIds}
+          onDeleteCategory={onDeleteCategory}
+          onSortCategoryName={onSortCategoryName}
+        />
+        <BudgetingTableComponent
+          categories={categories}
+          transactions={transactions}
+          currentSort={currentSort}
+          onSelectCategory={onSelectCategory}
+          onDeselectCategory={onDeselectCategory}
+          selectedCategoryIds={selectedCategoryIds}
+        />
+      </BudgetPageLayout>
+    );
 }

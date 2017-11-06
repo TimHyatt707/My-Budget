@@ -3,7 +3,7 @@ import getCategories from "./../../api/getCategories.js";
 export default function getCategoriesProcess(id, token) {
   return (dispatch, getState) => {
     if (!id) {
-      return null;
+      return [];
     }
     return getCategories(id, token).then(categories => {
       dispatch({ type: "SET_CATEGORIES", categories });

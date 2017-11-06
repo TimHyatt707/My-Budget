@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import BudgetDisplayComponent from './BudgetDisplayComponent';
+import React, { Component } from "react";
+import BudgetDisplayComponent from "./BudgetDisplayComponent";
 import {
   Table,
   TableHeader,
   TableHeaderColumn,
   TableRow,
   TableBody
-} from 'material-ui/Table';
-import BudgetingTableItemComponent from './BudgetingTableItemComponent';
-var _ = require('lodash');
+} from "material-ui/Table";
+import BudgetingTableItemComponent from "./BudgetingTableItemComponent";
+var _ = require("lodash");
 
 export default class BudgetingTableComponent extends Component {
   constructor(props) {
@@ -23,17 +23,17 @@ export default class BudgetingTableComponent extends Component {
     let listOfTransactions;
     let categoryAmountSpent;
     let sorted = this.props.currentSort;
-    if (!this.props.transactions) {
+    if (!this.props.transactions.length) {
       listOfTransactions = [];
     } else {
       listOfTransactions = this.props.transactions;
     }
-    if (!this.props.categories) {
+    if (!this.props.categories.length) {
       listOfCategories = [
         {
-          category: 'There are no categories to display',
-          amountSpent: '',
-          limit: ''
+          category: "No categories",
+          amountSpent: "",
+          limit: ""
         }
       ];
     } else {
@@ -58,7 +58,7 @@ export default class BudgetingTableComponent extends Component {
     });
     if (categoryAmountSpent.length === 0) {
     } else {
-      categoryAmountSpent = _.groupBy(categoryAmountSpent, 'category');
+      categoryAmountSpent = _.groupBy(categoryAmountSpent, "category");
       for (let item in categoryAmountSpent) {
         categoryAmountSpent[item] = categoryAmountSpent[item].reduce((a, b) => {
           a.amountSpent += b.amountSpent;
@@ -77,10 +77,11 @@ export default class BudgetingTableComponent extends Component {
       <div
         style={{
           marginTop: 20,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center'
-        }}>
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}
+      >
         <BudgetDisplayComponent budgetDisplayData={listOfCategories} />
         <Table>
           <TableHeader adjustForCheckbox={false} displaySelectAll={false}>
@@ -91,7 +92,7 @@ export default class BudgetingTableComponent extends Component {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {listOfCategories.map((category, index) =>
+            {listOfCategories.map((category, index) => (
               <BudgetingTableItemComponent
                 key={index}
                 category={category}
@@ -99,7 +100,7 @@ export default class BudgetingTableComponent extends Component {
                 onSelectCategory={this.props.onSelectCategory}
                 onDeselectCategory={this.props.onDeselectCategory}
               />
-            )}
+            ))}
           </TableBody>
         </Table>
       </div>

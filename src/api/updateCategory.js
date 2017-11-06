@@ -18,5 +18,8 @@ export default function updateCategory(id, changes, token) {
         category: record.name,
         limit: record.limit
       };
+    })
+    .catch(error => {
+      return error.message;
     });
 }

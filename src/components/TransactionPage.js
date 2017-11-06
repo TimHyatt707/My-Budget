@@ -27,39 +27,42 @@ export default function TransactionPage({
   onLogoutUser,
   history
 }) {
-  return (
-    <TransactionPageLayout>
-      <NavbarComponent
-        pageTitle={pageTitle}
-        pages={pages}
-        token={token}
-        onLogoutUser={onLogoutUser}
-        history={history}
-      />
-      <ActionBarTransactionComponent
-        categories={categories}
-        token={token}
-        authenticatedUserId={authenticatedUserId}
-        transactions={transactions}
-        onSelectTransaction={onSelectTransaction}
-        onShowCreateTransactionDialog={onShowCreateTransactionDialog}
-        onCloseCreateTransactionDialog={onCloseCreateTransactionDialog}
-        onOpenCreateTransactionDialog={onOpenCreateTransactionDialog}
-        onSubmitTransaction={onSubmitTransaction}
-        onShowUpdateTransactionDialog={onShowUpdateTransactionDialog}
-        onCloseUpdateTransactionDialog={onCloseUpdateTransactionDialog}
-        onOpenUpdateTransactionDialog={onOpenUpdateTransactionDialog}
-        onUpdateTransaction={onUpdateTransaction}
-        selectedTransactionIds={selectedTransactionIds}
-        onDeleteTransaction={onDeleteTransaction}
-      />
-      <TransactionTableComponent
-        transactions={transactions}
-        selectedTransactionIds={selectedTransactionIds}
-        onSelectTransaction={onSelectTransaction}
-        onDeselectTransaction={onDeselectTransaction}
-      />
-      <FooterComponent pageTitle={pageTitle} />
-    </TransactionPageLayout>
-  );
+  if (transactions === "Failed to fetch" || categories === "Failed to fetch")
+    return <h1>Internal Server Error</h1>;
+  else
+    return (
+      <TransactionPageLayout>
+        <NavbarComponent
+          pageTitle={pageTitle}
+          pages={pages}
+          token={token}
+          onLogoutUser={onLogoutUser}
+          history={history}
+        />
+        <ActionBarTransactionComponent
+          categories={categories}
+          token={token}
+          authenticatedUserId={authenticatedUserId}
+          transactions={transactions}
+          onSelectTransaction={onSelectTransaction}
+          onShowCreateTransactionDialog={onShowCreateTransactionDialog}
+          onCloseCreateTransactionDialog={onCloseCreateTransactionDialog}
+          onOpenCreateTransactionDialog={onOpenCreateTransactionDialog}
+          onSubmitTransaction={onSubmitTransaction}
+          onShowUpdateTransactionDialog={onShowUpdateTransactionDialog}
+          onCloseUpdateTransactionDialog={onCloseUpdateTransactionDialog}
+          onOpenUpdateTransactionDialog={onOpenUpdateTransactionDialog}
+          onUpdateTransaction={onUpdateTransaction}
+          selectedTransactionIds={selectedTransactionIds}
+          onDeleteTransaction={onDeleteTransaction}
+        />
+        <TransactionTableComponent
+          transactions={transactions}
+          selectedTransactionIds={selectedTransactionIds}
+          onSelectTransaction={onSelectTransaction}
+          onDeselectTransaction={onDeselectTransaction}
+        />
+        <FooterComponent pageTitle={pageTitle} />
+      </TransactionPageLayout>
+    );
 }

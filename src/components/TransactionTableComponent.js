@@ -11,10 +11,10 @@ import TransactionTableItemComponent from "./TransactionTableItemComponent";
 export default class TransactionTableComponent extends Component {
   render() {
     let listOfTransactions;
-    if (!this.props.transactions) {
+    if (!this.props.transactions.length) {
       listOfTransactions = [
         {
-          amountSpent: "There are no transactions to display",
+          amountSpent: "No transactions",
           category: "",
           name: "",
           timestamp: ""

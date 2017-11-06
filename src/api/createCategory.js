@@ -18,5 +18,8 @@ export default function createCategory(id, object, token) {
         category: record.name,
         limit: record.limit
       };
+    })
+    .catch(error => {
+      return error.message;
     });
 }
