@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import getMuiTheme from "material-ui/styles/getMuiTheme";
-import muiTheme from "material-ui/styles/baseThemes/muiTheme";
+import muiTheme from "material-ui/styles/baseThemes/darkBaseTheme";
 import IndexPageContainer from "./redux/containers/IndexPageContainer.js";
 import BudgetPageContainer from "./redux/containers/BudgetPageContainer.js";
 import TransactionPageContainer from "./redux/containers/TransactionPageContainer.js";
