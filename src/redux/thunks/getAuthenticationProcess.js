@@ -5,11 +5,11 @@ export default function getAuthenticationProcess() {
     const authentication = getAuth();
     const token = authentication.token;
     const userId = authentication.authenticatedUserId;
-    if (!token || !userId) {
+    if (!token) {
       return null;
     } else {
       dispatch({ type: "SET_TOKEN", token });
-      dispatch({ type: "SET_USER", userId });
+      dispatch({ type: "SET_ID", userId });
       return authentication;
     }
   };

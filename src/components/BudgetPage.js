@@ -2,7 +2,7 @@ import React from "react";
 import BudgetPageLayout from "./BudgetPageLayout";
 import NavbarComponent from "./NavbarComponent";
 import PieChartComponent from "./PieChartComponent";
-import ActionBarBudgetComponent from "./ActionBarCategoryComponent";
+import ActionBarCategoryComponent from "./ActionBarCategoryComponent";
 import BudgetingTableComponent from "./BudgetingTableComponent";
 
 export default function BudgetPage({
@@ -29,7 +29,7 @@ export default function BudgetPage({
   currentSort,
   budgetDisplayData,
   sendBudgetDisplayData,
-  authenticatedUserId,
+  userId,
   token,
   onLogoutUser,
   history
@@ -47,8 +47,8 @@ export default function BudgetPage({
           history={history}
         />
         <PieChartComponent categories={categories} width={1000} />
-        <ActionBarBudgetComponent
-          authenticatedUserId={authenticatedUserId}
+        <ActionBarCategoryComponent
+          userId={userId}
           token={token}
           onOpenCreateCategoryDialog={onOpenCreateCategoryDialog}
           onShowCreateCategoryDialog={onShowCreateCategoryDialog}

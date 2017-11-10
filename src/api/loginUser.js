@@ -17,8 +17,7 @@ export default function loginUser(credentials) {
     })
     .then(record => {
       return {
-        token: record.authentication.token,
-        userId: record.authentication.userId
+        token: record.authentication.token
       };
     });
 }

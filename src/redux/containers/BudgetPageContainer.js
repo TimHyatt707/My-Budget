@@ -21,7 +21,7 @@ function mapStateToProps(state, ownProps) {
     onShowUpdateCategoryDialog: state.onShowUpdateCategoryDialog,
     currentSort: state.currentSort,
     token: state.token,
-    authenticatedUserId: state.authenticatedUserId
+    userId: state.userId
   };
 }
 
@@ -37,8 +37,8 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "CLOSE_CREATE_CATEGORY" }),
     onSubmitCategory: (id, category, token) =>
       dispatch(createCategoryProcess(id, category, token)),
-    onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY", id }),
-    onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY", id }),
+    onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY" }),
+    onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY" }),
     onOpenUpdateCategoryDialog: () =>
       dispatch({ type: "SHOW_UPDATE_CATEGORY" }),
     onCloseUpdateCategoryDialog: () =>
@@ -60,14 +60,8 @@ const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 const onDidMount = lifecycle({
   async componentDidMount() {
     await this.props.onMount();
-    await this.props.onMountCategories(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
-    await this.props.onMountTransactions(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
+    await this.props.onMountCategories(this.props.userId, this.props.token);
+    await this.props.onMountTransactions(this.props.userId, this.props.token);
   }
 });
 

@@ -11,8 +11,7 @@ function mapStateToProps(state, ownProps) {
     pageTitle: state.pageTitle,
     pages: state.pages,
     categories: state.categories,
-    token: state.token,
-    authenticatedUserId: state.authenticatedUserId
+    token: state.token
   };
 }
 
@@ -31,14 +30,8 @@ const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 const onDidMount = lifecycle({
   async componentDidMount() {
     await this.props.onMount();
-    await this.props.onMountTransactions(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
-    await this.props.onMountCategories(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
+    await this.props.onMountTransactions(this.props.userId, this.props.token);
+    await this.props.onMountCategories(this.props.userId, this.props.token);
   }
 });
 

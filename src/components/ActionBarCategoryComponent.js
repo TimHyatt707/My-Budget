@@ -42,7 +42,7 @@ export default class ActionBarCategoryComponent extends Component {
           onClick={this._onCreateCategoryHandler}
         >
           <CreateCategoryDialogComponent
-            authenticatedUserId={this.props.authenticatedUserId}
+            authenticatedUserId={this.props.userId}
             token={this.props.token}
             onOpenCreateCategoryDialog={this.props.onOpenCreateCategoryDialog}
             onShowCreateCategoryDialog={this.props.onShowCreateCategoryDialog}
@@ -57,7 +57,7 @@ export default class ActionBarCategoryComponent extends Component {
           onClick={this._onUpdateCategoryHandler}
         >
           <UpdateCategoryDialogComponent
-            authenticatedUserId={this.props.authenticatedUserId}
+            authenticatedUserId={this.props.userId}
             token={this.props.token}
             onOpenUpdateCategoryDialog={this.props.onOpenUpdateCategoryDialog}
             onCloseUpdateCategoryDialog={this.props.onCloseUpdateCategoryDialog}

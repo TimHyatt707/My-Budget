@@ -23,7 +23,7 @@ export default function TransactionPage({
   onUpdateTransaction,
   onDeleteTransaction,
   token,
-  authenticatedUserId,
+  userId,
   onLogoutUser,
   history
 }) {
@@ -42,7 +42,7 @@ export default function TransactionPage({
         <ActionBarTransactionComponent
           categories={categories}
           token={token}
-          authenticatedUserId={authenticatedUserId}
+          authenticatedUserId={userId}
           transactions={transactions}
           onSelectTransaction={onSelectTransaction}
           onShowCreateTransactionDialog={onShowCreateTransactionDialog}

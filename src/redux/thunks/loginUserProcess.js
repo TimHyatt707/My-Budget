@@ -5,7 +5,6 @@ export default function loginUserProcess(credentials) {
     return loginUser(credentials)
       .then(authentication => {
         localStorage.setItem("token", authentication.token);
-        localStorage.setItem("userId", authentication.userId);
         dispatch({ type: "LOGIN_USER" });
         return authentication;
       })

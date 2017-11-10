@@ -24,7 +24,7 @@ export default class TransactionPreviewComponent extends Component {
     };
     const title = "Recent Transactions";
     let listOfTransactions = [];
-    if (!this.props.transactions.length) {
+    if (!this.props.transactions) {
       listOfTransactions[0] = {
         id: 0,
         name: "No Transactions",

@@ -18,7 +18,7 @@ function mapStateToProps(state, ownProps) {
     onShowCreateTransactionDialog: state.onShowCreateTransactionDialog,
     onShowUpdateTransactionDialog: state.onShowUpdateTransactionDialog,
     token: state.token,
-    authenticatedUserId: state.authenticatedUserId
+    userId: state.userId
   };
 }
 
@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () => dispatch(getAuthenticationProcess()),
     onMountTransactions: (id, token) =>
       dispatch(getTransactionsProcess(id, token)),
-    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token)),
+    onMountCategories: (id, token) => dispatch(getCategoriesProcess(token)),
     onOpenCreateTransactionDialog: () =>
       dispatch({ type: "OPEN_CREATE_TRANSACTION" }),
     onCloseCreateTransactionDialog: () =>
@@ -40,12 +40,10 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "OPEN_UPDATE_TRANSACTION" }),
     onCloseUpdateTransactionDialog: () =>
       dispatch({ type: "CLOSE_UPDATE_TRANSACTION" }),
-    onUpdateTransaction: (id, transaction, authenticatedUserId, token) =>
-      dispatch(
-        updateTransactionProcess(id, transaction, authenticatedUserId, token)
-      ),
+    onUpdateTransaction: (id, transaction, token) =>
+      dispatch(updateTransactionProcess(id, transaction, token)),
     onDeleteTransaction: (id, authenticatedUserId, token) =>
-      dispatch(deleteTransactionProcess(id, authenticatedUserId, token)),
+      dispatch(deleteTransactionProcess(id, token)),
     onLogoutUser: () => dispatch({ type: "LOGOUT_USER" })
   };
 }
@@ -55,14 +53,8 @@ const connectToStore = connect(mapStateToProps, mapDispatchToProps);
 const onDidMount = lifecycle({
   async componentDidMount() {
     await this.props.onMount();
-    await this.props.onMountTransactions(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
-    await this.props.onMountCategories(
-      this.props.authenticatedUserId,
-      this.props.token
-    );
+    await this.props.onMountTransactions(this.props.userId, this.props.token);
+    await this.props.onMountCategories(this.props.userId, this.props.token);
   }
 });
 

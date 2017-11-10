@@ -71,7 +71,7 @@ export default class ActionBarTransactionComponent extends Component {
               categories={categories}
               onSubmitTransaction={this.props.onSubmitTransaction}
               token={this.props.token}
-              authenticatedUserId={this.props.authenticatedUserId}
+              authenticatedUserId={this.props.userId}
             />
           </RaisedButton>
           <RaisedButton
@@ -94,7 +94,7 @@ export default class ActionBarTransactionComponent extends Component {
               categories={categories}
               selectedTransactionIds={this.props.selectedTransactionIds}
               token={this.props.token}
-              authenticatedUserId={this.props.authenticatedUserId}
+              authenticatedUserId={this.props.userId}
             />
           </RaisedButton>
           <RaisedButton
