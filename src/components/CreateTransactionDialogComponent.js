@@ -19,7 +19,7 @@ export default class CreateTransactionDialogComponent extends Component {
   };
   render() {
     let listOfCategories = this.props.categories;
-    if (!listOfCategories) {
+    if (!listOfCategories.length) {
       listOfCategories = [];
     }
     const actions = [
@@ -93,7 +93,7 @@ export default class CreateTransactionDialogComponent extends Component {
       object.created_at = $form.timestamp.value;
       this.props.onCloseCreateTransactionDialog();
       this.props.onSubmitTransaction(
-        this.props.authenticatedUserId,
+        this.props.userId,
         object,
         this.props.token
       );

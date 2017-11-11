@@ -96,7 +96,7 @@ export default class UpdateTransactionDialogComponent extends Component {
         this.props.onUpdateTransaction(
           this.props.selectedTransactionIds[i],
           object,
-          this.props.authenticatedUserId,
+          this.props.userId,
           this.props.token
         );
       }

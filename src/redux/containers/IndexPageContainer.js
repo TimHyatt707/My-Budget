@@ -11,7 +11,8 @@ function mapStateToProps(state, ownProps) {
     pageTitle: state.pageTitle,
     pages: state.pages,
     categories: state.categories,
-    token: state.token
+    token: state.token,
+    userId: state.userId
   };
 }
 

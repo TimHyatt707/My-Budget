@@ -6,7 +6,6 @@ export default function getCategoriesProcess(id, token) {
       return [];
     }
     return getCategories(id, token).then(categories => {
-      console.log(categories);
       dispatch({ type: "SET_CATEGORIES", categories });
       return categories;
     });

@@ -63,11 +63,7 @@ export default class CreateCategoryDialogComponent extends Component {
     } else {
       object.limit = parseFloat($form.limit.value);
       this.props.onCloseCreateCategoryDialog();
-      this.props.onSubmitCategory(
-        this.props.authenticatedUserId,
-        object,
-        this.props.token
-      );
+      this.props.onSubmitCategory(this.props.userId, object, this.props.token);
     }
   }
 }

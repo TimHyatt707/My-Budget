@@ -71,7 +71,7 @@ export default class ActionBarTransactionComponent extends Component {
               categories={categories}
               onSubmitTransaction={this.props.onSubmitTransaction}
               token={this.props.token}
-              authenticatedUserId={this.props.userId}
+              userId={this.props.userId}
             />
           </RaisedButton>
           <RaisedButton
@@ -94,7 +94,7 @@ export default class ActionBarTransactionComponent extends Component {
               categories={categories}
               selectedTransactionIds={this.props.selectedTransactionIds}
               token={this.props.token}
-              authenticatedUserId={this.props.userId}
+              userId={this.props.userId}
             />
           </RaisedButton>
           <RaisedButton
@@ -113,11 +113,7 @@ export default class ActionBarTransactionComponent extends Component {
     this.props.onOpenUpdateTransactionDialog();
   _onDeleteTransactionHandler = () =>
     this.props.selectedTransactionIds.forEach(id =>
-      this.props.onDeleteTransaction(
-        id,
-        this.props.authenticatedUserId,
-        this.props.token
-      )
+      this.props.onDeleteTransaction(id, this.props.userId, this.props.token)
     );
   _onSubmitHandler = event => {
     event.preventDefault();

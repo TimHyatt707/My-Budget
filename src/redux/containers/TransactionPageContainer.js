@@ -27,7 +27,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     onMount: () => dispatch(getAuthenticationProcess()),
     onMountTransactions: (id, token) =>
       dispatch(getTransactionsProcess(id, token)),
-    onMountCategories: (id, token) => dispatch(getCategoriesProcess(token)),
+    onMountCategories: (id, token) => dispatch(getCategoriesProcess(id, token)),
     onOpenCreateTransactionDialog: () =>
       dispatch({ type: "OPEN_CREATE_TRANSACTION" }),
     onCloseCreateTransactionDialog: () =>
@@ -40,10 +40,10 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "OPEN_UPDATE_TRANSACTION" }),
     onCloseUpdateTransactionDialog: () =>
       dispatch({ type: "CLOSE_UPDATE_TRANSACTION" }),
-    onUpdateTransaction: (id, transaction, token) =>
-      dispatch(updateTransactionProcess(id, transaction, token)),
-    onDeleteTransaction: (id, authenticatedUserId, token) =>
-      dispatch(deleteTransactionProcess(id, token)),
+    onUpdateTransaction: (id, transaction, userId, token) =>
+      dispatch(updateTransactionProcess(id, transaction, userId, token)),
+    onDeleteTransaction: (id, userId, token) =>
+      dispatch(deleteTransactionProcess(id, userId, token)),
     onLogoutUser: () => dispatch({ type: "LOGOUT_USER" })
   };
 }
