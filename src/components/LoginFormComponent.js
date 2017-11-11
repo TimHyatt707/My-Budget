@@ -38,8 +38,8 @@ export default class LoginForm extends React.Component {
       const credentials = { email, password };
       const loggedInUser = await this.props.onLoginUser(credentials);
       if (loggedInUser.token) {
-        alert("Logged in succesfully");
         this.props.history.push("/");
+        window.location.reload(true);
       } else if (loggedInUser === "Invalid username/password")
         this.setState({ error: "Invalid username/password" });
       else {

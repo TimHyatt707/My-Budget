@@ -14,7 +14,6 @@ export default function rootReducer(
     currentSort: false,
     budgetDisplayData: [],
     token: null,
-    loggedIn: false,
     userId: null
   },
   action
@@ -135,11 +134,6 @@ export default function rootReducer(
       return {
         ...currentState,
         token: action.token
-      };
-    case "LOGIN_USER":
-      return {
-        ...currentState,
-        loggedIn: true
       };
     case "LOGOUT_USER":
       return {
