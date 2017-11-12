@@ -37,8 +37,8 @@ function mapDispatchToProps(dispatch, ownProps) {
       dispatch({ type: "CLOSE_CREATE_CATEGORY" }),
     onSubmitCategory: (id, category, token) =>
       dispatch(createCategoryProcess(id, category, token)),
-    onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY" }),
-    onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY" }),
+    onSelectCategory: id => dispatch({ type: "SELECT_CATEGORY", id }),
+    onDeselectCategory: id => dispatch({ type: "DESELECT_CATEGORY", id }),
     onOpenUpdateCategoryDialog: () =>
       dispatch({ type: "SHOW_UPDATE_CATEGORY" }),
     onCloseUpdateCategoryDialog: () =>
