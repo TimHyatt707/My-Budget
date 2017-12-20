@@ -11,7 +11,7 @@ the drop down menu.
 
 Then once you create an account, you will be redirected to the login page where you can login.
 
-![alt text](https://regulator707.imgur.com/all)
+![alt text](https://i.imgur.com/XgxKbWF.png)
 
 In order to create a budget, you need to set categories for your budget. Go to the budget page, and click 'CREATE' to make a category, you will then fill out some information for that category.
 
