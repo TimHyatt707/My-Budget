@@ -1,4 +1,4 @@
-# My Budget
+# My Budget (Old school project)
 My Budget is a personal budgeting application that uses CRUD operations that
 allows the user to create, edit, and delete both budget categories and transactions.
 
